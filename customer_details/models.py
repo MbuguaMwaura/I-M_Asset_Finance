@@ -40,6 +40,11 @@ class additonalInfoIndividual(models.Model):
     others=models.ImageField("Others eg rent ,farming")
     disposable_income = models.IntegerField(_("Total net disposable income"))
 
+class additonalInfoCompany(model.Model):
+    shareholders = models.CharField(_("Names of the shareholders/Partners "))
+    annual_tunover = models.IntegerField(_("Annual Turnover(kes)"))
+    annual_profit = models.IntegerField(_("Annual Net Profit"))
+    associate_companies = models.CharField(_("Associate Companies (Where applicable)"))
 
 
 
