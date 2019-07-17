@@ -46,6 +46,15 @@ class additonalInfoCompany(model.Model):
     annual_profit = models.IntegerField(_("Annual Net Profit"))
     associate_companies = models.CharField(_("Associate Companies (Where applicable)"))
 
+class dealer(models.Model):
+    dealer_name = models.CharField(_("Dealer name"), max_length=100)
+    postal_address = models.IntegerField(_("Postal Address"))
+    telephone_number = models.IntegerField(_("Telephone Number"))
+    invoice_number = models.IntegerField(_("Invoice Number/Date"))
+    sales_person = models.CharField(_("Sales Person"))
+
+
+
 
 
 
