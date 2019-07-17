@@ -31,11 +31,11 @@ class DealerSupplier(models.Models):
   invoiceno_date = models.CharField(_('invoice date'), max_length=50)
   salesperson = models.CharField(_('sales'), max_length=50)
 
-# class OtherCredit(models.Models):
-#   name = models.CharField(_('Name'), max_length=50)
-#   Facility_type = models.CharField(_('Facility type'), max_length=50)
-#   sanctioned_limit = models.CharField(_('sanctioned limit'), max_length=50)
-#   current_outstanding = models.CharField(_('current outstanding'), max_length=50)
+class OtherCredit(models.Models):
+  name = models.CharField(_('Name'), max_length=50)
+  Facility_type = models.CharField(_('Facility type'), max_length=50)
+  sanctioned_limit = models.CharField(_('sanctioned limit'), max_length=50)
+  current_outstanding = models.CharField(_('current outstanding'), max_length=50)
   
 
 # class Document(models.Model):
