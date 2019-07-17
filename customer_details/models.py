@@ -21,5 +21,26 @@ class Properties(models.Model):
     approximate_value = models.IntegerField(_("Approximate value"))
 
 
+class additonalInfoIndividual(models.Model):
+    age = models.IntegerField(_("Age"))
+    occupation = models.CharField(_("Occupation"), max_length=100)
+    nationality = models.CharField(_("Nationality"), max_length=100)
+    name_employer = models.CharField(_("Name of Employer"), max_length = 100)
+    address = models.CharField(_("Address"), max_length=300)
+    contact = models.IntegerField(_("Phone Number"))
+    years = models.IntegerField(_("No of Years in current position"))
+    marital_status= models.CharField(_("Marital status"))
+    spouse = models.CharField(_("Name of spouse"), max_length=100) 
+    occupation = models.CharField(_("Occupation"), max_length = 200)
+    income = models.IntegerField(_("Employment income/Net of stautoyy Deductions"))
+    spouse_income = models.IntegerField(_("spouse's income"))
+    living_expenses = models.IntegerField(_("Living expenses"))
+    loan_payment = models.IntegerField(_("Current loan payment"))
+    income_business = models.IntegerField(_("Other income business"))
+    others=models.ImageField("Others eg rent ,farming")
+    disposable_income = models.IntegerField(_("Total net disposable income"))
+
+
+
 
 
