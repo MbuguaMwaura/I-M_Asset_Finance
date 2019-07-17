@@ -24,12 +24,12 @@ class Applicant(models.Models):
   purpose = models.CharField(_('purpose of assets being purchaced'), max_length=50)
 
 
-# class DealerSupplier(models.Models):
-#   dealername = models.CharField(_('DEALER NAME'),max_length=50)
-#   postaladdress = models.CharField(_('postal address'), max_length=50)
-#   telno = models.IntegerField(_('tel phone no'), max_length=50)
-#   invoiceno_date = models.CharField(_('invoice date'), max_length=50)
-#   salesperson = models.CharField(_('sales'), max_length=50)
+class DealerSupplier(models.Models):
+  dealername = models.CharField(_('DEALER NAME'),max_length=50)
+  postaladdress = models.CharField(_('postal address'), max_length=50)
+  telno = models.IntegerField(_('tel phone no'), max_length=50)
+  invoiceno_date = models.CharField(_('invoice date'), max_length=50)
+  salesperson = models.CharField(_('sales'), max_length=50)
 
 # class OtherCredit(models.Models):
 #   name = models.CharField(_('Name'), max_length=50)
