@@ -11,7 +11,7 @@ class DealerPostForm(forms.ModelForm):
     models = DealerSupplier
     fields = ['dealername','postaladdress','telno','invoiceno_date','salesperson']
 
-# class DocumentForm(forms.ModelForm):
-#     class Meta:
-#         model = Document
-#         fields = ('description', 'document', )
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('description', 'document', )
