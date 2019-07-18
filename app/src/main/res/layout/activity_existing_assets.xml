@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ExistingAssetsActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+        <EditText
+            android:id="@+id/vehicleRegNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="VEHICLE REG NO."
+            />
+
+        <EditText
+            android:id="@+id/make"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MAKE"
+            />
+
+
+        <EditText
+            android:id="@+id/model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MODEL"
+            />
+
+        <EditText
+            android:id="@+id/loanBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="BALANCE OF LOAN"
+            />
+
+        <EditText
+            android:id="@+id/financedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="FINANCED BY"
+            />
+
+        <Button
+            android:id="@+id/addVehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginTop="20dp"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/linear3"
+        android:id="@+id/linear4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+        <EditText
+            android:id="@+id/property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PROPERTY(RESIDENTIAL/COMMERCIAL)"
+            />
+
+        <EditText
+            android:id="@+id/size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="SIZE"
+            />
+
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="TOWN/AREA"
+            />
+
+        <EditText
+            android:id="@+id/lrNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="LR NO."
+            />
+
+        <EditText
+            android:id="@+id/value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="APPROXIMATE VALUE"
+            />
+
+        <Button
+            android:id="@+id/addProperty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginTop="20dp"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+
+            android:id="@+id/pageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="PAGE: 3/10"
+            android:textColor="@color/imbluedark"
+            android:paddingTop="30dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/proceedThree"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="proceed"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+    </LinearLayout>
+
+
+    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</RelativeLayout>

@@ -6,4 +6,6 @@
     <color name="blue">#63B1E0</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="imbluelight">#3e6fa8</color>
+    <color name="imbluedark">#122e5d</color>
 </resources>
