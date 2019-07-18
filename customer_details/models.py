@@ -53,6 +53,15 @@ class dealer(models.Model):
     invoice_number = models.IntegerField(_("Invoice Number/Date"))
     sales_person = models.CharField(_("Sales Person"))
 
+  
+
+
+
+    
+
+
+
+
 
 
 
