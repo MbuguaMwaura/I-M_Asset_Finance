@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ApplicantActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NAME"
+            />
+
+        <EditText
+            android:id="@+id/idNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID/PASSPORT/INC/CERT. OF REG "
+            />
+        <EditText
+            android:id="@+id/pinNumber"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="PIN NO"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/poBox"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="PO BOX"
+                />
+            <EditText
+                android:layout_marginLeft="40dp"
+                android:id="@+id/postalCode"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="POSTAL CODE"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/physicalLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PHYSICAL LOCATION (LOCATION/ROAD)"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/mobileNumber"
+                android:layout_width="150dp"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:hint="PHONE NUMBER"
+                />
+            <EditText
+                android:layout_marginLeft="40dp"
+                android:id="@+id/officeNumber"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="OFFICE NUMBER"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/ownerTenant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="OWNER/TENANT"
+            />
+
+        <EditText
+            android:id="@+id/tentant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="IF TENANT:(NAME OF LANDLORD)"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/postalCodeTwo"
+                android:layout_width="150dp"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:hint="POSTAL CODE"
+                />
+            <EditText
+                android:layout_marginLeft="40dp"
+                android:id="@+id/phonenumber"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="PHONE NUMBER"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/businessNature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NATURE OF BUSINESS"
+            />
+
+        <EditText
+            android:id="@+id/yearOfBusiness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="YEAR BUSINESS ESTABLISHED"
+            />
+
+        <EditText
+            android:id="@+id/introBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="INTRODUCED BY"
+            />
+
+
+        <EditText
+            android:id="@+id/purpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PURPOSE OF ASSET BEING PURCHASED"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="16dp"
+        android:id="@+id/pageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear2"
+        android:text="PAGE: 1/10"
+        android:paddingTop="30dp"
+        />
+
+    <Button
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear2"
+        android:layout_alignParentRight="true"
+        android:text="proceed"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        />
+
+</RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

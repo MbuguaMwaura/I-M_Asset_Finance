@@ -2,7 +2,7 @@ package com.example.assetfinance.models;
 
 public class Applicant {
     String name;
-    int idNumber;
+    String idNumber;
     String pinNumber;
     String address;
     int postalCode;
@@ -19,7 +19,7 @@ public class Applicant {
     String introducedBy;
     String purposeOfAsset;
 
-    public Applicant(String name, int idNumber, String pinNumber, String address, int postalCode, String town, String physicalAddress, int mobileNumber, int officeNumber, String landLord, String homeaddress, int postalCodeAddress, int phoneNumber, String natureOfBusiness, int yearStartedBusiness, String introducedBy, String purposeOfAsset) {
+    public Applicant(String name, String idNumber, String pinNumber, String address, int postalCode, String town, String physicalAddress, int mobileNumber, int officeNumber, String landLord, String homeaddress, int postalCodeAddress, int phoneNumber, String natureOfBusiness, int yearStartedBusiness, String introducedBy, String purposeOfAsset) {
         this.name = name;
         this.idNumber = idNumber;
         this.pinNumber = pinNumber;
@@ -50,11 +50,11 @@ public class Applicant {
         this.name = name;
     }
 
-    public int getIdNumber() {
+    public String getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(int idNumber) {
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
