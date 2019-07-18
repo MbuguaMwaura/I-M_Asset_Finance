@@ -1,15 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class applicantBankDetails(models.Model):
+    user_id = models.ForeignKey(User)
     bank_name = models.CharField(_("Bank Name"), max_length = 200)
     branch = models.CharField(_("Branch"), max_length = 100)
     account_number = models.IntegerField(_("Account number"))
     od_limit = models.IntegerField("OD Limit")
     outstanding_loans = models.IntegerField(_("Outsatnding loans"))
+    # Forms 2
+    bank_name2 = models.CharField(_("Bank Name"), max_length = 200, default='Add another bank name')
+    branch2 = models.CharField(_("Branch"), max_length = 100)
+    account_number2 = models.IntegerField(_("Account number"))
+    od_limit2 = models.IntegerField("OD Limit")
+    outstanding_loans2 = models.IntegerField(_("Outsatnding loans"))
 
 class Properties(models.Model):
+    user_id = models.ForeignKey(User)
     vehicle_reistration = models.IntegerField(_("Vehicle registration number"))
     model = models.CharField(_("Model"), max_length=100)
     loan_balance = models.IntegerField(_("Balance of Loan if any"))  
@@ -22,6 +31,7 @@ class Properties(models.Model):
 
 
 class additonalInfoIndividual(models.Model):
+    user_id = models.ForeignKey(User)
     age = models.IntegerField(_("Age"))
     occupation = models.CharField(_("Occupation"), max_length=100)
     nationality = models.CharField(_("Nationality"), max_length=100)
@@ -41,12 +51,14 @@ class additonalInfoIndividual(models.Model):
     disposable_income = models.IntegerField(_("Total net disposable income"))
 
 class additonalInfoCompany(model.Model):
+    user_id = models.ForeignKey(User)
     shareholders = models.CharField(_("Names of the shareholders/Partners "))
     annual_tunover = models.IntegerField(_("Annual Turnover(kes)"))
     annual_profit = models.IntegerField(_("Annual Net Profit"))
     associate_companies = models.CharField(_("Associate Companies (Where applicable)"))
 
 class dealer(models.Model):
+    user_id = models.ForeignKey(User)
     dealer_name = models.CharField(_("Dealer name"), max_length=100)
     postal_address = models.IntegerField(_("Postal Address"))
     telephone_number = models.IntegerField(_("Telephone Number"))
@@ -56,6 +68,7 @@ class dealer(models.Model):
   
 
 class asset_details(models.Model):
+    user_id = models.ForeignKey(User)
     make = models.CharField(_("Make"))
     new_used = models.CharField(_("New/Used"))
     invoice_price = models.IntegerField(_("Invoice Price"))
