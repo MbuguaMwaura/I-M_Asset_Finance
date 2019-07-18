@@ -55,6 +55,30 @@ class dealer(models.Model):
 
   
 
+class asset_details(models.Model):
+    make = models.CharField(_("Make"))
+    new_used = models.CharField(_("New/Used"))
+    invoice_price = models.IntegerField(_("Invoice Price"))
+    rating = models.CharField(_("Model/Cc Rating"))
+    less = models.IntegerField(_("Discounts"))
+    year = models.IntegerField(_("Year of manufacture"))
+    cost = models.IntegerField(_("Net cost"))
+    valuation = models.IntegerField(_("Valuation Amount"))
+    add = models.CharField(_("Accessories/others(where application)"))
+    insurance = models.BooleanField (_("Insurance through I&M Insurance"), default = True)
+    interested   =  models.BooleanField (_("Intrested in Insurance Finance(IPF)"), default =True)
+    total = models.IntegerField(_("Total Cost"))
+    deposit = models.IntegerField(_("Loss:Deposit"))
+    balance = models.IntegerField(_("Balance of cost"))
+    loan = models.IntegerField(_("Loan amount applied" ))
+    pricing = models.IntegerField(_("Pricing Agreed"))
+    loan = models.IntegerField(_("Tenor of loan"))
+    repayment = models.IntegerField(_("Repayment Frequent"))
+    repayment_amount = models.IntegerField(_("Repayment amount"))
+    mode_payment = models.IntegerField(_("Mode of payment"))
+    guarantor = models.CharField(_("Guarantor's Name(if any)"))
+    security = models.CharField(_("Details of security provided by guarantor(If any)"))
+
 
 
     
