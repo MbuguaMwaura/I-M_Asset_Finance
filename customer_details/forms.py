@@ -1,5 +1,10 @@
 from django import forms
-from .models import additonalInfoIndividual,Properties,additonalInfoCompany,applicantBankDetails,dealer,asset_details, Document,Applicant,DealerSupplier
+from .models import Applicant,applicantBankDetails,Properties,additonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,asset_details,OtherCredit,Document
+
+class ApplicantPostForm(forms.ModelForm):
+  class Meta:
+    model = Applicant
+    fields = ['yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
 
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:
@@ -25,6 +30,10 @@ class dealerForm(forms.ModelForm):
     class meta:
         model = dealer
         fields = ['dealer_name','postal_address','telephone_number','invoice_number','sales_person']
+class DealerPostForm(forms.ModelForm):
+    class Meta:
+        models = DealerSupplier
+       fields = ['dealername','postaladdress','telno','invoiceno_date','salesperson']       
 
 class asset_detailsForm(forms.ModelForm):
     class meta:
@@ -32,16 +41,6 @@ class asset_detailsForm(forms.ModelForm):
         fields = ['make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan','pricing','loan','repayment_amount','mode_payment','guarantor','security']
         labels = {'make':'','new_used':'','invoice_price':'','rating':'','less':'','year':'','cost':'','valuation':'','add':'','insurance':'label for insurance','interested':'label for interested','total':'','deposit':'','balance':'','loan':'','pricing':'','loan':'','repayment_amount':'','mode_payment':'','guarantor':'','security':''}
 
-
-class ApplicantPostForm(forms.ModelForm):
-  class Meta:
-    model = Applicant
-    fields = ['yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
-
-class DealerPostForm(forms.ModelForm):
-  class Meta:
-    models = DealerSupplier
-    fields = ['dealername','postaladdress','telno','invoiceno_date','salesperson']
 
 class DocumentForm(forms.ModelForm):
     class Meta:
