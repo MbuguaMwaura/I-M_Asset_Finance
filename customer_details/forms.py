@@ -41,8 +41,11 @@ class asset_detailsForm(forms.ModelForm):
         fields = ['make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan','pricing','loan','repayment_amount','mode_payment','guarantor','security']
         labels = {'make':'','new_used':'','invoice_price':'','rating':'','less':'','year':'','cost':'','valuation':'','add':'','insurance':'label for insurance','interested':'label for interested','total':'','deposit':'','balance':'','loan':'','pricing':'','loan':'','repayment_amount':'','mode_payment':'','guarantor':'','security':''}
 
-
+class OtherCreditForm(forms.ModelForm):
+    class meta:
+        model = OtherCredit
+        fields=['name','Facility_type','sanctioned_limit','current_outstanding']
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['description', 'document', ]
+        fields = ['description', 'document','uploaded_at' ]
