@@ -1,7 +1,0 @@
-from django.shaortcuts import render,redirect
-from .forms import  applicantBankDetailsForm,PropertiesForm,additonalInfoIndividualForm,additonalInfoCompanyForm,dealerForm,asset_detailsForm
-from .models import applicantBankDetails,Properties,additonalInfoIndividual,additonalInfoCompany,dealer,asset_details
-from django.contrib.auth.decorators import login_required
-
-
-def 

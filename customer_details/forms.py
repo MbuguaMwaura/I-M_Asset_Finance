@@ -4,7 +4,7 @@ from .models import additonalInfoIndividual,Properties,additonalInfoCompany,appl
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:
         model = applicantBankDetails
-        fields = ['bank_name','branch','account_number','od_limit','outstanding_loans']
+        fields = ['bank_name','branch','account_number','od_limit','outstanding_loans','bank_name2','branch2','account_number2','od_limit2','outstanding_loans2']
 
 class PropertiesForm(forms.ModelForm):
     class Meta:
