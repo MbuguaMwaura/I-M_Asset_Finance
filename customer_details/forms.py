@@ -1,5 +1,5 @@
 from django import forms
-from .models import additonalInfoIndividual,Properties,additonalInfoCompany,applicantBankDetails,dealer,asset_details
+from .models import additonalInfoIndividual,Properties,additonalInfoCompany,applicantBankDetails,dealer,asset_details, Document,Applicant,DealerSupplier
 
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:
@@ -14,7 +14,7 @@ class PropertiesForm(forms.ModelForm):
 class additonalInfoIndividualForm(forms.ModelForm):
     class Meta:
         model = additonalInfoIndividual
-        fields = ['age','occupation','nationality','name_employer','address','contact','years','marital_status','spouse','occupation','income'.'spouse_income','living_expenses'.'loan_payment','income_business','others','disposable_income']
+        fields = ['age','occupation','nationality','name_employer','address','contact','years','marital_status','spouse','occupation','income','spouse_income','living_expenses','loan_payment','income_business','others','disposable_income']
 
 class additonalInfoCompanyForm(forms.ModelForm):
     class meta:
@@ -29,18 +29,14 @@ class dealerForm(forms.ModelForm):
 class asset_detailsForm(forms.ModelForm):
     class meta:
         model = asset_details
-        fields = ['make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan'.'pricing','loan','repayment_amount','mode_payment','guarantor','security']
+        fields = ['make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan','pricing','loan','repayment_amount','mode_payment','guarantor','security']
         labels = {'make':'','new_used':'','invoice_price':'','rating':'','less':'','year':'','cost':'','valuation':'','add':'','insurance':'label for insurance','interested':'label for interested','total':'','deposit':'','balance':'','loan':'','pricing':'','loan':'','repayment_amount':'','mode_payment':'','guarantor':'','security':''}
 
-
-
-        
-from .models import CustomerDetails, Document
 
 class ApplicantPostForm(forms.ModelForm):
   class Meta:
     model = Applicant
-    fields = ['yourname','passport','pin','p_o_box','postalcode','city/town','physicaladdress','mobile','home/officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','yrbusiness','introby','purpose']
+    fields = ['yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
 
 class DealerPostForm(forms.ModelForm):
   class Meta:

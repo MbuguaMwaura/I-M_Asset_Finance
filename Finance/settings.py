@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
+    'bootstrap3',
     'customer_details',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Finance',
+   
 ]
 
 MIDDLEWARE = [
@@ -77,10 +79,9 @@ WSGI_APPLICATION = 'Finance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'assets',
-        'USER': 'canssidle',
-    'PASSWORD':'judycharles',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+    
     }
 }
 
@@ -123,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
