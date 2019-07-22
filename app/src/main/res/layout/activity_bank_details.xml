@@ -19,14 +19,14 @@
             android:id="@+id/bankName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="BANK NAME"
+            android:hint="Bank Name"
             />
 
         <EditText
             android:id="@+id/branch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="BRANCH"
+            android:hint="Branch"
             />
 
 
@@ -34,21 +34,21 @@
             android:id="@+id/accountNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ACCOUNT NUMBER"
+            android:hint="Account Number"
             />
 
         <EditText
             android:id="@+id/odLimit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="OD LIMIT"
+            android:hint="OD Limit"
             />
 
         <EditText
             android:id="@+id/outStandingLoans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="OUTSTANDING LOANS"
+            android:hint="Outstanding Loans"
             />
 
         <Button

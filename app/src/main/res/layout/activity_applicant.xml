@@ -21,20 +21,20 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="NAME"
+            android:hint="Name"
             />
 
         <EditText
             android:id="@+id/idNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID/PASSPORT/INC/CERT. OF REG "
+            android:hint="ID/Passport/INC/CERT. of REG "
             />
         <EditText
             android:id="@+id/pinNumber"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="PIN NO"
+            android:hint="Pin NO"
             />
 
         <LinearLayout
@@ -46,14 +46,14 @@
                 android:id="@+id/poBox"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:hint="PO BOX"
+                android:hint="PO Box"
                 />
             <EditText
                 android:layout_marginLeft="40dp"
                 android:id="@+id/postalCode"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:hint="POSTAL CODE"
+                android:hint="Postal Code"
                 />
 
         </LinearLayout>
@@ -62,7 +62,7 @@
             android:id="@+id/physicalLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PHYSICAL LOCATION (LOCATION/ROAD)"
+            android:hint="Physical Location (Location/Road)"
             />
 
         <LinearLayout
@@ -75,14 +75,14 @@
                 android:layout_width="150dp"
                 android:inputType="number"
                 android:layout_height="wrap_content"
-                android:hint="PHONE NUMBER"
+                android:hint="Phone Number"
                 />
             <EditText
                 android:layout_marginLeft="40dp"
                 android:id="@+id/officeNumber"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:hint="OFFICE NUMBER"
+                android:hint="Office Number"
                 />
 
         </LinearLayout>
@@ -91,20 +91,20 @@
             android:id="@+id/ownerTenant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="OWNER/TENANT"
+            android:hint="Owner/Tenant"
             />
 
         <EditText
             android:id="@+id/tentant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="IF TENANT:(NAME OF LANDLORD)"
+            android:hint="If Tenant:(Name Of Landlord)"
         />
         <EditText
             android:id="@+id/poBox2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="PO BOX"
+            android:hint="PO Box"
             />
 
         <LinearLayout
@@ -117,14 +117,14 @@
                 android:layout_width="150dp"
                 android:inputType="number"
                 android:layout_height="wrap_content"
-                android:hint="POSTAL CODE"
+                android:hint="Postal Code"
                 />
             <EditText
                 android:layout_marginLeft="40dp"
                 android:id="@+id/phonenumber"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:hint="PHONE NUMBER"
+                android:hint="Phone Number"
                 />
 
         </LinearLayout>
@@ -133,7 +133,7 @@
             android:id="@+id/businessNature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="NATURE OF BUSINESS"
+            android:hint="Nature Of Business"
             />
 
         <EditText
@@ -141,14 +141,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="YEAR BUSINESS ESTABLISHED"
+            android:hint="Year Business Established"
             />
 
         <EditText
             android:id="@+id/introBy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="INTRODUCED BY"
+            android:hint="Introduced By"
             />
 
 
@@ -156,7 +156,7 @@
             android:id="@+id/purpose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PURPOSE OF ASSET BEING PURCHASED"
+            android:hint="Purpose Of Asset Being Purchased"
             />
 
     </LinearLayout>

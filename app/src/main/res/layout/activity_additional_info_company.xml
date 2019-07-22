@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="NAMES OF SHAREHOLDERS"
+                android:hint="Names Of Shareholders"
                 />
 
             <ImageButton
@@ -44,7 +44,7 @@
             android:id="@+id/annualTurnover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ANNUAL TURNOVER (Kes)"
+            android:hint="Annual Turnover (Kes)"
             android:inputType="number"
             />
 
@@ -54,7 +54,7 @@
             android:id="@+id/annualNetProfit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ANNUAL NET PROFIT (Kes)"
+            android:hint="Annual Net Profit (Kes)"
             android:inputType="number"
             />
 
@@ -71,7 +71,7 @@
                 android:id="@+id/associateCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ASSOCIATE COMPANIES (where applicable)"
+                android:hint="Associate Companies (where applicable)"
                 />
 
             <ImageButton

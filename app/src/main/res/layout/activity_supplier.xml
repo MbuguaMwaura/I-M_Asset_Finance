@@ -22,7 +22,7 @@
                 android:id="@+id/dealerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="DEALER NAME"
+                android:hint="Dealer Name"
                 />
 
 
@@ -31,7 +31,7 @@
             android:id="@+id/postalAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="POSTAL ADDRESS"
+            android:hint="Postal Address"
 
             />
 
@@ -41,7 +41,7 @@
             android:id="@+id/number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TELEPHONE NUMBER"
+            android:hint="Telephone Number"
             android:inputType="number"
             />
 
@@ -52,7 +52,7 @@
                 android:id="@+id/invoiceNoDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="INVOICE NO. / DATE"
+                android:hint="Invoice NO. / Date"
                 />
 
 
@@ -60,7 +60,7 @@
             android:id="@+id/salesPerson"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="SALES PERSON"
+            android:hint="Sales Person"
             />
 
 

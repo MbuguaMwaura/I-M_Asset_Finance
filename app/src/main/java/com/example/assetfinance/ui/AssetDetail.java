@@ -44,7 +44,7 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asset_detail);
-        setTitle("7. Asset Details");
+        setTitle("7. ASSET DETAILS");
         ButterKnife.bind(this);
 
         proceedSevenBtn.setOnClickListener(this);

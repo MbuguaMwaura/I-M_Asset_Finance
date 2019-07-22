@@ -26,14 +26,14 @@
             android:id="@+id/vehicleRegNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="VEHICLE REG NO."
+            android:hint="Vehicle Reg NO."
             />
 
         <EditText
             android:id="@+id/make"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="MAKE"
+            android:hint="Make"
             />
 
 
@@ -41,21 +41,21 @@
             android:id="@+id/model"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="MODEL"
+            android:hint="Model"
             />
 
         <EditText
             android:id="@+id/loanBalance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="BALANCE OF LOAN"
+            android:hint="Balance Of Loan"
             />
 
         <EditText
             android:id="@+id/financedBy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="FINANCED BY"
+            android:hint="Financed By"
             />
 
         <Button
@@ -82,14 +82,14 @@
             android:id="@+id/property"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PROPERTY(RESIDENTIAL/COMMERCIAL)"
+            android:hint="Property (Residential/Commercial)"
             />
 
         <EditText
             android:id="@+id/size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="SIZE"
+            android:hint="Size"
             />
 
 
@@ -97,7 +97,7 @@
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TOWN/AREA"
+            android:hint="Town/Area"
             />
 
         <EditText
@@ -111,7 +111,7 @@
             android:id="@+id/value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="APPROXIMATE VALUE"
+            android:hint="Approximate Value"
             />
 
         <Button
