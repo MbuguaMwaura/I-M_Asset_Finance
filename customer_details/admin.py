@@ -15,9 +15,9 @@ class applicantBankDetailsAdmin(admin.ModelAdmin):
     list_display =('user_id','bank_name','branch','account_number','od_limit','outstanding_loans','bank_name2','branch2','account_number2','od_limit2','outstanding_loans2','is_complete'
 )
 
-# class PropertiesAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value','is_complete' 
-# )
+class PropertiesAdmin(admin.ModelAdmin):
+    list_display = ('user_id','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value','is_complete' 
+)
 
 # class additonalInfoIndividualAdmin(admin.ModelAdmin):
 #     list_display = ('user_id','age','occupation','nationality','name_employer','address','contact','years','marital_status','spouse','occupation','income','spouse_income','living_expenses','loan_payment','income_business','others','disposable_income' ,'is_complete'
