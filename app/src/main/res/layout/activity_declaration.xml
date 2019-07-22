@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AttachmentsActivity">
+    tools:context=".ui.DeclarationActivity">
 
     <LinearLayout
         android:id="@+id/linear10"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="UPLOAD BUTTONS ON THIS PAGE"
+        android:text="SIGNATURES PAGE"
         />
 
     <TextView
@@ -30,14 +30,14 @@
         android:id="@+id/pageNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PAGE: 9/10"
+        android:text="PAGE: 10/10"
         android:textColor="@color/imbluedark"
         android:paddingTop="30dp"
         />
 
     <Button
         android:layout_alignParentBottom="true"
-        android:id="@+id/proceedNine"
+        android:id="@+id/proceedTen"
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

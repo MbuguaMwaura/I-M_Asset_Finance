@@ -1,5 +1,6 @@
 package com.example.assetfinance.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +39,8 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
 
         }
         if (v == proceedEightBtn){
-
+            Intent intent = new Intent(this, AttachmentsActivity.class);
+            startActivity(intent);
         }
     }
 }
