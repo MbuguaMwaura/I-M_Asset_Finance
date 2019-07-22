@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AdditionalInformation">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/relative1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linear5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/age"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:hint="AGE"
+                        />
+                    <EditText
+                        android:id="@+id/occupation"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:hint="OCCUPATION"
+                        android:layout_alignParentRight="true"
+                        />
+                </RelativeLayout>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/employerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="NAME OF EMPLOYER"
+                    />
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ADDRESS"
+                    />
+                <EditText
+                    android:id="@+id/telephoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="TEL NO"
+                    />
+                <EditText
+                    android:id="@+id/position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CURRENT POSITION"
+                    />
+                <EditText
+                    android:id="@+id/yearsInCurrentPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="NO. OF YEARS IN CURRENT POSITION"
+                    />
+
+                <EditText
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="MARITAL STATUS"
+                    />
+                <EditText
+                    android:id="@+id/spouse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="NAME OF SPOUSE"
+                    />
+
+                <EditText
+                    android:id="@+id/spouseOccupation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="OCCUPATION"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@id/linear5"
+                android:id="@+id/linear6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                >
+
+
+                <EditText
+                    android:id="@+id/employmentIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="EMPLOYMENT INCOME (net of statutory deductions)"
+                    />
+
+                <EditText
+                    android:id="@+id/selfIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="SELF'S INCOME"
+                    />
+                <EditText
+                    android:id="@+id/spouseIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="SPOUSE'S INCOME"
+                    />
+                <EditText
+                    android:id="@+id/livingExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="LIVING EXPENSES"
+                    />
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/loanRepayments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="CURRENT LOAN REPAYMENTS"
+                    />
+
+                    <ImageButton
+                        android:id="@+id/addLoan"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_white_24dp"
+                        android:background="@color/imbluelight"
+                        android:layout_centerInParent="true"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/otherIncomeBusiness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="OTHER INCOME BUSINESS"
+                    />
+                    <ImageButton
+                        android:id="@+id/addIncome"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_white_24dp"
+                        android:background="@color/imbluelight"
+                        android:layout_centerInParent="true"
+                        />
+
+                </RelativeLayout>
+                <EditText
+                    android:id="@+id/disposableIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="TOTAL NET DISPOSABLE INCOME"
+                    />
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_margin="16dp"
+                android:id="@+id/pageNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear6"
+                android:text="PAGE: 4/10"
+                android:textColor="@color/imbluedark"
+                android:paddingTop="30dp"
+                />
+
+            <Button
+                android:id="@+id/proceedFour"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear6"
+                android:layout_alignParentRight="true"
+                android:text="proceed"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

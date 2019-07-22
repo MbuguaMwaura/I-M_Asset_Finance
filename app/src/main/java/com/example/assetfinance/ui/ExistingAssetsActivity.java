@@ -1,5 +1,6 @@
 package com.example.assetfinance.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class ExistingAssetsActivity extends AppCompatActivity implements View.On
 
         addVehicleBtn.setOnClickListener(this);
         addPropertyBtn.setOnClickListener(this);
+        proceedThreeBtn.setOnClickListener(this);
     }
 
     @Override
@@ -49,7 +51,8 @@ public class ExistingAssetsActivity extends AppCompatActivity implements View.On
 
         }
         if (v == proceedThreeBtn){
-
+            Intent intent = new Intent(this, AdditionalInformation.class);
+            startActivity(intent);
         }
     }
 }
