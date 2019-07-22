@@ -1,5 +1,6 @@
 package com.example.assetfinance.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,8 @@ public class AdditionalInfoCompany extends AppCompatActivity implements View.OnC
 
         }
         if (v == proceedFiveBtn){
-
+            Intent intent = new Intent(this, SupplierActivity.class);
+            startActivity(intent);
         }
     }
 }
