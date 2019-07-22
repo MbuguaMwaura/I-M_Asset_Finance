@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 
+admin.site.site_header = 'Asset Finance Dashboard'
+admin.site.site_title = 'Asset Finance Dashboard'
+admin.site.index_title = 'Asset Finance Dashboard'
+
 urlpatterns = [
     
     url(r'', include('customer_details.urls')),

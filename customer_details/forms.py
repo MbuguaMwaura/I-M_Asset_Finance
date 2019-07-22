@@ -24,7 +24,8 @@ class additonalInfoIndividualForm(forms.ModelForm):
 class additonalInfoCompanyForm(forms.ModelForm):
     class meta:
         model = additonalInfoCompany
-        field = ['shareholders','annual_tunover','annual_profit','associate_companies']
+        field = ['user_id' ,'shareholders' ,'annual_tunover','annual_profit','associate_companies']
+
 
 class dealerForm(forms.ModelForm):
     class meta:
@@ -33,7 +34,7 @@ class dealerForm(forms.ModelForm):
 class DealerPostForm(forms.ModelForm):
     class Meta:
         models = DealerSupplier
-       fields = ['dealername','postaladdress','telno','invoiceno_date','salesperson']       
+        fields = ['dealername','postaladdress','telno','invoiceno_date','salesperson']       
 
 class asset_detailsForm(forms.ModelForm):
     class meta:
@@ -48,4 +49,4 @@ class OtherCreditForm(forms.ModelForm):
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['description', 'document','uploaded_at' ]
+        fields = ['description', 'document']

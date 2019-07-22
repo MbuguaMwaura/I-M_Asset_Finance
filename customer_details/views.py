@@ -1,18 +1,13 @@
 from django.shortcuts import render
-# from uploads.core.models import Document
-# from uploads.core.forms import DocumentForm
-from .forms import ApplicantPostForm, DealerPostForm, DocumentForm
-from .models import Applicant,DealerSupplier,Document,OtherCredit
+
+from .forms import  ApplicantPostForm, applicantBankDetailsForm,PropertiesForm, additonalInfoIndividualForm, additonalInfoCompanyForm,dealerForm,DealerPostForm, asset_detailsForm,OtherCreditForm, DocumentForm
+from .models import Applicant,applicantBankDetails,Properties,additonalInfoIndividual,additonalInfoCompany,dealer, DealerSupplier,asset_details,OtherCredit,Document
 # Create your views here.
 
-# def applicant_create_view(request):
-#     form = ApplicantPostForm()
-#     if form.is_valid():
-#         form.save()
 
 def welcome(request):
     form = ApplicantPostForm()
-    return render(request,'forms.html',{"forms": forms})
+    return render(request,'forms/forms.html',{"forms": form})
 
 
 
@@ -21,7 +16,7 @@ def model_form_upload(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('welocme')
     else:
         form = DocumentForm()
     return render(request, '', {
