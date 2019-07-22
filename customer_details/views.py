@@ -1,29 +1,12 @@
-from django.shortcuts import render
-# from uploads.core.models import Document
-# from uploads.core.forms import DocumentForm
-from .forms import ApplicantPostForm, DealerPostForm, DocumentForm
-from .models import Applicant,DealerSupplier,Document,OtherCredit
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ApplicantSerializer,ApplicantBankSerializer,PropertiesSerializer,AdditonalIndvInfoSerializer,AdditonalCompInfoSerializer,DealerSerializer,DealerSupplierSerializer,AssetDetailsSerializer,OtherCredit
+from .models import Applicant,ApplicantBankDetails,Properties,additionalInfoIndividual,additionalInfoCompany,dealer,DealerSupplier,asset_details,OtherCredit
+
 # Create your views here.
 
-# def applicant_create_view(request):
-#     form = ApplicantPostForm()
-#     if form.is_valid():
-#         form.save()
-
-def welcome(request):
-    form = ApplicantPostForm()
-    return render(request,'forms.html',{"forms": forms})
-
-
-
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = DocumentForm()
-    return render(request, '', {
-        'form': form
-    }) 
+# class ApplicantList(APIView):
+    # def get(self,request,format=none):
+        # all_applicants = Applicant.objects.all()
+        # serializers = ApplicantSerializer(all_applicants, many=true)
+        # return Response(serializers.data)

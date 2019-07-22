@@ -44,7 +44,7 @@ class applicantBankDetails(models.Model):
     outstanding_loans2 = models.IntegerField()
 class Properties(models.Model):
     user_id = models.ForeignKey(User)
-    vehicle_reistration = models.IntegerField()
+    vehicle_registration = models.IntegerField()
     model = models.CharField( max_length=100)
     loan_balance = models.IntegerField()
     financed_by = models.CharField(max_length=100) 
@@ -77,7 +77,7 @@ class additonalInfoIndividual(models.Model):
 class additonalInfoCompany(models.Model):
     user_id = models.ForeignKey(User)
     shareholders = models.CharField(max_length=100)
-    annual_tunover = models.IntegerField()
+    annual_turnover = models.IntegerField()
     annual_profit = models.IntegerField()
     associate_companies = models.CharField(max_length=100)
 
@@ -135,8 +135,8 @@ class OtherCredit(models.Model):
   current_outstanding = models.CharField(max_length=50)
   
 
-class Document(models.Model):
+""" class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-
+"""

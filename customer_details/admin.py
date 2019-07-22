@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Applicant,applicantBankDetails,Properties,additonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,asset_details,OtherCredit,Document
+from . models import Applicant,applicantBankDetails,Properties,additonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,asset_details,OtherCredit
 
 # Register your models here.
 admin.site.register(Applicant)
@@ -11,5 +11,5 @@ admin.site.register(dealer)
 admin.site.register(DealerSupplier)
 admin.site.register(asset_details)
 admin.site.register(OtherCredit)
-admin.site.register(Document)
+# admin.site.register(Document)
 
