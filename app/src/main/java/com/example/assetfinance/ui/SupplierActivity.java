@@ -1,5 +1,6 @@
 package com.example.assetfinance.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,8 @@ public class SupplierActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if (v == proceedSixBtn){
-
+            Intent intent = new Intent(this, AssetDetail.class);
+            startActivity(intent);
         }
     }
 }

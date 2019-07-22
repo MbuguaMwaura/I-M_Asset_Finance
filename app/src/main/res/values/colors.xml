@@ -8,4 +8,6 @@
     <color name="black">#000000</color>
     <color name="imbluelight">#3e6fa8</color>
     <color name="imbluedark">#122e5d</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorDivider">#B6B6B6</color>
 </resources>
