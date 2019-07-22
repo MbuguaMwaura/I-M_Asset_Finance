@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.AssetDetail"></activity>
+        <activity android:name=".ui.CreditActivity"></activity>
+        <activity android:name=".ui.AssetDetail" />
         <activity android:name=".ui.SupplierActivity" />
         <activity android:name=".ui.AdditionalInfoCompany" />
         <activity android:name=".ui.AdditionalInformation" />
