@@ -11,9 +11,9 @@ class ApplicantAdmin(admin.ModelAdmin):
     
 
 
-# class applicantBankDetailsAdmin(admin.ModelAdmin):
-#     list_display =('user_id','bank_name','branch','account_number','od_limit','outstanding_loans','bank_name2','branch2','account_number2','od_limit2','outstanding_loans2','is_complete'
-# )
+class applicantBankDetailsAdmin(admin.ModelAdmin):
+    list_display =('user_id','bank_name','branch','account_number','od_limit','outstanding_loans','bank_name2','branch2','account_number2','od_limit2','outstanding_loans2','is_complete'
+)
 
 # class PropertiesAdmin(admin.ModelAdmin):
 #     list_display = ('user_id','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value','is_complete' 
