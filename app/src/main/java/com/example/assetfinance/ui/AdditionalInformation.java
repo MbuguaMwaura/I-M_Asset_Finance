@@ -1,5 +1,6 @@
 package com.example.assetfinance.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,7 @@ public class AdditionalInformation extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional_information);
+        setTitle("4. ADDITIONAL INFO");
         ButterKnife.bind(this);
 
         proceedFourBtn.setOnClickListener(this);
@@ -51,7 +53,8 @@ public class AdditionalInformation extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v == proceedFourBtn){
-
+            Intent intent = new Intent(this, AdditionalInfoCompany.class);
+            startActivity(intent);
         }
         if (v == addIncomeBtn){
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AdditionalInfoCompany">
+
+
+    <LinearLayout
+        android:id="@+id/linear7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/shareholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="NAMES OF SHAREHOLDERS"
+                />
+
+            <ImageButton
+                android:id="@+id/addShareholder"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_white_24dp"
+                android:background="@color/imbluelight"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/annualTurnover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ANNUAL TURNOVER (Kes)"
+            android:inputType="number"
+            />
+
+
+
+        <EditText
+            android:id="@+id/annualNetProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ANNUAL NET PROFIT (Kes)"
+            android:inputType="number"
+            />
+
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/associateCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ASSOCIATE COMPANIES (where applicable)"
+                />
+
+            <ImageButton
+                android:id="@+id/addCompany"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_white_24dp"
+                android:background="@color/imbluelight"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="16dp"
+        android:id="@+id/pageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+        android:text="PAGE: 5/10"
+        android:textColor="@color/imbluedark"
+        android:paddingTop="30dp"
+        />
+
+    <Button
+        android:id="@+id/proceedFive"
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="proceed"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        />
+
+</RelativeLayout>
