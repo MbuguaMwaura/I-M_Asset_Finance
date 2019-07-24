@@ -27,9 +27,9 @@ class additonalInfoCompanyAdmin(admin.ModelAdmin):
     list_display = ('user_id','shareholders','annual_tunover','annual_profit','associate_companies','is_complete'
 )
 
-# class dealerAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','dealer_name','postal_address','telephone_number','invoice_number','sales_person','is_complete'
-# )
+class dealerAdmin(admin.ModelAdmin):
+    list_display = ('user_id','dealer_name','postal_address','telephone_number','invoice_number','sales_person','is_complete'
+)
 
 # class DealerSupplierAdmin(admin.ModelAdmin):
 #     list_display = ('user_id' ,'dealername','postaladdress','telno','invoiceno_date','salesperson','is_complete'
