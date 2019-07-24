@@ -46,15 +46,15 @@ class OtherCreditAdmin(admin.ModelAdmin):
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ('user_id','description','document','uploaded_at','is_complete')
 
-# # Register your models here.
-# admin.site.register(Applicant,ApplicantAdmin)
-# admin.site.register(applicantBankDetails,applicantBankDetailsAdmin)
-# admin.site.register(Properties,PropertiesAdmin)
-# admin.site.register(additonalInfoIndividual,additonalInfoIndividualAdmin)
-# admin.site.register(additonalInfoCompany,additonalInfoCompanyAdmin)
-# admin.site.register(dealer,dealerAdmin)
-# admin.site.register(DealerSupplier, DealerSupplierAdmin)
-# admin.site.register(asset_details,asset_detailsAdmin)
-# admin.site.register(OtherCredit,OtherCreditAdmin)
-# admin.site.register(Document,DocumentAdmin)
+# Register your models here.
+admin.site.register(Applicant,ApplicantAdmin)
+admin.site.register(applicantBankDetails,applicantBankDetailsAdmin)
+admin.site.register(Properties,PropertiesAdmin)
+admin.site.register(additonalInfoIndividual,additonalInfoIndividualAdmin)
+admin.site.register(additonalInfoCompany,additonalInfoCompanyAdmin)
+admin.site.register(dealer,dealerAdmin)
+admin.site.register(DealerSupplier, DealerSupplierAdmin)
+admin.site.register(asset_details,asset_detailsAdmin)
+admin.site.register(OtherCredit,OtherCreditAdmin)
+admin.site.register(Document,DocumentAdmin)
 
