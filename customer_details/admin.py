@@ -35,13 +35,13 @@ class DealerSupplierAdmin(admin.ModelAdmin):
     list_display = ('user_id' ,'dealername','postaladdress','telno','invoiceno_date','salesperson','is_complete'
 )
 
-# class asset_detailsAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan','pricing','loan','repayment','repayment_amount','mode_payment','guarantor','security','is_complete'
-# )
+class asset_detailsAdmin(admin.ModelAdmin):
+    list_display = ('user_id','make','new_used','invoice_price','rating','less','year','cost','valuation','add','insurance','interested','total','deposit','balance','loan','pricing','loan','repayment','repayment_amount','mode_payment','guarantor','security','is_complete'
+)
 
-# class OtherCreditAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','name','Facility_type','sanctioned_limit','current_outstanding','is_complete'
-# )
+class OtherCreditAdmin(admin.ModelAdmin):
+    list_display = ('user_id','name','Facility_type','sanctioned_limit','current_outstanding','is_complete'
+)
 
 # class DocumentAdmin(admin.ModelAdmin):
 #     list_display = ('user_id','description','document','uploaded_at','is_complete')
