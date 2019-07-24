@@ -43,8 +43,8 @@ class OtherCreditAdmin(admin.ModelAdmin):
     list_display = ('user_id','name','Facility_type','sanctioned_limit','current_outstanding','is_complete'
 )
 
-# class DocumentAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','description','document','uploaded_at','is_complete')
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('user_id','description','document','uploaded_at','is_complete')
 
 # # Register your models here.
 # admin.site.register(Applicant,ApplicantAdmin)
