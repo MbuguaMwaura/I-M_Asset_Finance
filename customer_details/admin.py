@@ -1,19 +1,53 @@
 from django.contrib import admin
 from . models import *
+from django.utils import timezone
 
 
 class ApplicantAdmin(admin.ModelAdmin): 
-    list_display = ('User','yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box' ,'tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose','is_complete')
+    list_display = ('user_id','yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box' ,'tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose','is_complete','days_since_creation')
     list_filter = ('is_complete',)
     search_fields = ('User_exact',)
+    prepopulated_fields = {'slug': ['yourname',]}
+    list_per_page = 50
+    actions = ('set_application_to_complete')
     
 
-    
+    def days_since_creation(self,Applicant):
+      diff = timezone.now()- Applicant.date_created
+      return diff.days
+
+    # def get_ordering(self,request):
+    #     if request.user.is_superuser:
+    #         return ('yourname')
+    #     return('yourname')
+
+    def set_application_to_complete(self,request,queryset):
+        queryset.update(is_draft=false)
+    set_application_to_complete.short_description = 'Mark completed forms as complete'
 
 
 class applicantBankDetailsAdmin(admin.ModelAdmin):
     list_display =('user_id','bank_name','branch','account_number','od_limit','outstanding_loans','bank_name2','branch2','account_number2','od_limit2','outstanding_loans2','is_complete'
 )
+    list_filter = ('is_complete',)
+    search_fields = ('User_exact',)
+    prepopulated_fields = {'slug': ['bank_name',]}
+    list_per_page = 50
+    actions = ('set_application_to_complete')
+    
+
+    def days_since_creation(self,applicantBankDetails):
+      diff = timezone.now()- applicantBankDetails.date_created
+      return diff.days
+
+    # def get_ordering(self,request):
+    #     if request.user.is_superuser:
+    #         return ('user_id')
+    #     return('user_id')
+
+    def set_application_to_complete(self,request,queryset):
+        queryset.update(is_draft=false)
+    set_application_to_complete.short_description = 'Mark completed forms as complete'
 
 class PropertiesAdmin(admin.ModelAdmin):
     list_display = ('user_id','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value','is_complete' 

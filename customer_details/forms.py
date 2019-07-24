@@ -4,7 +4,7 @@ from .models import Applicant,applicantBankDetails,Properties,additonalInfoIndiv
 class ApplicantPostForm(forms.ModelForm):
   class Meta:
     model = Applicant
-    fields = ['yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
+    fields = ['user_id','yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
 
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:

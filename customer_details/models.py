@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Applicant(models.Model):
-  User = models.AutoField(primary_key=  True)
+  user_id = models.AutoField(primary_key=  True)
   yourname = models.CharField(max_length=50, blank=True)
   passport = models.CharField( max_length=50)
   pin = models.CharField(max_length=50)
@@ -26,12 +26,14 @@ class Applicant(models.Model):
   introby = models.CharField( max_length=50)
   purpose = models.CharField( max_length=50)
   is_complete = models.BooleanField(default=True)
+  date_created = models.DateTimeField(auto_now= True)
+  slug = models.SlugField(max_length=100)
 
 
+  def __int__(self):
+        return self.user_id
 
-
-  def __str__(self):
-        return self.yourname
+  
 
 
 class applicantBankDetails(models.Model):
@@ -48,8 +50,11 @@ class applicantBankDetails(models.Model):
     od_limit2 = models.IntegerField()
     outstanding_loans2 = models.IntegerField()
     is_complete = models.BooleanField(default=True)
+    is_complete = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
 
-    def __str__(self):
+    def __int__(self):
         return self.user_id
 
 class Properties(models.Model):
@@ -64,8 +69,10 @@ class Properties(models.Model):
     lr_number = models.IntegerField()
     approximate_value = models.IntegerField()
     is_complete = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
 
-    def __str__(self):
+    def __int__(self):
         return self.user_id
 
 class additonalInfoIndividual(models.Model):
@@ -88,8 +95,9 @@ class additonalInfoIndividual(models.Model):
     others=models.IntegerField()
     disposable_income = models.IntegerField()
     is_complete = models.BooleanField(default=True)
-
-    def __str__(self):
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
+    def __int__(self):
         return self.user_id
 
 
@@ -101,8 +109,9 @@ class additonalInfoCompany(models.Model):
     annual_profit = models.IntegerField()
     associate_companies = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
-
-    def __str__(self):
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
+    def __int__(self):
         return self.user_id
 
 
@@ -114,24 +123,25 @@ class dealer(models.Model):
     invoice_number = models.IntegerField()
     sales_person = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
-
-    def __str__(self):
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
+    def __int__(self):
         return self.user_id
 
 class DealerSupplier(models.Model):
-  user_id = models.ForeignKey(User)
-  dealername = models.CharField(max_length=50)
-  postaladdress = models.CharField( max_length=50)
-  telno = models.IntegerField
-  invoiceno_date = models.CharField( max_length=50)
-  salesperson = models.CharField( max_length=50)
-  is_complete = models.BooleanField(default=True)
+    user_id = models.ForeignKey(User)
+    dealername = models.CharField(max_length=50)
+    postaladdress = models.CharField( max_length=50)
+    telno = models.IntegerField
+    invoiceno_date = models.CharField( max_length=50)
+    salesperson = models.CharField( max_length=50)
+    is_complete = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
 
-  def __str__(self):
-    return self.user_id
+    def __int__(self):
+        return self.user_id
 
-# def __str__(self):
-#         return self.title
 
 
 class asset_details(models.Model):
@@ -159,22 +169,25 @@ class asset_details(models.Model):
     guarantor = models.CharField(max_length=100)
     security = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
 
-    def __str__(self):
+    def __int__(self):
         return self.user_id
 
 
 
 class OtherCredit(models.Model):
-  user_id = models.ForeignKey(User)
-  name = models.CharField(max_length=50)
-  Facility_type = models.CharField( max_length=50)
-  sanctioned_limit = models.CharField( max_length=50)
-  current_outstanding = models.CharField(max_length=50)
-  is_complete = models.BooleanField(default=True)
-
-  def __str__(self):
-    return self.user_id
+    user_id = models.ForeignKey(User)
+    name = models.CharField(max_length=50)
+    Facility_type = models.CharField( max_length=50)
+    sanctioned_limit = models.CharField( max_length=50)
+    current_outstanding = models.CharField(max_length=50)
+    is_complete = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
+    def __int__(self):
+        return self.user_id
 
 
 class Document(models.Model):
@@ -183,7 +196,8 @@ class Document(models.Model):
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=True)
-
-    def __str__(self):
+    date_created = models.DateTimeField(auto_now= True)
+    slug = models.SlugField(max_length=100)
+    def __iny__(self):
         return self.user_id
 
