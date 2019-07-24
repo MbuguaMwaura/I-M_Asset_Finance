@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.DeclarationActivity"></activity>
+        <activity android:name=".ui.DjangoFormTwoActivity"></activity>
+        <activity android:name=".ui.DjangoFormActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DeclarationActivity" />
         <activity android:name=".ui.AttachmentsActivity" />
         <activity android:name=".ui.CreditActivity" />
         <activity android:name=".ui.AssetDetail" />
@@ -18,13 +26,7 @@
         <activity android:name=".ui.AdditionalInformation" />
         <activity android:name=".ui.ExistingAssetsActivity" />
         <activity android:name=".ui.BankDetailsActivity" />
-        <activity android:name=".ui.ApplicantActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.ApplicantActivity"></activity>
         <activity android:name=".ui.MainActivity" />
     </application>
 
