@@ -19,13 +19,13 @@ class PropertiesAdmin(admin.ModelAdmin):
     list_display = ('user_id','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value','is_complete' 
 )
 
-# class additonalInfoIndividualAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','age','occupation','nationality','name_employer','address','contact','years','marital_status','spouse','occupation','income','spouse_income','living_expenses','loan_payment','income_business','others','disposable_income' ,'is_complete'
-# )
+class additonalInfoIndividualAdmin(admin.ModelAdmin):
+    list_display = ('user_id','age','occupation','nationality','name_employer','address','contact','years','marital_status','spouse','occupation','income','spouse_income','living_expenses','loan_payment','income_business','others','disposable_income' ,'is_complete'
+)
 
-# class additonalInfoCompanyAdmin(admin.ModelAdmin):
-#     list_display = ('user_id','shareholders','annual_tunover','annual_profit','associate_companies','is_complete'
-# )
+class additonalInfoCompanyAdmin(admin.ModelAdmin):
+    list_display = ('user_id','shareholders','annual_tunover','annual_profit','associate_companies','is_complete'
+)
 
 # class dealerAdmin(admin.ModelAdmin):
 #     list_display = ('user_id','dealer_name','postal_address','telephone_number','invoice_number','sales_person','is_complete'
