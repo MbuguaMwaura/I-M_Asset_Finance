@@ -1,0 +1,43 @@
+{% extends 'registration/regbase.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="container">
+    <div class=row>
+        <div class=" brand">
+                <img src="" class="tuzo" width="350" 
+       height="235" 
+       alt="Picture">
+       <br>
+       <br>
+       <br>
+       <br>
+                <div class="vl">
+                    
+                </div>
+            </div>
+
+        <div class="col-md-6 formz">
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group form">
+                        <legend class="border-bottom mb-4"><p class="smalltxt"><b>Sign in to continue</b></p></legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group form">
+                        <button class="btn btn-outline-success" type="submit">Login Now</button>
+                    </div>
+                </form>
+                <div class="border-top pt-3 below">
+                    <small class="text-muted">Not a member yet? <a class="ml-2" href="/accounts/register">Register here</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

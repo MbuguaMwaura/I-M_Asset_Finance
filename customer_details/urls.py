@@ -6,7 +6,12 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
- url('^$',views.welcome, name= 'welcome'),]
+    
+    url('^$',views.welcome, name= 'welcome'),
+    url(r'^new/applicant$', views.applicant, name='applicant'),
+    url(r'^new/applicantbank$', views.applicantbankdetails, name='applicantbankdetails'),
+ 
+]
 
-if settings.DEBUG:
-    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+

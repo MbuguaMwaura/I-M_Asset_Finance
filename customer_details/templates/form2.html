@@ -1,4 +1,5 @@
-{% load bootstrap3 %} {% load staticfiles %}
+{% load bootstrap4 %} 
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -6,21 +7,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Applicant. </title>
+  <title>New Applicant</title>
   {{form.media}}
 
-{% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+{% block styles %} 
+{% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+  {% endblock %}
 
 </head>
 
 <body>
 
-  <form  action="{%url 'new-business'%}" method="post" enctype="multipart/form-data">
+  <form  action="{%url 'applicantbankdetails'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
     {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
+    <input type="submit" class="btn btn-success btn-lg" value="submit">
   </form>
 
    {% block scripts %}

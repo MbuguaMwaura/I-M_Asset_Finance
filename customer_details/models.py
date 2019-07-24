@@ -4,34 +4,31 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Applicant(models.Model):
-  yourname = models.CharField(max_length=50, blank=True)
-  passport = models.CharField( max_length=50)
-  pin = models.CharField(max_length=50)
-  p_o_box = models.CharField( max_length=50)
-  postalcode = models.CharField(max_length=50)
-  city_town = models.CharField(max_length=50)
-  physical_address = models.CharField( max_length=50)
-  mobile = models.CharField( max_length=50)
-  home_officemobile = models.CharField( max_length=50)
-  owner = models.CharField( max_length=50)
-  tenant = models.CharField( max_length=50)
-  tp_o_box = models.CharField( max_length=50) 
-  tpostalcode = models.CharField(max_length=50)
-  tphonenumber = models.CharField( max_length=50)
-  business = models.CharField( max_length=50)
-  business2 = models.CharField( max_length=50)
-  business3 = models.CharField( max_length=50)
-  yrbusiness = models.CharField( max_length=50)
-  introby = models.CharField( max_length=50)
-  purpose = models.CharField( max_length=50)
+  NAME = models.CharField(max_length=50, blank=True)
+  IDENTIFICATION = models.CharField( max_length=50, help_text='ID/PASSPORT/UNC/CERT. OF REG NO.')
+  PIN = models.CharField(max_length=50, help_text='PIN NUMBER')
+  P_O_BOX = models.CharField( max_length=50, help_text='P.O.BOX NUMBER')
+  POSTALCODE = models.CharField(max_length=50)
+  CITY = models.CharField(max_length=50,help_text='CITY/TOWN')
+  PHYSICAL_ADDRESS = models.CharField( max_length=50,help_text='LOACTION/ROAD')
+  MOBILE = models.IntegerField(help_text='TEL. MOBILE')
+  TEL_HOME = models.IntegerField(help_text='TEL. HOME/OFFICE NO.')
+  OWNER = models.CharField( max_length=50, help_text='OWNER/TENANT')
+  TENANT = models.CharField( max_length=50,help_text='IF TENANT:(NAME OF LANDLORD)')
+  P_O_BOX = models.CharField( max_length=50,help_text='TENANT P.O.BOX') 
+  POSTALCODE = models.CharField(max_length=50,help_text='TENANT POSTAL CODE')
+  PHONE_NO = models.IntegerField(help_text='TENANT PHONE NUMBER')
+  BUSINESS = models.CharField( max_length=50, help_text='NATURE OF BUSINESS')
+  YR_BUSINESS = models.CharField( max_length=50, help_text='YEAR OF BUSINESS ESTABLISHED')
+  INTRODUCED_BY = models.CharField( max_length=50)
+  PURPOSE_OF_ASSET_BEING_PURCHASED = models.CharField( max_length=50)
 
-  def __str__(self):
-        return self.title
+  
 
 
 class applicantBankDetails(models.Model):
     user_id = models.ForeignKey(User)
-    bank_name = models.CharField(max_length = 200)
+    bank_name = models.CharField(max_length = 200,help_text='banki')
     branch = models.CharField( max_length = 100)
     account_number = models.IntegerField()
     od_limit = models.IntegerField()
@@ -95,8 +92,7 @@ class DealerSupplier(models.Model):
   telno = models.IntegerField
   invoiceno_date = models.CharField( max_length=50)
   salesperson = models.CharField( max_length=50)
-# def __str__(self):
-#         return self.title
+
 
 
 class asset_details(models.Model):
@@ -135,8 +131,5 @@ class OtherCredit(models.Model):
   current_outstanding = models.CharField(max_length=50)
   
 
-class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+
 
