@@ -3,6 +3,7 @@ package com.example.assetfinance.services;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -29,4 +30,17 @@ public class DjangoService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
+
+    public static void details(Callback callback){
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        HttpUrl.Builder builder = HttpUrl.parse("http://3d25fd1c.ngrok.io/api/customers/6").newBuilder();
+        String url = builder.build().toString();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+
+    }
+    
 }
