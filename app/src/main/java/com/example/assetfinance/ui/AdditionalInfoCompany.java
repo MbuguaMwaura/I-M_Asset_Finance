@@ -42,8 +42,26 @@ public class AdditionalInfoCompany extends AppCompatActivity implements View.OnC
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
-        String shareholderName = mSharedPreferences.getString("shareholder", null);
 
+        String inputShareholder = mSharedPreferences.getString(Constants.FIVE_SHAREHOLDERS, null);
+        String inputTurnover = mSharedPreferences.getString(Constants.FIVE_TURNOVER, null);
+        String inputNetProfit = mSharedPreferences.getString(Constants.FIVE_NET_PROFIT, null);
+        String inputAssociateCompanies = mSharedPreferences.getString(Constants.FIVE_ASSOCIATE_COMPANIES, null);
+
+
+
+        if ((inputShareholder) != null){
+            shareholder.setText(inputShareholder);
+        }
+        if ((inputTurnover) != null){
+            annualTurnOver.setText(inputTurnover);
+        }
+        if ((inputNetProfit)!= null){
+            annualNetProfit.setText(inputNetProfit);
+        }
+        if ((inputAssociateCompanies)!= null){
+            associateCompany.setText(inputAssociateCompanies);
+        }
         addCompany.setOnClickListener(this);
         addShareHolderBtn.setOnClickListener(this);
         proceedFiveBtn.setOnClickListener(this);
@@ -58,8 +76,36 @@ public class AdditionalInfoCompany extends AppCompatActivity implements View.OnC
 
         }
         if (v == proceedFiveBtn){
+            String inputShareholder = shareholder.getText().toString();
+            String inputTurnover = annualTurnOver.getText().toString();
+            String inputNetProfit = annualNetProfit.getText().toString();
+            String inputAssociateCompanies = associateCompany.getText().toString();
+
+
+            if (
+                    !(inputShareholder).equals("") &&
+                            !(inputTurnover).equals("") &&
+                            !(inputNetProfit).equals("") &&
+                            !(inputAssociateCompanies).equals("")
+
+            ){
+                addToSharedPreferences(inputShareholder, inputTurnover, inputNetProfit, inputAssociateCompanies);
+            }
+
             Intent intent = new Intent(this, SupplierActivity.class);
             startActivity(intent);
         }
+    }
+    private void addToSharedPreferences(String inputShareholder,
+                                        String inputTurnover,
+                                        String inputNetProfit,
+                                        String inputAssociateCompanies
+                                       ) {
+        mEditor.putString(Constants.FIVE_SHAREHOLDERS,inputShareholder).apply();
+        mEditor.putString(Constants.FIVE_TURNOVER,inputTurnover).apply();
+        mEditor.putString(Constants.FIVE_NET_PROFIT, inputNetProfit).apply();
+        mEditor.putString(Constants.FIVE_ASSOCIATE_COMPANIES, inputAssociateCompanies).apply();
+
+
     }
 }
