@@ -4,15 +4,330 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/imbluedark"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <android.support.v4.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:layout_margin="16dp"
+       >
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="20sp"
+       android:textColor="@color/white"
+       android:text="I&amp;M Bank Asset Finance is for individuals or companies who want to buy vehicles or machinery for personal or commercial use."
+       />
+
+   <TextView
+       android:layout_marginTop="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="15sp"
+       android:textColor="@color/colorDivider"
+       android:text="Asset Finance product at l&amp;M Bank Ltd covers all forms of business and personal assets, which are:"
+       />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="1. Moveable in nature"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="2. Identifiable through a serial/registration number. This largely covers motor vehicles, machinery and equipment."
+          />
+
+      <TextView
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="20sp"
+          android:textColor="@color/white"
+          android:text="TERMS"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="Finance of up to 80% on cost over loan duration of 48 months is availed for assets under the above categories subject to credit evaluation."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="Concessions for lower deposit and extended loan tenure available under structured joint dealer/staff car loan schemes."
+          />
+
+      <TextView
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="20sp"
+          android:textColor="@color/white"
+          android:text="KEY BENEFITS"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="1. Quick and simple application process."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="2. Financed assets are self-securing."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="3. Option of direct import finance through selected dealers."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="4. Insurance Premium Financing {IPF) available."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="5. Effective working relationships with vehicle. dealers/vendors country wide."
+          />
+
+      <TextView
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="20sp"
+          android:textColor="@color/white"
+          android:text="APPLICATION REQUIREMENTS"
+          />
+      <TextView
+          android:layout_marginTop="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          android:textColor="@color/white"
+          android:text="INDIVIDUALS/SOLE PROPRIETORSHIPS"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="1. Duly completed Asset Finance Application Form"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="2. Proforma Invoice from the Dealer/Vendor."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="3. ID Copy."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="4. PIN Certificate."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="5. Latest payslip (if salaried)."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="6. Latest 6 month bank statement ( 12 months is business is seasonal in nature)."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="7. Business PIN Certificate {Where applicable)."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="8. Certificate of Business Registration"
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="9. Copies of contract where asset sought is to meet contractual requirements."
+          />
+
+      <TextView
+          android:layout_marginTop="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          android:textColor="@color/white"
+          android:text="SME’S/CORPORATES"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="1. Duly completed Asset Finance Application Form"
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="2. Proforma Invoice from the Dealer/Vendor."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="3. Company PIN Certificate."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="4. Certificate of incorporation."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="5. Memorandum &amp; Articles of Association."
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="6. Latest 6 month bank statement ( 12 months is business is seasonal in nature)."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="7. Copies of contract where asset sought is to meet contractual requirements."
+          />
+
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="8. Latest 3 year audited accounts, annual returns and cashflow projections "
+          />
+      <TextView
+          android:layout_marginTop="2dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="15sp"
+          android:textColor="@color/colorDivider"
+          android:text="9. Company/Business Profile"
+          />
+
+      <RelativeLayout
+          android:layout_marginBottom="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+      <Button
+          android:id="@+id/apply"
+          android:layout_marginTop="20dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="APPLY"
+          android:textColor="@color/white"
+          android:background="@color/imorange"
+          android:layout_alignParentRight="true"
+          />
+      </RelativeLayout>
+   </LinearLayout>
+
+
+
+   </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

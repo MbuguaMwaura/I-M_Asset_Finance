@@ -47,6 +47,8 @@ public class ApplicantActivity extends AppCompatActivity implements View.OnClick
         setTitle("1. APPLICANT");
         ButterKnife.bind(this);
 
+
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
@@ -174,6 +176,8 @@ public class ApplicantActivity extends AppCompatActivity implements View.OnClick
                        inputLocation, inputNumber, inputOfficeNumber, inputOwnerTenant, inputLandlord,
                         inputPoBoxLandLord, inputPostalCodeLandord, inputNumberLandLord, inputBusiness,
                         inputYear, inputIntroBy, inputPurpose);
+            } else {
+
             }
 
 

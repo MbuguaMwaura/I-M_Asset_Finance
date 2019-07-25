@@ -18,6 +18,7 @@
         >
 
         <EditText
+            android:singleLine="true"
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,12 +26,14 @@
             />
 
         <EditText
+            android:singleLine="true"
             android:id="@+id/idNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID/Passport/INC/CERT. of REG "
             />
         <EditText
+            android:singleLine="true"
             android:id="@+id/pinNumber"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -52,6 +55,7 @@
                 android:layout_marginLeft="40dp"
                 android:id="@+id/postalCode"
                 android:layout_width="150dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:hint="Postal Code"
                 />
@@ -80,6 +84,7 @@
             <EditText
                 android:layout_marginLeft="40dp"
                 android:id="@+id/officeNumber"
+                android:inputType="number"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:hint="Office Number"
@@ -149,6 +154,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Introduced By"
+            android:inputType="date"
+            android:maxLength="4"
             />
 
 
