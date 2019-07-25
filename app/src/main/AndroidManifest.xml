@@ -15,11 +15,7 @@
         <activity android:name=".ui.PreviewActivity"></activity>
         <activity android:name=".ui.DjangoFormTwoActivity" />
         <activity android:name=".ui.DjangoFormActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.DeclarationActivity" />
         <activity android:name=".ui.AttachmentsActivity" />
@@ -30,7 +26,15 @@
         <activity android:name=".ui.AdditionalInformation" />
         <activity android:name=".ui.ExistingAssetsActivity" />
         <activity android:name=".ui.BankDetailsActivity" />
-        <activity android:name=".ui.ApplicantActivity" />
+        <activity android:name=".ui.ApplicantActivity" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".ui.MainActivity" />
     </application>
 
