@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+ {% load staticfiles %}
+ {% load static %}
+ 
+
+{%block content%}
+<div class="top">
+    <br>
+    <h2 class="text-white move">10.APPLICATION ATTACHMENTS:</h2><br>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+<div class="col-md-8 margin">
+    <div class="card shadow-lg" style="width: 100%;">
+        <div class="card-body">
+            <form  action="{%url 'basic_upload'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+          
+              {% bootstrap_form form%}
+              <table id="gallery" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Photo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for photo in photos %}
+                    <tr>
+                      <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <input id="fileupload" type="file" name="file" multiple
+       style="display: none;"
+       data-url="{% url 'photos:basic_upload' %}"
+       data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+              <button type="button" class="btn btn-primary js-upload-photos">
+                <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+              </button>
+              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'assetdetails' %}'"  />
+              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'otherdetail' %}'"  />
+            </form>
+             </div>
+    </div>
+  
+
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{% static 'photos/js/basic-upload.js' %}"></script>
+
+  {% bootstrap_javascript %} {% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+

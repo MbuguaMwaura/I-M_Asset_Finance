@@ -122,11 +122,13 @@ class dealer(models.Model):
     def __int__(self):
         return self.user_id
 
+
 class DealerSupplier(models.Model):
   applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
+
   dealername = models.CharField(max_length=50)
   postaladdress = models.CharField( max_length=50)
-  telno = models.IntegerField
+  telno = models.IntegerField()
   invoiceno_date = models.CharField( max_length=50)
   salesperson = models.CharField( max_length=50)
 
@@ -178,13 +180,20 @@ class OtherCredit(models.Model):
   Facility_type = models.CharField( max_length=50)
   sanctioned_limit = models.CharField( max_length=50)
   current_outstanding = models.CharField(max_length=50)
-  is_complete = models.BooleanField(default=True)
+
 
   def __int__(self):
     return self.user_id
     class Meta:
         verbose_name_plural=" OtherCredit"
 
+
+
+  
+class Photo(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
 

@@ -3,15 +3,15 @@ from . models import *
 from django.utils import timezone
 
 
-# class ApplicantAdmin(admin.ModelAdmin): 
-#     list_display = ('user','name','identification','pin','p_o_box','postalcode','city','physical_address','mobile','tel_home','owner','tenant ','p_o_box','postalcode','phone_no','business','yr_business','introlduced_by','purpose_of_asset_being_purchased')
+class ApplicantAdmin(admin.ModelAdmin): 
+    list_display = ('user','name','identification','pin','p_o_box','postalcode','city','physical_address','mobile','tel_home','owner','tenant ','p_o_box','postalcode','phone_no','business','yr_business','introlduced_by','purpose_of_asset_being_purchased')
     
 
 
     
-    # def set_application_to_complete(self,request,queryset):
-    #     queryset.update(is_draft=false)
-    # set_application_to_complete.short_description = 'Mark completed forms as complete'
+    def set_application_to_complete(self,request,queryset):
+        queryset.update(is_draft=false)
+    set_application_to_complete.short_description = 'Mark completed forms as complete'
 
 
 class applicantBankDetailsAdmin(admin.ModelAdmin):
@@ -108,5 +108,6 @@ admin.site.register(dealer, dealerAdmin)
 admin.site.register(DealerSupplier, DealerSupplierAdmin)
 admin.site.register(AssetDetails,AssetDetailsAdmin)
 admin.site.register(OtherCredit,OtherCreditAdmin)
+
 
 

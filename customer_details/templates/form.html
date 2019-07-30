@@ -1,35 +1,40 @@
-{% load bootstrap4 %} {% load staticfiles %}
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+ {% load staticfiles %}
+ {% load static %}
+ 
 
-<head>
+{%block content%}
+<div class="top">
+    <br>
+    <h2 class="text-white move">1. APPLICANT</h2><br>
+</div>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+<div class="col-md-8 margin">
+    <div class="card shadow-lg" style="width: 100%;">
+        <div class="card-body">
+            <form  action="{%url 'applicant'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+          
+              {% bootstrap_form form%}
+          
+              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'welcome' %}'"  />
+              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'applicantbankdetails' %}'"  />
+            </form>
+             </div>
+    </div>
+  
 
-  <title>New Applicant</title>
-  {{form.media}}
-
-{% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% endblock %}
-
-</head>
-
-<body>
-  <h1><u>Applicant.</u></h1>
-
-  <form  action="{%url 'applicant'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="PREVIOUS">
-    <input type="submit" class="btn btn-success btn-lg" value="SUBMIT">
-    <input type="submit" class="btn btn-success btn-lg" value="NEXT">
 
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   {% bootstrap_javascript %} {% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
 
-</body>
 
-</html>
