@@ -4,31 +4,26 @@ from django.utils import timezone
 
 
 class Applicant(models.Model):
-  user=models.OneToOneField(User,on_delete=models.CASCADE, related_name="applicant",null=True)
-  yourname = models.CharField(max_length=50, blank=True)
-  passport = models.CharField( max_length=50)
-  pin = models.CharField(max_length=50)
-  p_o_box = models.CharField( max_length=50)
-  postalcode = models.CharField(max_length=50)
-  city_town = models.CharField(max_length=50)
-  physical_address = models.CharField( max_length=50)
-  mobile = models.CharField( max_length=50)
-  home_officemobile = models.CharField( max_length=50)
-  owner = models.CharField( max_length=50)
-  tenant = models.CharField( max_length=50)
-  tp_o_box = models.CharField( max_length=50) 
-  tpostalcode = models.CharField(max_length=50)
-  tphonenumber = models.CharField( max_length=50)
-  business = models.CharField( max_length=50)
-  business2 = models.CharField( max_length=50)
-  business3 = models.CharField( max_length=50)
-  yrbusiness = models.CharField( max_length=50)
-  introby = models.CharField( max_length=50)
-  purpose = models.CharField( max_length=50)
-  is_complete = models.BooleanField(default=True)
-  date_created = models.DateTimeField(auto_now= True)
-  slug = models.SlugField(max_length=100)
 
+  user=models.OneToOneField(User,on_delete=models.CASCADE, related_name="applicant",null=True)
+  name = models.CharField(max_length=50, blank=True)
+  identification= models.CharField( max_length=50, help_text='ID/PASSPORT/UNC/CERT. OF REG NO.')
+  pin = models.CharField(max_length=50, help_text='PIN NUMBER')
+  p_o_box = models.CharField( max_length=50, help_text='P.O.BOX NUMBER')
+  postalcode = models.CharField(max_length=50)
+  city = models.CharField(max_length=50,help_text='CITY/TOWN')
+  physical_address = models.CharField( max_length=50,help_text='LOACTION/ROAD')
+  mobile = models.IntegerField(help_text='TEL. MOBILE')
+  tel_home = models.IntegerField(help_text='TEL. HOME/OFFICE NO.')
+  owner = models.CharField( max_length=50, help_text='OWNER/TENANT')
+  tenat = models.CharField( max_length=50,help_text='IF TENANT:(NAME OF LANDLORD)')
+  p_o_box = models.CharField( max_length=50,help_text='TENANT P.O.BOX') 
+  postalcode= models.CharField(max_length=50,help_text='TENANT POSTAL CODE')
+  phone_no = models.IntegerField(help_text='TENANT PHONE NUMBER')
+  business = models.CharField( max_length=50, help_text='NATURE OF BUSINESS')
+  yr_business = models.CharField( max_length=50, help_text='YEAR OF BUSINESS ESTABLISHED')
+  introlduced_by = models.CharField( max_length=50)
+  purpose_of_asset_being_purchased = models.CharField( max_length=50)
 
   def __int__(self):
         return self.user_id
@@ -36,7 +31,6 @@ class Applicant(models.Model):
   def __str__(self):
       return self.user.username
 
-  
 
 
 class ApplicantBankDetails(models.Model):
@@ -136,7 +130,6 @@ class DealerSupplier(models.Model):
   telno = models.IntegerField
   invoiceno_date = models.CharField( max_length=50)
   salesperson = models.CharField( max_length=50)
-  is_complete = models.BooleanField(default=True)
 
   def __int__(self):
     return self.user_id
@@ -194,15 +187,5 @@ class OtherCredit(models.Model):
         verbose_name_plural=" OtherCredit"
 
 
-class Document(models.Model):
-    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
-    description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-    is_complete = models.BooleanField(default=True)
 
-    def __int__(self):
-        return self.user_id
-        class Meta:
-            verbose_name_plural="Document"
 

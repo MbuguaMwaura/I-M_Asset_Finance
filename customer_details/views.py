@@ -1,27 +1,12 @@
 from django.shortcuts import render,redirect
+<<<<<<< HEAD
 from .forms import *
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-# Create your views here
+from .forms import ApplicantForm,applicantBankDetailsForm
+from .models import Applicant,DealerSupplier,OtherCredit,applicantBankDetails
 
-@login_required(login_url='/accounts/login/')
-def TemplateView(request):
-    super_user = request.user
-    all_Applicant = Applicant.objects.filter.all()
-    all_applicantBankDetails = applicantBankDetails.objects.filter.all()
-    all_Properties = Properties.objects.filter.all()
-    all_additonalInfoIndividual = additonalInfoIndividual.objects.filter.all()
-    all_additonalInfoCompany =additonalInfoCompany.objects.filter.all()
-    all_dealer = dealer.objects.filter.all()
-    all_DealerSupplier = DealerSupplier.objects.filter.all()
-    all_asset_details = asset_details.objects.filter.all()
-    all_OtherCredit = OtherCredit.objects.filter.all()
-    all_Document = Document.objects.filter.all()
-
-    return render(request,'admin.html',{"Applicant":all_Applicant, "applicantBankDetails":all_applicantBankDetails,"Properties":Properties," additonalInfoIndividual":all_additonalInfoIndividual,"additonalInfoCompany": all_additonalInfoCompany,"dealer":all_dealer,"DealerSupplier":all_DealerSupplier ,"asset_details":all_asset_details,"OtherCredit":all_OtherCredit,"Document":all_Document})
-
-    
 
 
 def welcome(request):
@@ -128,3 +113,10 @@ def otherdetail(request):
    else:
        form = OtherCreditForm()
    return render(request, 'form9.html', {"form":form})
+
+
+
+    else:
+        form = applicantBankDetailsForm()
+    return render(request, 'form2.html', {"form":form})
+

@@ -10,7 +10,15 @@ urlpatterns = [
     url('^$',views.welcome, name= 'welcome'),
     url(r'^new/applicant$', views.applicant, name='applicant'),
     url(r'^new/applicantbank$', views.applicantbankdetails, name='applicantbankdetails'),
-    url(r'^accounts/login$', TemplateView.as_view(template_name="admin.html")),
+
+   
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+ 
+]
+
+
+
+

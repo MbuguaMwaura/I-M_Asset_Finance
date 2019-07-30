@@ -1,11 +1,11 @@
 from django import forms
-from .models import   Applicant,ApplicantBankDetails,Properties,AdditonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,AssetDetails,OtherCredit,Document
 
+from .models import   Applicant,ApplicantBankDetails,Properties,AdditonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,AssetDetails,OtherCredit
 
-class ApplicantPostForm(forms.ModelForm):
+class ApplicantForm(forms.ModelForm):
   class Meta:
     model = Applicant
-    fields = ['yourname','passport','pin','p_o_box','postalcode','city_town','physical_address','mobile','home_officemobile','owner','tenant','tp_o_box','tpostalcode','tphonenumber','business','business2','business3','yrbusiness','introby','purpose']
+    fields = ['NAME','IDENTIFICATION','PIN','P_O_BOX','POSTALCODE','CITY','PHYSICAL_ADDRESS','MOBILE','TEL_HOME','OWNER','TENANT','P_O_BOX','POSTALCODE','PHONE_NO','BUSINESS','YR_BUSINESS','INTRODUCED_BY','PURPOSE_OF_ASSET_BEING_PURCHASED']
 
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:
@@ -47,7 +47,6 @@ class OtherCreditForm(forms.ModelForm):
     class meta:
         model = OtherCredit
         fields=['name','Facility_type','sanctioned_limit','current_outstanding']
-class DocumentForm(forms.ModelForm):
-    class Meta:
-        model = Document
-        fields = ['description', 'document']
+
+
+
