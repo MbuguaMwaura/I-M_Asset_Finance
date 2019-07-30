@@ -28,9 +28,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'bootstrap4',
     'bootstrap3',
     'customer_details',
@@ -40,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   
 ]
 
 MIDDLEWARE = [
@@ -138,4 +143,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = "/"
 
-# django_heroku.settings(locals())
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

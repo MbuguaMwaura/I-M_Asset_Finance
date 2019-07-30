@@ -1,0 +1,19 @@
+#header {
+    width: auto;
+    height: 40px;
+    padding: 10px 40px;
+    background: #122e5d;
+    line-height: 40px;
+    color: #ffc;
+    overflow: hidden;
+}
+.dashboard{
+    background-color:#3e6fa8;
+}
+
+#branding h1{
+    color: white !important;
+}
+h1{
+    color: white;
+}

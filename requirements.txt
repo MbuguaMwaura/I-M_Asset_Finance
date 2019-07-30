@@ -24,3 +24,4 @@ pytz==2018.6
 six==1.11.0
 Werkzeug==0.14.1
 whitenoise==4.1
+django-crispy-forms==1.7.0

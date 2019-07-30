@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="container" style="margin-top:15px;">
+
+    <table class="table table-dark">
+        <thead>
+            <th scope="col">user_id </th>
+            <th scope="col">yourname</th>
+            <th scope="col">passport</th>
+            <th scope="col">pin </th>
+            <th scope="col">p_o_box</th>
+            <th scope="col">postalcode</th>
+            <th scope="col">city_town </th>
+            <th scope="col">physical_address</th>
+            <th scope="col">mobile</th>
+            <th scope="col">home_officemobile </th>
+            <th scope="col">owner </th>
+            <th scope="col">tenant</th>
+            <th scope="col">tp_o_box</th>
+            <th scope="col">tpostalcode </th>
+            <th scope="col">tphonenumber</th>
+            <th scope="col">business</th>
+            <th scope="col">business2</th>
+            <th scope="col">business3</th>
+            <th scope="col">yrbusiness </th>
+            <th scope="col">introby</th>
+            <th scope="col">purpose</th>
+            <th scope="col">is_complete</th>
+            <th scope="col">date_created </th>
+            
+            
+        </thead>
+        <tbody>
+                {% for notification in notifications%}
+                <tr data-toggle="modal" data-target="#{{notification.id}}">
+                  <td>{{notification.title}}</td>
+                  <td>{{notification.notification|safe|truncatechars:85 }}</td>
+                  <td>{{notification.priority}}</td>
+                  <td>{{notification.author}}</td>
+                  <td>{{notification.post_date|date:"M d, Y"}}</td>
+                </tr>
+                {% endif %}
+
+        </tbody>
+        
+
+
+    </table>
+</div>

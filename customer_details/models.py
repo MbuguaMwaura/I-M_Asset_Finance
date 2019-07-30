@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
-# Create your models here.
 
 class Applicant(models.Model):
-  user_id = models.AutoField(primary_key=  True)
+  user=models.OneToOneField(User,on_delete=models.CASCADE, related_name="applicant",null=True)
   yourname = models.CharField(max_length=50, blank=True)
   passport = models.CharField( max_length=50)
   pin = models.CharField(max_length=50)
@@ -33,32 +33,28 @@ class Applicant(models.Model):
   def __int__(self):
         return self.user_id
 
+  def __str__(self):
+      return self.user.username
+
   
 
 
-class applicantBankDetails(models.Model):
-    user_id = models.ForeignKey(User)
+class ApplicantBankDetails(models.Model):
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     bank_name = models.CharField(max_length = 200)
     branch = models.CharField( max_length = 100)
     account_number = models.IntegerField()
     od_limit = models.IntegerField()
     outstanding_loans = models.IntegerField()
-    # Forms 2
-    bank_name2 = models.CharField( max_length = 200, default='Add another bank name')
-    branch2 = models.CharField( max_length = 100)
-    account_number2 = models.IntegerField()
-    od_limit2 = models.IntegerField()
-    outstanding_loans2 = models.IntegerField()
     is_complete = models.BooleanField(default=True)
-    is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
-
     def __int__(self):
         return self.user_id
 
+    class Meta:
+        verbose_name_plural="ApplicantBankDetails"
+
 class Properties(models.Model):
-    user_id = models.ForeignKey(User)
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     vehicle_reistration = models.IntegerField()
     model = models.CharField( max_length=100)
     loan_balance = models.IntegerField()
@@ -69,14 +65,16 @@ class Properties(models.Model):
     lr_number = models.IntegerField()
     approximate_value = models.IntegerField()
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
 
     def __int__(self):
         return self.user_id
 
-class additonalInfoIndividual(models.Model):
-    user_id = models.ForeignKey(User)
+    class Meta:
+        verbose_name_plural="Properties"
+
+
+class AdditonalInfoIndividual(models.Model):
+    applicant= models.OneToOneField(Applicant, on_delete=models.CASCADE,null=True)
     age = models.IntegerField() 
     occupation = models.CharField( max_length=100)
     nationality = models.CharField( max_length=100)
@@ -95,57 +93,61 @@ class additonalInfoIndividual(models.Model):
     others=models.IntegerField()
     disposable_income = models.IntegerField()
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
+
     def __int__(self):
         return self.user_id
+
+    class Meta:
+        verbose_name_plural=" AdditonalInfoIndividual"
 
 
 
 class additonalInfoCompany(models.Model):
-    user_id = models.ForeignKey(User)
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     shareholders = models.CharField(max_length=100)
     annual_tunover = models.IntegerField()
     annual_profit = models.IntegerField()
     associate_companies = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
+
     def __int__(self):
         return self.user_id
 
+    class Meta:
+        verbose_name_plural="additonalInfoCompany"
+
 
 class dealer(models.Model):
-    user_id = models.ForeignKey(User)
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     dealer_name = models.CharField( max_length=100)
     postal_address = models.IntegerField()
     telephone_number = models.IntegerField()
     invoice_number = models.IntegerField()
     sales_person = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
+
     def __int__(self):
         return self.user_id
 
 class DealerSupplier(models.Model):
-    user_id = models.ForeignKey(User)
-    dealername = models.CharField(max_length=50)
-    postaladdress = models.CharField( max_length=50)
-    telno = models.IntegerField
-    invoiceno_date = models.CharField( max_length=50)
-    salesperson = models.CharField( max_length=50)
-    is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
+  applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
+  dealername = models.CharField(max_length=50)
+  postaladdress = models.CharField( max_length=50)
+  telno = models.IntegerField
+  invoiceno_date = models.CharField( max_length=50)
+  salesperson = models.CharField( max_length=50)
+  is_complete = models.BooleanField(default=True)
 
-    def __int__(self):
-        return self.user_id
+  def __int__(self):
+    return self.user_id
+
+  class Meta:
+        verbose_name_plural="DealerSupplier"
 
 
 
-class asset_details(models.Model):
-    user_id = models.ForeignKey(User)
+class AssetDetails(models.Model):
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     make = models.CharField(max_length=100)
     new_used = models.CharField(max_length=100)
     invoice_price = models.IntegerField()
@@ -169,35 +171,38 @@ class asset_details(models.Model):
     guarantor = models.CharField(max_length=100)
     security = models.CharField(max_length=100)
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
 
     def __int__(self):
         return self.user_id
+
+    class Meta:
+         verbose_name_plural ="AssetDetails"
 
 
 
 class OtherCredit(models.Model):
-    user_id = models.ForeignKey(User)
-    name = models.CharField(max_length=50)
-    Facility_type = models.CharField( max_length=50)
-    sanctioned_limit = models.CharField( max_length=50)
-    current_outstanding = models.CharField(max_length=50)
-    is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
-    def __int__(self):
-        return self.user_id
+  applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
+  name = models.CharField(max_length=50)
+  Facility_type = models.CharField( max_length=50)
+  sanctioned_limit = models.CharField( max_length=50)
+  current_outstanding = models.CharField(max_length=50)
+  is_complete = models.BooleanField(default=True)
+
+  def __int__(self):
+    return self.user_id
+    class Meta:
+        verbose_name_plural=" OtherCredit"
 
 
 class Document(models.Model):
-    user_id = models.ForeignKey(User)
+    applicant= models.ForeignKey(Applicant, on_delete=models.CASCADE,null=True)
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=True)
-    date_created = models.DateTimeField(auto_now= True)
-    slug = models.SlugField(max_length=100)
-    def __iny__(self):
+
+    def __int__(self):
         return self.user_id
+        class Meta:
+            verbose_name_plural="Document"
 
