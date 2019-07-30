@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
-<<<<<<< HEAD
+
 from .forms import *
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ApplicantForm,applicantBankDetailsForm
-from .models import Applicant,DealerSupplier,OtherCredit,applicantBankDetails
+from .models import *
 
 
 
@@ -116,7 +116,4 @@ def otherdetail(request):
 
 
 
-    else:
-        form = applicantBankDetailsForm()
-    return render(request, 'form2.html', {"form":form})
-
+    

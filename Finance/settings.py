@@ -145,12 +145,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-<<<<<<< HEAD
 
 LOGIN_REDIRECT_URL = "/"
 
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-=======
->>>>>>> 17ad561afb3a57af73c8d3f7d42ca7470eff910f
+

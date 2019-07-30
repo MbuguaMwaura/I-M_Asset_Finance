@@ -16,7 +16,7 @@ class Applicant(models.Model):
   mobile = models.IntegerField(help_text='TEL. MOBILE')
   tel_home = models.IntegerField(help_text='TEL. HOME/OFFICE NO.')
   owner = models.CharField( max_length=50, help_text='OWNER/TENANT')
-  tenat = models.CharField( max_length=50,help_text='IF TENANT:(NAME OF LANDLORD)')
+  tenant = models.CharField( max_length=50,help_text='IF TENANT:NAME OF LANDLORD')
   p_o_box = models.CharField( max_length=50,help_text='TENANT P.O.BOX') 
   postalcode= models.CharField(max_length=50,help_text='TENANT POSTAL CODE')
   phone_no = models.IntegerField(help_text='TENANT PHONE NUMBER')
@@ -24,6 +24,7 @@ class Applicant(models.Model):
   yr_business = models.CharField( max_length=50, help_text='YEAR OF BUSINESS ESTABLISHED')
   introlduced_by = models.CharField( max_length=50)
   purpose_of_asset_being_purchased = models.CharField( max_length=50)
+
 
   def __int__(self):
         return self.user_id
@@ -40,7 +41,6 @@ class ApplicantBankDetails(models.Model):
     account_number = models.IntegerField()
     od_limit = models.IntegerField()
     outstanding_loans = models.IntegerField()
-    is_complete = models.BooleanField(default=True)
     def __int__(self):
         return self.user_id
 
@@ -58,7 +58,6 @@ class Properties(models.Model):
     town = models.CharField(max_length = 100)
     lr_number = models.IntegerField()
     approximate_value = models.IntegerField()
-    is_complete = models.BooleanField(default=True)
 
     def __int__(self):
         return self.user_id

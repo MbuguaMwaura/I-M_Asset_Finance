@@ -1,11 +1,11 @@
 from django import forms
 
-from .models import   Applicant,ApplicantBankDetails,Properties,AdditonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,AssetDetails,OtherCredit
+from .models import Applicant,ApplicantBankDetails,Properties,AdditonalInfoIndividual,additonalInfoCompany,dealer,DealerSupplier,AssetDetails,OtherCredit
 
 class ApplicantForm(forms.ModelForm):
-  class Meta:
-    model = Applicant
-    fields = ['NAME','IDENTIFICATION','PIN','P_O_BOX','POSTALCODE','CITY','PHYSICAL_ADDRESS','MOBILE','TEL_HOME','OWNER','TENANT','P_O_BOX','POSTALCODE','PHONE_NO','BUSINESS','YR_BUSINESS','INTRODUCED_BY','PURPOSE_OF_ASSET_BEING_PURCHASED']
+    class Meta:
+        model = Applicant
+        fields = ['user','name' ,'identification','pin','p_o_box' ,'postalcode','city','physical_address' ,'mobile','tel_home','owner','tenant','p_o_box','postalcode','phone_no','business','yr_business','introlduced_by','purpose_of_asset_being_purchased']
 
 class applicantBankDetailsForm(forms.ModelForm):
     class Meta:
