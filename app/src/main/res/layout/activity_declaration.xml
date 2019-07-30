@@ -6,23 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.DeclarationActivity">
 
-    <LinearLayout
-        android:id="@+id/linear10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
 
-
-    </LinearLayout>
-
+<LinearLayout
+    android:padding="16dp"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="SIGNATURES PAGE"
+        android:text="I/We confirm that the information given in this form is true to the best of my/our knowledge and belief"
         />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Authorized Signature"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:inputType="date"
+        />
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:text="add"/>
+</LinearLayout>
 
     <TextView
         android:layout_alignParentBottom="true"

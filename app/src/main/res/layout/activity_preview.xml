@@ -35,40 +35,169 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Page One"
-            android:textSize="30sp"
+            android:text="Applicant Details"
+            android:textSize="20sp"
             android:drawableEnd="@drawable/ic_edit_black_24dp" />
 
 
-        <TextView
-            android:id="@+id/firstName"
+        <LinearLayout
+            android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name"
-            android:textSize="20sp"
-            />
+
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                />
+
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/idNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID/Passport/INC/CERT. of REG "
+                />
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/pinNumber"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="Pin NO"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/poBox"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="PO Box"
+                    />
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/postalCode"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:hint="Postal Code"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/physicalLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Physical Location (Location/Road)"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/mobileNumber"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    />
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/officeNumber"
+                    android:inputType="number"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Office Number"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ownerTenant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Owner/Tenant"
+                />
+
+            <TextView
+                android:id="@+id/tentant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="If Tenant:(Name Of Landlord)"
+                />
+            <TextView
+                android:id="@+id/poBox2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="PO Box"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/postalCodeTwo"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:hint="Postal Code"
+                    />
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/phonenumber"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/businessNature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nature Of Business"
+                />
+
+            <TextView
+                android:id="@+id/yearOfBusiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Year Business Established"
+                />
+
+            <TextView
+                android:id="@+id/introBy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Introduced By"
+                android:inputType="date"
+                android:maxLength="4"
+                />
 
 
+            <TextView
+                android:id="@+id/purpose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Purpose Of Asset Being Purchased"
+                />
 
-        <TextView
-            android:id="@+id/lastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last Name"
-            android:textSize="20sp"
-
-            />
-
-
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:textSize="20sp"
-            />
-
+        </LinearLayout>
 
 
 
@@ -102,40 +231,398 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Page Two"
-                        android:textSize="30sp"
-                        />
-
-
-                    <TextView
-                        android:id="@+id/number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Phone Number"
+                        android:text="APPLICANT BANK DETAILS"
                         android:textSize="20sp"
                         />
 
 
-
-                    <TextView
-                        android:id="@+id/address"
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:id="@+id/linear3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Address"
-                        android:textSize="20sp"
+                        android:orientation="vertical"
+                      
+                        >
 
+                        <TextView
+                            android:id="@+id/bankName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Bank Name"
+                            />
+
+                        <TextView
+                            android:id="@+id/branch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Branch"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/accountNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Account Number"
+                            />
+
+                        <TextView
+                            android:id="@+id/odLimit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="OD Limit"
+                            />
+
+                        <TextView
+                            android:id="@+id/outStandingLoans"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Outstanding Loans"
+                            />
+
+                   
+                       
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/card2"
+                android:id="@+id/card3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/editPageThree"
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="VEHICLES/PROPERTIES"
+                        android:textSize="20sp"
                         />
 
 
-
-                    <TextView
-                        android:id="@+id/description"
+                    <LinearLayout
+                     
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Description"
-                        android:inputType="textWebEmailAddress"
+                        android:orientation="vertical"
+                      
+                        >
+
+                        <TextView
+                            android:id="@+id/vehicleRegNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Vehicle Reg NO."
+                            />
+
+                        <TextView
+                            android:id="@+id/make"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Make"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/model"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Model"
+                            />
+
+                        <TextView
+                            android:id="@+id/loanBalance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Balance Of Loan"
+                            />
+
+                        <TextView
+                            android:id="@+id/financedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Financed By"
+                            />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_below="@id/linear3"
+                        android:id="@+id/linear4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/property"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Property (Residential/Commercial)"
+                            />
+
+                        <TextView
+                            android:id="@+id/size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Size"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Town/Area"
+                            />
+
+                        <TextView
+                            android:id="@+id/lrNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="LR NO."
+                            />
+
+                        <TextView
+                            android:id="@+id/value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Approximate Value"
+                            />
+
+
+
+                        
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/card3"
+                android:id="@+id/card4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/editPageFour"
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="ADDITIONAL INFORMATION"
                         android:textSize="20sp"
                         />
+
+
+                    <LinearLayout
+                        android:id="@+id/linear5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/age"
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Age"
+                                    />
+                                <TextView
+                                    android:id="@+id/occupation"
+                                    android:layout_width="160dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Occupation"
+                                    android:layout_alignParentRight="true"
+                                    />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/employerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Name Of Employer"
+                            />
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Address"
+                            />
+                        <TextView
+                            android:id="@+id/telephoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="Tel NO"
+                            />
+                        <TextView
+                            android:id="@+id/position"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Current Position"
+                            />
+                        <TextView
+                            android:id="@+id/yearsInCurrentPosition"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="NO. Of Years In Current Position"
+                            />
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Marital Status"
+                            />
+                        <TextView
+                            android:id="@+id/spouse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Name Of Spouse"
+                            />
+
+                        <TextView
+                            android:id="@+id/spouseOccupation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Occupation"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@id/linear5"
+                        android:id="@+id/linear6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        >
+
+
+                        <TextView
+                            android:id="@+id/employmentIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Employment Income (net of statutory deductions)"
+                            />
+
+                        <TextView
+                            android:id="@+id/selfIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Self's Income"
+                            />
+                        <TextView
+                            android:id="@+id/spouseIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="Spouse's Income"
+                            />
+                        <TextView
+                            android:id="@+id/livingExpenses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Living Expenses"
+                            />
+
+
+
+
+
+                            <TextView
+                                android:id="@+id/loanRepayments"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:hint="Current Loan Repayments"
+                                />
+
+
+
+
+
+
+                            <TextView
+                                android:id="@+id/otherIncomeBusiness"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Other Income Business"
+                                />
+
+                        <TextView
+                            android:id="@+id/disposableIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Total Net Disposable Income"
+                            />
+
+
+
+
+                    </LinearLayout>
+
 
 
 
@@ -154,29 +641,29 @@
 
 
 
-    <Button
-        android:id="@+id/done"
-        android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <!--<Button-->
+        <!--android:id="@+id/done"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
 
-        android:layout_centerHorizontal="true"
-        android:text="FINISH"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        />
-    <Button
-        android:id="@+id/generate"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="FINISH"-->
+        <!--android:background="@color/blue"-->
+        <!--android:textColor="@color/white"-->
+        <!--/>-->
+    <!--<Button-->
+        <!--android:id="@+id/generate"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
 
-        android:layout_above="@id/done"
-        android:layout_centerHorizontal="true"
-        android:text="PDF"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        />
+        <!--android:layout_above="@+id/done"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="PDF"-->
+        <!--android:background="@color/blue"-->
+        <!--android:textColor="@color/white"-->
+        <!--/>-->
 
 </RelativeLayout>

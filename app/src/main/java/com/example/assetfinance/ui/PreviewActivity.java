@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,19 +59,38 @@ import okhttp3.Response;
 public class PreviewActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.editPageOne)
     TextView editPageOne;
-    @BindView(R.id.editPageTwo)
-    TextView editPageTwo;
-    @BindView(R.id.done)
-    Button finish;
-    @BindView(R.id.generate)
-    Button generate;
+//    @BindView(R.id.editPageTwo)
+//    TextView editPageTwo;
+//    @BindView(R.id.done)
+//    Button finish;
+//    @BindView(R.id.generate)
+//    Button generate;
 
-    @BindView(R.id.firstName) TextView firstName;
-    @BindView(R.id.lastName) TextView textView;
-    @BindView(R.id.email) TextView email;
-    @BindView(R.id.number) TextView number;
-    @BindView(R.id.address) TextView address;
-    @BindView(R.id.description) TextView description;
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.idNumber) TextView idNumber;
+    @BindView(R.id.pinNumber) TextView pinNumber;
+    @BindView(R.id.poBox) TextView poBox;
+    @BindView(R.id.physicalLocation) TextView location;
+    @BindView(R.id.mobileNumber) TextView mobileNumber;
+    @BindView(R.id.officeNumber) TextView officeNumber;
+    @BindView(R.id.ownerTenant) TextView ownerTenant;
+    @BindView(R.id.tentant) TextView tenant;
+    @BindView(R.id.poBox2) TextView poBoxTwo;
+    @BindView(R.id.postalCodeTwo) TextView postalCodeTwo;
+    @BindView(R.id.postalCode) TextView postalCode;
+    @BindView(R.id.phonenumber) TextView phoneNumber;
+    @BindView(R.id.businessNature) TextView businessNature;
+    @BindView(R.id.yearOfBusiness) TextView yearOfBusiness;
+    @BindView(R.id.introBy) TextView introBy;
+    @BindView(R.id.purpose) TextView purpose;
+
+    @BindView(R.id.bankName)
+    TextView bankName;
+    @BindView(R.id.branch) TextView branch;
+    @BindView(R.id.accountNumber) TextView accountNumber;
+    @BindView(R.id.odLimit) TextView odLimit;
+    @BindView(R.id.outStandingLoans) TextView outStandingLoans;
 
     private SharedPreferences mSharedPreferences;
     private int STORAGE_PERMISSION_CODE = 1;
@@ -79,67 +99,96 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview);
         ButterKnife.bind(this);
+        setTitle("PREVIEW");
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String nameOne = mSharedPreferences.getString(Constants.FIRST_NAME_KEY, null);
-        String nameTwo = mSharedPreferences.getString(Constants.LAST_NAME_KEY, null);
-        String personEmail = mSharedPreferences.getString(Constants.EMAIL_KEY, null);
-        String mobileNumber = mSharedPreferences.getString(Constants.PHONE_KEY, null);
-        String personAddress = mSharedPreferences.getString(Constants.ADDRESS_KEY, null);
-        String personDescription = mSharedPreferences.getString(Constants.DESCRIPTION_KEY, null);
+        String inputName = mSharedPreferences.getString(Constants.ONE_NAME, null);
+        String inputIDCERT = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+        String inputPin = mSharedPreferences.getString(Constants.ONE_PIN, null);
+        String inputPoBox = mSharedPreferences.getString(Constants.ONE_PO_BOX, null);
+        String inputPostalCode = mSharedPreferences.getString(Constants.ONE_POSTAL_CODE, null);
+        String inputLocation = mSharedPreferences.getString(Constants.ONE_LOCATION, null);
+        String inputNumber = mSharedPreferences.getString(Constants.ONE_PHONE_NUMBER, null);
+        String inputOfficeNumber = mSharedPreferences.getString(Constants.ONE_OFFICE_NUMBER, null);
+        String inputOwnerTenant = mSharedPreferences.getString(Constants.ONE_OWNER_TENANT, null);
+        String inputLandlord = mSharedPreferences.getString(Constants.ONE_TENTANT_LANDLORD, null);
+        String inputPoBoxLandLord = mSharedPreferences.getString(Constants.ONE_PO_BOX_LANDLORD, null);
+        String inputPostalCodeLandord = mSharedPreferences.getString(Constants.ONE_POSTAL_CODE_LANDLORD, null);
+        String inputNumberLandLord = mSharedPreferences.getString(Constants.ONE_PHONE_NUMBER_LANDLORD, null);
+        String inputBusiness = mSharedPreferences.getString(Constants.ONE_NATURE_OF_BUSINESS, null);
+        String inputYear = mSharedPreferences.getString(Constants.ONE_YEAR_BUSINESS, null);
+        String inputIntroBy = mSharedPreferences.getString(Constants.ONE_INTRO_BY, null);
+        String inputPurpose = mSharedPreferences.getString(Constants.ONE_PURPOSE, null);
 
-        firstName.setText(nameOne);
-        textView.setText(nameTwo);
-        email.setText(personEmail);
-        number.setText(mobileNumber);
-        address.setText(personAddress);
-        description.setText(personDescription);
 
+
+        name.setText(inputName);
+        idNumber.setText(inputIDCERT);
+        pinNumber.setText(inputPin);
+        poBox.setText(inputPoBox);
+        postalCode.setText(inputPostalCode);
+        location.setText(inputLocation);
+        mobileNumber.setText(inputNumber);
+        officeNumber.setText(inputOfficeNumber);
+        ownerTenant.setText(inputOwnerTenant);
+        tenant.setText(inputLandlord);
+        poBoxTwo.setText(inputPoBoxLandLord);
+        postalCodeTwo.setText(inputPostalCodeLandord);
+        phoneNumber.setText(inputNumberLandLord);
+        businessNature.setText(inputBusiness);
+        yearOfBusiness.setText(inputYear);
+        introBy.setText(inputIntroBy);
+        purpose.setText(inputPurpose);
+
+
+
+
+//
         editPageOne.setOnClickListener(this);
-        editPageTwo.setOnClickListener(this);
-        finish.setOnClickListener(this);
-        generate.setOnClickListener(this);
+//        editPageTwo.setOnClickListener(this);
+//        finish.setOnClickListener(this);
+//        generate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == editPageOne){
-            Intent intent = new Intent(this, DjangoFormActivity.class);
+            Intent intent = new Intent(this, ApplicantActivity.class);
             intent.putExtra("edit",true);
             startActivity(intent);
         }
-        if (v == editPageTwo){
-            Intent intent = new Intent(this, DjangoFormTwoActivity.class);
-            intent.putExtra("edit", true);
-            startActivity(intent);
-        }
-        if (v == finish){
-            String nameOne = mSharedPreferences.getString(Constants.FIRST_NAME_KEY, null);
-            String nameTwo = mSharedPreferences.getString(Constants.LAST_NAME_KEY, null);
-            String personEmail = mSharedPreferences.getString(Constants.EMAIL_KEY, null);
-            String mobileNumber = mSharedPreferences.getString(Constants.PHONE_KEY, null);
-            String personAddress = mSharedPreferences.getString(Constants.ADDRESS_KEY, null);
-            String personDescription = mSharedPreferences.getString(Constants.DESCRIPTION_KEY, null);
-
-            final DjangoService djangoService = new DjangoService();
-            djangoService.post(nameOne, nameTwo, personEmail, mobileNumber, personAddress, personDescription, new Callback() {
-                @Override
-                public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
-                }
-
-                @Override
-                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-
-                }
-            });
-
-
-        }
-        if (v == generate){
-            createPdf();
-        }
+//        if (v == editPageTwo){
+//            Intent intent = new Intent(this, DjangoFormTwoActivity.class);
+//            intent.putExtra("edit", true);
+//            startActivity(intent);
+//        }
+//        if (v == finish){
+//            String nameOne = mSharedPreferences.getString(Constants.FIRST_NAME_KEY, null);
+//            String nameTwo = mSharedPreferences.getString(Constants.LAST_NAME_KEY, null);
+//            String personEmail = mSharedPreferences.getString(Constants.EMAIL_KEY, null);
+//            String mobileNumber = mSharedPreferences.getString(Constants.PHONE_KEY, null);
+//            String personAddress = mSharedPreferences.getString(Constants.ADDRESS_KEY, null);
+//            String personDescription = mSharedPreferences.getString(Constants.DESCRIPTION_KEY, null);
+//
+//            final DjangoService djangoService = new DjangoService();
+//            djangoService.post(nameOne, nameTwo, personEmail, mobileNumber, personAddress, personDescription, new Callback() {
+//                @Override
+//                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//
+//                }
+//
+//                @Override
+//                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//
+//                }
+//            });
+//
+//
+//        }
+//        if (v == generate){
+//            createPdf();
+//        }
     }
 
 
@@ -187,7 +236,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         if (!file.exists()) {
             wasSuccessful = file.mkdirs();
         }
-        Toast.makeText(PreviewActivity.this, String.valueOf(wasSuccessful),Toast.LENGTH_LONG).show();
+       // Toast.makeText(PreviewActivity.this, String.valueOf(wasSuccessful),Toast.LENGTH_LONG).show();
         String targetPdf = directory_path + "test-2.pdf";
         File filePath = new File(targetPdf);
         try {

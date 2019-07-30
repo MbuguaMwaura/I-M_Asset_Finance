@@ -19,16 +19,18 @@ public class ExistingAssetsActivity extends AppCompatActivity implements View.On
     @BindView(R.id.model) EditText model;
     @BindView(R.id.loanBalance) EditText loanBalance;
     @BindView(R.id.financedBy) EditText financeBy;
-    @BindView(R.id.addVehicle)
-    Button addVehicleBtn;
+
 
     @BindView(R.id.property) EditText property;
     @BindView(R.id.size) EditText size;
     @BindView(R.id.location) EditText location;
     @BindView(R.id.lrNo) EditText lrNo;
     @BindView(R.id.value) EditText value;
+
     @BindView(R.id.addProperty) Button addPropertyBtn;
     @BindView(R.id.proceedThree) Button proceedThreeBtn;
+    @BindView(R.id.addVehicle)
+    Button addVehicleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
