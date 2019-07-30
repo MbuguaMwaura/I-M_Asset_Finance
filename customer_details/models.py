@@ -86,10 +86,10 @@ class dealer(models.Model):
     invoice_number = models.IntegerField()
     sales_person = models.CharField(max_length=100)
 
-class DealerSupplier(models.Model):
+class dealerSupplier(models.Model):
   dealername = models.CharField(max_length=50)
   postaladdress = models.CharField( max_length=50)
-  telno = models.IntegerField
+  telno = models.IntegerField()
   invoiceno_date = models.CharField( max_length=50)
   salesperson = models.CharField( max_length=50)
 
@@ -130,6 +130,9 @@ class OtherCredit(models.Model):
   sanctioned_limit = models.CharField( max_length=50)
   current_outstanding = models.CharField(max_length=50)
   
-
+class Photo(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 

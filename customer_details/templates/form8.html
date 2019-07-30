@@ -7,7 +7,7 @@
 {%block content%}
 <div class="top">
     <br>
-    <h2 class="text-white move">1. APPLICANT</h2><br>
+    <h2 class="text-white move">8. OTHER CREDIT FACILITIES AT I&M BANK LTD</h2><br>
 </div>
 
 <div class="container">
@@ -16,13 +16,13 @@
 <div class="col-md-8 margin">
     <div class="card shadow-lg" style="width: 100%;">
         <div class="card-body">
-            <form  action="{%url 'applicant'%}" method="post" enctype="multipart/form-data">
+            <form  action="{%url 'assetdetails'%}" method="post" enctype="multipart/form-data">
               {%csrf_token%}
           
               {% bootstrap_form form%}
           
-              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'welcome' %}'"  />
-              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'applicantbankdetails' %}'"  />
+              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'dealer1' %}'"  />
+              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'otherdetail' %}'"  />
             </form>
              </div>
     </div>
