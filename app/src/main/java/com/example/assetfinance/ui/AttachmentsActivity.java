@@ -124,7 +124,7 @@ public class AttachmentsActivity extends AppCompatActivity implements View.OnCli
                 .withActivity(this)
                 .withRequestCode(FILE_PICKER_REQUEST_CODE)
                 .withHiddenFiles(true)
-                .withFilter(Pattern.compile(".*\\.pdf$"))
+                .withFilter(Pattern.compile(".*\\.pdf   $"))
                 .withTitle("Select PDF file")
                 .start();
     }

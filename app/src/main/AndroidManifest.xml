@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.SignatureActivity" android:theme="@style/NoActionBarTheme"></activity>
         <activity
             android:name=".ui.DrawerActivity"
             android:label="@string/title_activity_drawer"
@@ -21,16 +22,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.assetfinance.ui.MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ui.PreviewActivity" />
         <activity android:name=".ui.DjangoFormTwoActivity" />
-        <activity android:name=".ui.DjangoFormActivity"></activity>
+        <activity android:name=".ui.DjangoFormActivity" />
         <activity android:name=".ui.DeclarationActivity" />
         <activity android:name=".ui.AttachmentsActivity" />
         <activity android:name=".ui.CreditActivity" />
@@ -40,10 +41,8 @@
         <activity android:name=".ui.AdditionalInformation" />
         <activity android:name=".ui.ExistingAssetsActivity" />
         <activity android:name=".ui.BankDetailsActivity" />
-        <activity android:name=".ui.ApplicantActivity"></activity>
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.ApplicantActivity" />
+        <activity android:name=".ui.MainActivity"></activity>
     </application>
 
 </manifest>

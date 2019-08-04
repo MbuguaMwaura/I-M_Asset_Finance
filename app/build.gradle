@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.assetfinance"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -32,7 +32,7 @@ android {
 }
 repositories {
     maven {
-        url  "http://dl.bintray.com/lukaville/maven"
+        url "http://dl.bintray.com/lukaville/maven"
     }
 }
 
@@ -97,4 +97,5 @@ dependencies {
     implementation 'com.nbsp:library:1.8'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.kyanogen.signatureview:signature-view:1.2'
+
 }

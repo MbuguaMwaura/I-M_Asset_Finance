@@ -73,6 +73,8 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_payments) {
+            Intent intent = new Intent(this,SignatureActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_credit_card) {
 

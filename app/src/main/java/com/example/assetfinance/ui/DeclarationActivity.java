@@ -15,6 +15,7 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
 
     @BindView(R.id.proceedTen)
     Button proceedTenBtn;
+    @BindView(R.id.sign) Button sign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,17 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
         ButterKnife.bind(this);
 
         proceedTenBtn.setOnClickListener(this);
+        sign.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == proceedTenBtn){
             Intent intent = new Intent(this, PreviewActivity.class);
+            startActivity(intent);
+        }
+        if (v == sign){
+            Intent intent = new Intent(this, SignatureActivity.class);
             startActivity(intent);
         }
     }
