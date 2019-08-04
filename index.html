@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I&M Asset Finance</title>
+</head>
+<body>
+        <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#config-web-app -->
+        
+        <script>
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyC89jREm-d0nQW_bh2kwOdVJ1vgSHFx2kg",
+            authDomain: "i-m-asset-finance.firebaseapp.com",
+            databaseURL: "https://i-m-asset-finance.firebaseio.com",
+            projectId: "i-m-asset-finance",
+            storageBucket: "i-m-asset-finance.appspot.com",
+            messagingSenderId: "1025108421687",
+            appId: "1:1025108421687:web:e97eeb1efa876011"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+
+          function writeData(){
+            firebase.database().ref("User").set({
+              name: document.getElementById("nameField").value,
+              age: document.getElementById("ageField").value
+            });
+            getData();
+          }
+
+          var ref = firebase.database().ref('helf').child('applicant_details');
+          ref.on('value',gotData,errData);
+
+          function gotData(data){
+            console.log(data.val());
+            // var names = document.querySelector('#data');
+            // console.log(names);
+            var object = data.val();
+            // console.log(object.age);
+            document.getElementById("data").innerHTML = object.name;
+            document.getElementById("dataAge").innerHTML = object.StringroducedBy;
+          }
+          function errData(err){
+            console.log('Error!');
+            console.log(err);
+          }
+
+          function getData(){
+            firebase.database().ref('User').once('value', function(snapshot){
+             snapshot.forEach(function(childSnapshot){
+               var childKey = childSnapshot.key;
+               var childData = childSnapshot.val(); 
+              
+               document.getElementById("data").innerHTML += childData +"<br>";  
+             });  
+            });
+          }
+        </script>
+<h1>Test</h1>
+<input type="text" id="nameField">
+<input type="text" id="ageField">
+<button onclick="writeData()"> Data</button>
+        <p id="data">Name:</p>
+        <p id="dataAge">Age: </p>
+    
+</body>
+</html>
