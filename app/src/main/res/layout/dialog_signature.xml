@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/imbluedark"
-        android:text="@string/dialog_title"
+        android:text="Create a Signature"
         android:textColor="@android:color/white"
         android:padding="5dp"
         android:gravity="center"/>
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/hint_cancel"
+            android:text="cancel"
             tools:ignore="ButtonStyle"
             android:textColor="@android:color/white"
             android:background="@color/colorPrimary" />
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/hint_clear"
+            android:text="clear"
             tools:ignore="ButtonStyle"
             android:textColor="@android:color/white"
             android:background="@color/colorPrimary" />
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/hint_save"
+            android:text="save"
             tools:ignore="ButtonStyle"
             android:textColor="@android:color/white"
             android:background="@color/colorPrimary" />

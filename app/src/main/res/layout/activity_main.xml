@@ -215,6 +215,7 @@
           android:textColor="@color/colorDivider"
           android:text="8. Certificate of Business Registration"
           />
+
       <TextView
           android:layout_marginTop="2dp"
           android:layout_width="match_parent"
@@ -223,7 +224,21 @@
           android:textColor="@color/colorDivider"
           android:text="9. Copies of contract where asset sought is to meet contractual requirements."
           />
-
+      <RelativeLayout
+          android:layout_marginBottom="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+         <Button
+             android:id="@+id/applyindividual"
+             android:layout_marginTop="20dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="APPLY"
+             android:textColor="@color/white"
+             android:background="@color/imorange"
+             android:layout_alignParentRight="true"
+             />
+      </RelativeLayout>
       <TextView
           android:layout_marginTop="10dp"
           android:layout_width="match_parent"

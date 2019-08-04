@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SupplierActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linear8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        >
+
+
+
+        <EditText
+            android:id="@+id/dealerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dealer Name"
+            />
+
+
+
+        <EditText
+            android:id="@+id/postalAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Postal Address"
+
+            />
+
+
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telephone Number"
+            android:inputType="number"
+            />
+
+
+
+
+        <EditText
+            android:id="@+id/invoiceNoDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Invoice NO. / Date"
+            />
+
+
+        <EditText
+            android:id="@+id/salesPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sales Person"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="16dp"
+        android:id="@+id/pageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="PAGE: 6/10"
+        android:textColor="@color/imbluedark"
+        android:paddingTop="30dp"
+        />
+
+    <Button
+        android:id="@+id/proceedSix"
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="proceed"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        />
+
+
+</RelativeLayout>

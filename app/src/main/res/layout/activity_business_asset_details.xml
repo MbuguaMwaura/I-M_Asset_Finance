@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.business.BusinessAssetDetails">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            >
+
+            <EditText
+                android:id="@+id/make"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Make"
+                />
+
+            <EditText
+                android:id="@+id/modelCC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Model/Cc Rating"
+
+                />
+            <EditText
+                android:id="@+id/yearOfManufacture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Year of Manufacture"
+                android:inputType="number"
+                />
+
+
+
+            <EditText
+                android:id="@+id/valuation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Valuation Amount (where applicable)"
+                android:inputType="number"
+                android:layout_marginBottom="20dp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle state: "
+                android:textSize="20sp"
+
+                android:layout_marginLeft="5dp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New"
+                />
+
+            <CheckBox
+                android:id="@+id/checkUsed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Used"
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Insurance: "
+                android:textSize="20sp"
+
+                android:layout_marginLeft="5dp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkIMInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="I&amp;M Insurance Agency Ltd"
+                />
+
+            <CheckBox
+                android:id="@+id/checkInterested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Interested in Insurance Finance (IPF)"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/invoicePrice"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Invoice Price"
+                    />
+
+                <EditText
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/discounts"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:hint="Discounts"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorDivider"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/netCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Net Cost"
+                android:textSize="20sp"
+
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorDivider"
+                android:paddingBottom="5dp" />
+
+
+
+            <EditText
+                android:id="@+id/accessory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Accessory / Other"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_below="@id/accessoryValue"
+                    android:id="@+id/accessoryValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Value"
+                    />
+
+                <ImageButton
+                    android:id="@+id/addAccessory"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white_24dp"
+                    android:background="@color/imbluelight"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorDivider"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                />
+
+            <TextView
+                android:id="@+id/totalCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total Cost"
+                android:textSize="20sp"
+
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorDivider"
+                android:paddingBottom="5dp" />
+
+
+
+            <EditText
+                android:id="@+id/deposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Deposit"
+                />
+
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorDivider"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                />
+
+            <TextView
+                android:id="@+id/balanceOfCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Balance of Cost"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorDivider"
+                android:paddingBottom="5dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_margin="16dp"
+            android:id="@+id/pageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear9"
+            android:text="PAGE: 7/10"
+            android:textColor="@color/imbluedark"
+            android:paddingTop="30dp"
+            />
+
+        <Button
+            android:id="@+id/proceedSeven"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear9"
+            android:layout_alignParentRight="true"
+            android:text="proceed"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

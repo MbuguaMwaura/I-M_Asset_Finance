@@ -13,7 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SignatureActivity" android:theme="@style/NoActionBarTheme"></activity>
+        <activity android:name=".ui.business.BusinessPreviewActivity"></activity>
+        <activity android:name=".ui.business.BusinessDeclarationActivity" />
+        <activity android:name=".ui.business.BusinessAttachmentActivity" />
+        <activity android:name=".ui.business.BusinessCreditActivity" />
+        <activity android:name=".ui.business.BusinessAssetDetails" />
+        <activity android:name=".ui.business.BusinessDealerActivity" />
+        <activity android:name=".ui.business.BusinessAdditionalInfo" />
+        <activity android:name=".ui.business.BusinessExistingAssets" />
+        <activity android:name=".ui.business.BusinessBankActivity" />
+        <activity android:name=".ui.business.BusinessApplicantActivity" />
+        <activity
+            android:name=".ui.SignatureActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".ui.DrawerActivity"
             android:label="@string/title_activity_drawer"
@@ -42,7 +54,7 @@
         <activity android:name=".ui.ExistingAssetsActivity" />
         <activity android:name=".ui.BankDetailsActivity" />
         <activity android:name=".ui.ApplicantActivity" />
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>

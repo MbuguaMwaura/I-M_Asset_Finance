@@ -83,6 +83,58 @@ public class Constants {
     public static final String EIGHT_SANCTIONED_LIMIT = "sanctioned_limit";
     public static final String EIGHT_CURRENT_OUTSTANDING = "current_outstanding";
 
+// form one business
+    public static final String ONE_BUSINESS_NAME = "business_name";
+    public static final String ONE_BUSINESS_ID_CERT = "business_id-pass-cert-no";
+    public static final String ONE_BUSINESS_PIN = "business_pin_no";
+    public static final String ONE_BUSINESS_PO_BOX = "business_po_box";
+    public static final String ONE_BUSINESS_POSTAL_CODE = "business_postal_code";
+    public static final String ONE_BUSINESS_LOCATION = "business_physical_location";
+    public static final String ONE_BUSINESS_PHONE_NUMBER = "business_phone_number";
+    public static final String ONE_BUSINESS_OFFICE_NUMBER = "business_office_number";
+    public static final String ONE_BUSINESS_OWNER_TENANT = "business_owner_tenant";
+    public static final String ONE_BUSINESS_TENTANT_LANDLORD = "business_name_landlord";
+    public static final String ONE_BUSINESS_PO_BOX_LANDLORD = "business_po_box_landlord";
+    public static final String ONE_BUSINESS_POSTAL_CODE_LANDLORD = "business_postal_code_landlord";
+    public static final String ONE_BUSINESS_PHONE_NUMBER_LANDLORD = "business_phone_number_landlord";
+    public static final String ONE_BUSINESS_NATURE_OF_BUSINESS = "business_nature_of_business";
+    public static final String ONE_BUSINESS_YEAR_BUSINESS = "business_year_business";
+    public static final String ONE_BUSINESS_INTRO_BY = "business_intro_by";
+    public static final String ONE_BUSINESS_PURPOSE = "business_purpose";
+
+    //    form four business constants
+    public static final String FIVE_BUSINESS_SHAREHOLDERS = "business_shareholders";
+    public static final String FIVE_BUSINESS_TURNOVER = "business_turnover";
+    public static final String FIVE_BUSINESS_NET_PROFIT = "business_net_profit";
+    public static final String FIVE_BUSINESS_ASSOCIATE_COMPANIES = "business_associate_companies";
+
+    //    form six business constants
+    public static final String SIX_BUSINESS_DEALER_NAME = "business_dealer_name";
+    public static final String SIX_BUSINESS_POSTAL_ADDRESS_DEALER = "business_postal_address_dealer";
+    public static final String SIX_BUSINESS_TEL_NO_DEALER = "business_tel_no_dealer";
+    public static final String SIX_BUSINESS_INVOICE_DATE = "business_invoice_date";
+    public static final String SIX_BUSINESS_SALES_PERSON = "business_sales_person";
+
+    //    form seven constants
+    public static final String SEVEN_BUSINESS_MAKE = "business_make";
+    public static final String SEVEN_BUSINESS_MODEL_CC = "business_model_cc";
+    public static final String SEVEN_BUSINESS_YEAR_MANUFACTURE = "business_year_manufacture";
+    public static final String SEVEN_BUSINESS_VALUATION = "business_valuation";
+    public static final String SEVEN_BUSINESS_INVOICE_PRICE = "business_invoice_price";
+    public static final String SEVEN_BUSINESS_DISCOUNT = "business_discount";
+    public static final String SEVEN_BUSINESS_NET_COST = "business_net_cost";
+    public static final String SEVEN_BUSINESS_ACCESSORY_OTHER = "business_accessory_other";
+    public static final String SEVEN_BUSINESS_VALUE = "business_value";
+    public static final String SEVEN_BUSINESS_TOTAL_COST = "business_total_cost";
+    public static final String SEVEN_BUSINESS_DEPOSIT = "business_deposit";
+    public static final String SEVEN_BUSINESS_BALANCE_OF_COST = "business_balance_of_cost";
+
+    //    form eight business constants
+    public static final String EIGHT_BUSINESS_NAME = "business_name";
+    public static final String EIGHT_BUSINESS_FACILITY_TYPE = "business_facility_type";
+    public static final String EIGHT_BUSINESS_SANCTIONED_LIMIT = "business_sanctioned_limit";
+    public static final String EIGHT_BUSINESS_CURRENT_OUTSTANDING = "business_current_outstanding";
+
 
 }
 
