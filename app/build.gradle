@@ -99,3 +99,4 @@ dependencies {
     implementation 'com.kyanogen.signatureview:signature-view:1.2'
 
 }
+apply plugin: 'com.google.gms.google-services'

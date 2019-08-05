@@ -1,13 +1,19 @@
 package com.example.assetfinance.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.BankDetails;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +28,7 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.proceedTwo)
     Button proceedTwo;
     @BindView(R.id.addBank) Button addBank;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,7 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_bank_details);
         setTitle("2. APPLICANT'S BANK DETAILS");
         ButterKnife.bind(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         proceedTwo.setOnClickListener(this);
         addBank.setOnClickListener(this);
@@ -39,6 +47,21 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
         if (v == proceedTwo){
             Intent intent = new Intent(this, ExistingAssetsActivity.class);
             startActivity(intent);
+        }
+        if (v == addBank){
+            String inputbankName = bankName.getText().toString();
+            String Branch = branch.getText().toString();
+            String inputaccountNumber = accountNumber.getText().toString();
+            String inputodLimit = odLimit.getText().toString();
+            String inputoutStandingLoans = outStandingLoans.getText().toString();
+
+
+
+            String inputName = mSharedPreferences.getString(Constants.ONE_NAME, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputName).child("bank_details");
+            BankDetails bankDetails = new BankDetails(inputbankName,Branch,inputaccountNumber,inputodLimit,inputoutStandingLoans);
+            DatabaseReference pushRef = reference.push();
+            pushRef.setValue(bankDetails);
         }
     }
 }

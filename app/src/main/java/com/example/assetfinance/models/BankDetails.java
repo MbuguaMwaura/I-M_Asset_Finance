@@ -2,14 +2,14 @@ package com.example.assetfinance.models;
 
 public class BankDetails {
     String bankName;
-    String Branch;
+    String branch;
     String accountNumber;
     String odLimit;
     String outStandingLoans;
 
     public BankDetails(String bankName, String branch, String accountNumber, String odLimit, String outStandingLoans) {
         this.bankName = bankName;
-        Branch = branch;
+        this.branch = branch;
         this.accountNumber = accountNumber;
         this.odLimit = odLimit;
         this.outStandingLoans = outStandingLoans;
@@ -27,11 +27,11 @@ public class BankDetails {
     }
 
     public String getBranch() {
-        return Branch;
+        return branch;
     }
 
     public void setBranch(String branch) {
-        Branch = branch;
+        this.branch = branch;
     }
 
     public String getAccountNumber() {

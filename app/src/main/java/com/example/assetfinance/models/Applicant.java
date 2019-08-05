@@ -5,27 +5,27 @@ public class Applicant {
     String idNumber;
     String pinNumber;
     String address;
-    int postalCode;
-    String town;
+    String postalCode;
+
     String physicalAddress;
-    int mobileNumber;
-    int officeNumber;
+    String mobileNumber;
+    String officeNumber;
     String landLord;
     String homeaddress;
-    int postalCodeAddress;
-    int phoneNumber;
+    String postalCodeAddress;
+    String phoneNumber;
     String natureOfBusiness;
-    int yearStartedBusiness;
-    String introducedBy;
+    String yearStartedBusiness;
+    String StringroducedBy;
     String purposeOfAsset;
+    String ownerTenant;
 
-    public Applicant(String name, String idNumber, String pinNumber, String address, int postalCode, String town, String physicalAddress, int mobileNumber, int officeNumber, String landLord, String homeaddress, int postalCodeAddress, int phoneNumber, String natureOfBusiness, int yearStartedBusiness, String introducedBy, String purposeOfAsset) {
+    public Applicant(String name, String idNumber, String pinNumber, String address, String postalCode, String physicalAddress, String mobileNumber, String officeNumber, String landLord, String homeaddress, String postalCodeAddress, String phoneNumber, String natureOfBusiness, String yearStartedBusiness, String StringroducedBy, String purposeOfAsset, String ownerTenant) {
         this.name = name;
         this.idNumber = idNumber;
         this.pinNumber = pinNumber;
         this.address = address;
         this.postalCode = postalCode;
-        this.town = town;
         this.physicalAddress = physicalAddress;
         this.mobileNumber = mobileNumber;
         this.officeNumber = officeNumber;
@@ -35,11 +35,20 @@ public class Applicant {
         this.phoneNumber = phoneNumber;
         this.natureOfBusiness = natureOfBusiness;
         this.yearStartedBusiness = yearStartedBusiness;
-        this.introducedBy = introducedBy;
+        this.StringroducedBy = StringroducedBy;
         this.purposeOfAsset = purposeOfAsset;
+        this.ownerTenant = ownerTenant;
     }
 
     public Applicant() {
+    }
+
+    public String getOwnerTenant() {
+        return ownerTenant;
+    }
+
+    public void setOwnerTenant(String ownerTenant) {
+        this.ownerTenant = ownerTenant;
     }
 
     public String getName() {
@@ -74,21 +83,14 @@ public class Applicant {
         this.address = address;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
 
     public String getPhysicalAddress() {
         return physicalAddress;
@@ -98,19 +100,19 @@ public class Applicant {
         this.physicalAddress = physicalAddress;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(int mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getOfficeNumber() {
+    public String getOfficeNumber() {
         return officeNumber;
     }
 
-    public void setOfficeNumber(int officeNumber) {
+    public void setOfficeNumber(String officeNumber) {
         this.officeNumber = officeNumber;
     }
 
@@ -130,19 +132,19 @@ public class Applicant {
         this.homeaddress = homeaddress;
     }
 
-    public int getPostalCodeAddress() {
+    public String getPostalCodeAddress() {
         return postalCodeAddress;
     }
 
-    public void setPostalCodeAddress(int postalCodeAddress) {
+    public void setPostalCodeAddress(String postalCodeAddress) {
         this.postalCodeAddress = postalCodeAddress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -154,20 +156,20 @@ public class Applicant {
         this.natureOfBusiness = natureOfBusiness;
     }
 
-    public int getYearStartedBusiness() {
+    public String getYearStartedBusiness() {
         return yearStartedBusiness;
     }
 
-    public void setYearStartedBusiness(int yearStartedBusiness) {
+    public void setYearStartedBusiness(String yearStartedBusiness) {
         this.yearStartedBusiness = yearStartedBusiness;
     }
 
     public String getIntroducedBy() {
-        return introducedBy;
+        return StringroducedBy;
     }
 
-    public void setIntroducedBy(String introducedBy) {
-        this.introducedBy = introducedBy;
+    public void setIntroducedBy(String StringroducedBy) {
+        this.StringroducedBy = StringroducedBy;
     }
 
     public String getPurposeOfAsset() {

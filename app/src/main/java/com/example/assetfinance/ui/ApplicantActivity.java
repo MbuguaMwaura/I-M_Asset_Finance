@@ -11,6 +11,9 @@ import android.widget.EditText;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.Applicant;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -179,9 +182,14 @@ public class ApplicantActivity extends AppCompatActivity implements View.OnClick
             } else {
 
             }
+            Applicant applicant = new Applicant(inputName,inputIDCERT,inputPin,inputPoBox,inputPostalCode,inputLocation,inputNumber,inputOfficeNumber,inputLandlord,inputPoBoxLandLord,inputPostalCode,inputNumberLandLord,inputBusiness,inputYear,inputIntroBy,inputPurpose,inputOwnerTenant);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputName).child("applicant_details");
+            reference.setValue(applicant);
+
 
 
             Intent intent = new Intent(this,BankDetailsActivity.class);
+            intent.putExtra("User",inputName);
             startActivity(intent);
         }
     }
