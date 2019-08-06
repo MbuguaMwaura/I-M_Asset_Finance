@@ -34,14 +34,14 @@ public class Constants {
     public static final String FOUR_AGE = "age";
     public static final String FOUR_OCCUPATION = "occupation";
     public static final String FOUR_EMPLOYER = "employer";
-    public static final String FOUR_ADDRESS = "address";
+    public static final String FOUR_ADDRESS = "address_four";
     public static final String FOUR_TEL_NO = "tel_no";
     public static final String FOUR_POSITION = "position";
     public static final String FOUR_YEARS_IN_POSITION = "years_in_position";
     public static final String FOUR_STATUS = "marital_status";
     public static final String FOUR_NAME_SPOUSE = "spouse_name";
     public static final String FOUR_SPOUSE_OCCUPATION = "spouse_occupation";
-
+    public static final String FOUR_NATIONALITY = "nationality";
     public static final String FOUR_INCOME = "net_income";
     public static final String FOUR_SELF_INCOME = "self_income";
     public static final String FOUR_SPOUSE_INCOME = "spouse_income";
@@ -78,7 +78,7 @@ public class Constants {
     public static final String SEVEN_BALANCE_OF_COST = "balance_of_cost";
 
 //    form eight constants
-    public static final String EIGHT_NAME = "name";
+    public static final String EIGHT_NAME = "name_eight";
     public static final String EIGHT_FACILITY_TYPE = "facility_type";
     public static final String EIGHT_SANCTIONED_LIMIT = "sanctioned_limit";
     public static final String EIGHT_CURRENT_OUTSTANDING = "current_outstanding";

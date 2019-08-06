@@ -8,9 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.BankDetails;
+import com.example.assetfinance.models.Supplier;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +37,7 @@ public class SupplierActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supplier);
-        setTitle("6. DEALER/SUPPLIER");
+        setTitle("5. DEALER/SUPPLIER");
         ButterKnife.bind(this);
 
 
@@ -83,7 +88,20 @@ public class SupplierActivity extends AppCompatActivity implements View.OnClickL
      ){
                 addToSharedPreferences(inputDealerName, inputPostalAddress, inputTelNo, inputSalesPerson, inputInvoiceDate);
             }
+            if ( (inputDealerName).equals("") ||
+                    (inputPostalAddress).equals("") ||
+                    (inputTelNo).equals("") ||
+                    (inputSalesPerson).equals("") ||
+                    (inputInvoiceDate).equals("")){
+                Toast.makeText(this,"Please fill in all the fields", Toast.LENGTH_LONG).show();
+                return;
+            }
 
+
+            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("supplier_details");
+            Supplier supplier = new Supplier(inputDealerName,inputPostalAddress,inputTelNo,inputInvoiceDate,inputSalesPerson);
+            reference.setValue(supplier);
             Intent intent = new Intent(this, AssetDetail.class);
             startActivity(intent);
         }

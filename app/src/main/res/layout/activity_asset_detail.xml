@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Make"
+                android:singleLine="true"
                 />
 
             <EditText
@@ -30,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Model/Cc Rating"
+                android:singleLine="true"
 
                 />
             <EditText
@@ -48,11 +50,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Valuation Amount (where applicable)"
                 android:inputType="number"
+
                 android:layout_marginBottom="20dp"
                 />
 
 
             <TextView
+                android:id="@+id/vehicleState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Vehicle state: "
@@ -133,18 +137,34 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 />
-
-
-
-            <TextView
-                android:id="@+id/netCost"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Net Cost"
-                android:textSize="20sp"
+                android:layout_height="wrap_content">
 
-                android:layout_marginLeft="5dp"
-                />
+                <TextView
+                    android:id="@+id/netCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Net Cost"
+                    android:textSize="20sp"
+
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/netCostBtn"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white_24dp"
+                    android:background="@color/imbluelight"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
+
+
 
             <TextView
                 style="?android:attr/listSeparatorTextViewStyle"
@@ -160,8 +180,8 @@
                     android:id="@+id/accessory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="Accessory / Other"
+
+                    android:hint="Accessories / Other"
                     />
 
 
@@ -178,15 +198,7 @@
                 android:hint="Value"
                 />
 
-                <ImageButton
-                    android:id="@+id/addAccessory"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_add_white_24dp"
-                    android:background="@color/imbluelight"
-                    android:layout_centerInParent="true"
-                    />
+
 
             </RelativeLayout>
 
@@ -206,15 +218,32 @@
                 android:paddingBottom="5dp"
                 />
 
-            <TextView
-                android:id="@+id/totalCost"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Total Cost"
-                android:textSize="20sp"
+                android:layout_height="wrap_content">
 
-                android:layout_marginLeft="5dp"
-                />
+                <TextView
+                    android:id="@+id/totalCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Total Cost"
+                    android:textSize="20sp"
+
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/costTotal"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white_24dp"
+                    android:background="@color/imbluelight"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
 
             <TextView
                 style="?android:attr/listSeparatorTextViewStyle"
@@ -246,14 +275,31 @@
                 android:paddingBottom="5dp"
                 />
 
-            <TextView
-                android:id="@+id/balanceOfCost"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Balance of Cost"
-                android:textSize="20sp"
-                android:layout_marginLeft="5dp"
-                />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/balanceOfCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Balance of Cost"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="5dp"
+                    />
+
+
+                <ImageButton
+                    android:id="@+id/costBalance"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white_24dp"
+                    android:background="@color/imbluelight"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
 
             <TextView
                 style="?android:attr/listSeparatorTextViewStyle"

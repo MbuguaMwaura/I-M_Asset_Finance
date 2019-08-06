@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
@@ -45,6 +46,7 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == proceedTwo){
+
             Intent intent = new Intent(this, ExistingAssetsActivity.class);
             startActivity(intent);
         }
@@ -56,9 +58,21 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
             String inputoutStandingLoans = outStandingLoans.getText().toString();
 
 
+            if (
+                    (inputbankName).equals("") ||
+                            (Branch).equals("") ||
+                            (inputaccountNumber).equals("") ||
+                            (inputodLimit).equals("") ||
+                            (inputoutStandingLoans).equals("")
 
-            String inputName = mSharedPreferences.getString(Constants.ONE_NAME, null);
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputName).child("bank_details");
+
+            ){
+                Toast.makeText(this,"Please fill in all details",Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("bank_details");
             BankDetails bankDetails = new BankDetails(inputbankName,Branch,inputaccountNumber,inputodLimit,inputoutStandingLoans);
             DatabaseReference pushRef = reference.push();
             pushRef.setValue(bankDetails);

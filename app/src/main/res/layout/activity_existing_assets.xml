@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Vehicle Reg NO."
+            android:singleLine="true"
             />
 
         <EditText
@@ -34,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Make"
+            android:singleLine="true"
             />
 
 
@@ -42,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Model"
+            android:singleLine="true"
             />
 
         <EditText
@@ -49,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Balance Of Loan"
+            android:inputType="number"
             />
 
         <EditText
@@ -56,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Financed By"
+            android:singleLine="true"
             />
 
         <Button
@@ -82,6 +87,7 @@
             android:id="@+id/property"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:hint="Property (Residential/Commercial)"
             />
 
@@ -90,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Size"
+            android:singleLine="true"
             />
 
 
@@ -98,6 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Town/Area"
+            android:singleLine="true"
             />
 
         <EditText
@@ -105,6 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="LR NO."
+            android:singleLine="true"
             />
 
         <EditText
@@ -112,6 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Approximate Value"
+            android:inputType="number"
             />
 
         <Button

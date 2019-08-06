@@ -51,7 +51,7 @@ public class AttachmentsActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attachments);
         ButterKnife.bind(this);
-        setTitle("9. APPLICATION ATTACHMENTS");
+        setTitle("8. APPLICATION ATTACHMENTS");
         pdfView = (PDFView) findViewById(R.id.pdfView);
         initDialog();
         proceedNineBtn.setOnClickListener(this);

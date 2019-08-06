@@ -38,6 +38,7 @@
                         android:id="@+id/age"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:hint="Age"
                         />
                     <EditText
@@ -56,6 +57,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name Of Employer"
+                    />
+                <EditText
+                    android:id="@+id/nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nationality"
                     />
 
                 <EditText
@@ -76,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Current Position"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/yearsInCurrentPosition"
@@ -90,19 +98,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marital Status"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/spouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name Of Spouse"
+                    android:singleLine="true"
                     />
 
                 <EditText
                     android:id="@+id/spouseOccupation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Occupation"
+                    android:hint="Spouse Occupation"
+                    android:singleLine="true"
                     />
 
 
@@ -123,6 +134,7 @@
                     android:id="@+id/employmentIncome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Employment Income (net of statutory deductions)"
                     />
 
@@ -131,6 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Self's Income"
+                    android:inputType="number"
                     />
                 <EditText
                     android:id="@+id/spouseIncome"
@@ -144,6 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Living Expenses"
+                    android:inputType="number"
                     />
 
 
@@ -160,15 +174,6 @@
                     android:hint="Current Loan Repayments"
                     />
 
-                    <ImageButton
-                        android:id="@+id/addLoan"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_add_white_24dp"
-                        android:background="@color/imbluelight"
-                        android:layout_centerInParent="true"
-                        />
 
                 </RelativeLayout>
 
@@ -182,9 +187,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Other Income Business"
+                    android:inputType="number"
                     />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/other"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Other eg farming"
+                        />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/disposableIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Total Net Disposable Income"
+                        />
                     <ImageButton
-                        android:id="@+id/addIncome"
+                        android:id="@+id/compute"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -194,12 +227,7 @@
                         />
 
                 </RelativeLayout>
-                <EditText
-                    android:id="@+id/disposableIncome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Total Net Disposable Income"
-                    />
+
 
 
 

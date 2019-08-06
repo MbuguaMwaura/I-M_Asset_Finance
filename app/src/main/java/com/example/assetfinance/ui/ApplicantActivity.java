@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
@@ -179,11 +180,31 @@ public class ApplicantActivity extends AppCompatActivity implements View.OnClick
                        inputLocation, inputNumber, inputOfficeNumber, inputOwnerTenant, inputLandlord,
                         inputPoBoxLandLord, inputPostalCodeLandord, inputNumberLandLord, inputBusiness,
                         inputYear, inputIntroBy, inputPurpose);
-            } else {
+            }
+            if (
+                    (inputName).equals("") ||
+                            (inputIDCERT).equals("") ||
+                            (inputPin).equals("") ||
+                            (inputPoBox).equals("") ||
+                            (inputPostalCode).equals("") ||
+                            (inputLocation).equals("") ||
+                            (inputNumber).equals("") ||
+                            (inputOfficeNumber).equals("") ||
+                            (inputOwnerTenant).equals("") ||
+                            (inputLandlord).equals("") ||
+                            (inputPoBoxLandLord).equals("") ||
+                            (inputPostalCodeLandord).equals("") ||
+                            (inputNumberLandLord).equals("") ||
+                            (inputBusiness).equals("") ||
+                            (inputYear).equals("") ||
+                            (inputIntroBy).equals("") ||
+                            (inputPurpose).equals("")
 
+            ){
+                Toast.makeText(this,"Please fill in al details", Toast.LENGTH_LONG).show();
             }
             Applicant applicant = new Applicant(inputName,inputIDCERT,inputPin,inputPoBox,inputPostalCode,inputLocation,inputNumber,inputOfficeNumber,inputLandlord,inputPoBoxLandLord,inputPostalCode,inputNumberLandLord,inputBusiness,inputYear,inputIntroBy,inputPurpose,inputOwnerTenant);
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputName).child("applicant_details");
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("applicant_details");
             reference.setValue(applicant);
 
 

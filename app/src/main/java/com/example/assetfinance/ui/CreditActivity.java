@@ -8,9 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.BankDetails;
+import com.example.assetfinance.models.Credit;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +38,7 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit);
-        setTitle("8. OTHER CREDIT FACILITIES AT I&M BANK LTD");
+        setTitle("7. OTHER CREDIT FACILITIES AT I&M BANK LTD");
         ButterKnife.bind(this);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -64,6 +69,36 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == addCreditBtn){
+            String inputName = name.getText().toString();
+            String inputFacilitytype = facilityType.getText().toString();
+            String inputSanctionedLimit = sanctionedLimit.getText().toString();
+            String inputOutstanding = outstanding.getText().toString();
+
+
+            if (
+                    !(inputName).equals("") &&
+                            !(inputFacilitytype).equals("") &&
+                            !(inputSanctionedLimit).equals("") &&
+                            !(inputOutstanding).equals("")
+            ){
+                addToSharedPreferences(inputName, inputFacilitytype,inputSanctionedLimit,inputOutstanding);
+            }
+            if (
+                    (inputName).equals("") ||
+                            (inputFacilitytype).equals("") ||
+                            (inputSanctionedLimit).equals("") ||
+                            (inputOutstanding).equals("")
+            ){
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            Toast.makeText(this,"Saving your details", Toast.LENGTH_LONG).show();
+            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("credit_details");
+            Credit credit = new Credit(inputName,inputFacilitytype,inputSanctionedLimit,inputOutstanding);
+            DatabaseReference pushRef = reference.push();
+            pushRef.setValue(credit);
 
         }
         if (v == proceedEightBtn){
@@ -81,6 +116,17 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
             ){
                 addToSharedPreferences(inputName, inputFacilitytype,inputSanctionedLimit,inputOutstanding);
             }
+            if (
+                    (inputName).equals("") ||
+                            (inputFacilitytype).equals("") ||
+                            (inputSanctionedLimit).equals("") ||
+                            (inputOutstanding).equals("")
+            ){
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+
 
             Intent intent = new Intent(this, AttachmentsActivity.class);
             startActivity(intent);

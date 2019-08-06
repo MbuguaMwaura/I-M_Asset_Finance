@@ -3,11 +3,11 @@ package com.example.assetfinance.models;
 public class Supplier {
     String dealerName;
     String postalAddress;
-    int telephoneNumber;
+    String telephoneNumber;
     String invoiceNoDate;
     String salesPerson;
 
-    public Supplier(String dealerName, String postalAddress, int telephoneNumber, String invoiceNoDate, String salesPerson) {
+    public Supplier(String dealerName, String postalAddress, String telephoneNumber, String invoiceNoDate, String salesPerson) {
         this.dealerName = dealerName;
         this.postalAddress = postalAddress;
         this.telephoneNumber = telephoneNumber;
@@ -31,11 +31,11 @@ public class Supplier {
         this.postalAddress = postalAddress;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 

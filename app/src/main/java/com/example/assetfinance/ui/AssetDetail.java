@@ -11,9 +11,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.FormSeven.AssetDetails;
+import com.example.assetfinance.models.Property;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,13 +40,16 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
     TextView netCost;
     @BindView(R.id.accessory) EditText accessory;
     @BindView(R.id.accessoryValue) EditText accesssoryValue;
-    @BindView(R.id.addAccessory)
-    ImageButton addAccessoryBtn;
+
     @BindView(R.id.totalCost) TextView totalCost;
     @BindView(R.id.deposit) EditText deposit;
     @BindView(R.id.balanceOfCost) TextView balanceOfCost;
     @BindView(R.id.proceedSeven)
     Button proceedSevenBtn;
+    @BindView(R.id.costTotal) ImageButton costTotalBtn;
+    @BindView(R.id.costBalance) ImageButton costBalanceBtn;
+    @BindView(R.id.netCostBtn) ImageButton netCostBtn;
+    @BindView(R.id.vehicleState) TextView vehicleState;
 
 
     private SharedPreferences mSharedPreferences;
@@ -52,7 +60,7 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asset_detail);
-        setTitle("7. ASSET DETAILS");
+        setTitle("6. ASSET DETAILS");
         ButterKnife.bind(this);
 
 
@@ -112,15 +120,64 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
 
 
         proceedSevenBtn.setOnClickListener(this);
-        addAccessoryBtn.setOnClickListener(this);
+        netCostBtn.setOnClickListener(this);
+        costBalanceBtn.setOnClickListener(this);
+        costTotalBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == addAccessoryBtn){
+        if (v == netCostBtn){
+            int total = 0;
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+
+            total = invoicePriceInt - discountInt;
+            String totalVal = String.valueOf(total);
+
+            netCost.setText("Net Cost: "+totalVal);
+
+        }
+        if (v == costTotalBtn){
+            int total = 0;
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+            String computeValue = accesssoryValue.getText().toString();
+            int valueInt = Integer.parseInt(computeValue);
+
+
+            total = invoicePriceInt-discountInt + valueInt;
+            String totalVal = String.valueOf(total);
+
+            totalCost.setText("Total Cost: "+totalVal);
+
+
+
+        }
+        if (v == costBalanceBtn){
+            int total = 0;
+            String computeDeposit = deposit.getText().toString();
+            int depositInt = Integer.parseInt(computeDeposit);
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+            String computeValue = accesssoryValue.getText().toString();
+            int valueInt = Integer.parseInt(computeValue);
+
+            total = invoicePriceInt-discountInt + valueInt - depositInt;
+            String totalVal = String.valueOf(total);
+            balanceOfCost.setText("Balance of Cost: "+totalVal);
+
 
         }
         if (v == proceedSevenBtn){
+            String inputVehicleState = "";
+            String inputInsurance = "";
             String inputMake = make.getText().toString();
             String inputModelCC = modelCC.getText().toString();
             String inputYearOfManufacture = yearOfManucature.getText().toString();
@@ -133,6 +190,18 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
             String inputTotalCost = totalCost.getText().toString();
             String inputDeposit = deposit.getText().toString();
             String inputBalanceOfCost = balanceOfCost.getText().toString();
+            if (checkNew.isChecked()){ inputVehicleState = "New Vehicle";}
+            if (checkUsed.isChecked()){ inputVehicleState = "Used Vehicle";}
+            if (checkIMInsurance.isChecked()){inputInsurance = "Using I&M Insurance Agency";}
+            if (checkInterested.isChecked()){inputInsurance = "Interest in Insurance Finance (IPF)";}
+
+            AssetDetails assetDetail = new AssetDetails(inputMake,inputModelCC,inputYearOfManufacture,inputValuation,inputVehicleState,
+                    inputInsurance,inputInvoicePrice,inputDiscounts, inputNetCost,inputDeposit,inputBalanceOfCost,inputAccessoryName,
+                    inputAccessoryValue,inputTotalCost);
+            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("asset_details");
+            reference.setValue(assetDetail);
+
 
             if (
                     !(inputMake).equals("") &&
@@ -161,6 +230,25 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
                         inputTotalCost,
                         inputDeposit,
                         inputBalanceOfCost);
+            }
+
+            if (
+                    (inputMake).equals("") ||
+                            (inputModelCC).equals("") ||
+                            (inputYearOfManufacture).equals("") ||
+                            (inputValuation).equals("") ||
+                            (inputInvoicePrice).equals("") ||
+                            (inputDiscounts).equals("") ||
+                            (inputNetCost).equals("") ||
+                            (inputAccessoryName).equals("") ||
+                            (inputAccessoryValue).equals("") ||
+                            (inputTotalCost).equals("") ||
+                            (inputDeposit).equals("") ||
+                            (inputBalanceOfCost).equals("")
+
+            ){
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
             }
 
 

@@ -2,24 +2,28 @@ package com.example.assetfinance.models.FormFour;
 
 public class AdditionalDetailsIndividual {
 
-    int age;
+    String age;
     String occupation;
     String nationality;
     String employerName;
     String address;
-    int telNo;
+    String telNo;
     String currentPosition;
-    int yearsInCurrentPosition;
+    String yearsInCurrentPosition;
     String maritalStatus;
     String nameOfSpouse;
     String spouseOccupation;
+        
+    String employmentIncome;
+    String selfIncome;
+    String spouseIncome;
+    String netDisposableIncome;
+    String other;
+    String livingExpense;
+    String currentLoanRepayments;
+    String otherIncomeBusiness;
 
-    int employmentIncome;
-    int selfIncome;
-    int spouseIncome;
-    int netDisposableIncome;
-
-    public AdditionalDetailsIndividual(int age, String occupation, String nationality, String employerName, String address, int telNo, String currentPosition, int yearsInCurrentPosition, String maritalStatus, String nameOfSpouse, String spouseOccupation, int employmentIncome, int selfIncome, int spouseIncome, int netDisposableIncome) {
+    public AdditionalDetailsIndividual(String age, String occupation, String nationality, String employerName, String address, String telNo, String currentPosition, String yearsInCurrentPosition, String maritalStatus, String nameOfSpouse, String spouseOccupation, String employmentIncome, String selfIncome, String spouseIncome, String netDisposableIncome, String other, String livingExpense, String currentLoanRepayments, String otherIncomeBusiness ) {
         this.age = age;
         this.occupation = occupation;
         this.nationality = nationality;
@@ -35,13 +39,49 @@ public class AdditionalDetailsIndividual {
         this.selfIncome = selfIncome;
         this.spouseIncome = spouseIncome;
         this.netDisposableIncome = netDisposableIncome;
+        this.other = other;
+        this.livingExpense = livingExpense;
+        this.currentLoanRepayments = currentLoanRepayments;
+        this.otherIncomeBusiness = otherIncomeBusiness;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public String getLivingExpense() {
+        return livingExpense;
+    }
+
+    public void setLivingExpense(String livingExpense) {
+        this.livingExpense = livingExpense;
+    }
+
+    public String getCurrentLoanRepayments() {
+        return currentLoanRepayments;
+    }
+
+    public void setCurrentLoanRepayments(String currentLoanRepayments) {
+        this.currentLoanRepayments = currentLoanRepayments;
+    }
+
+    public String getOtherIncomeBusiness() {
+        return otherIncomeBusiness;
+    }
+
+    public void setOtherIncomeBusiness(String otherIncomeBusiness) {
+        this.otherIncomeBusiness = otherIncomeBusiness;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
+    }
+
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -77,11 +117,11 @@ public class AdditionalDetailsIndividual {
         this.address = address;
     }
 
-    public int getTelNo() {
+    public String getTelNo() {
         return telNo;
     }
 
-    public void setTelNo(int telNo) {
+    public void setTelNo(String telNo) {
         this.telNo = telNo;
     }
 
@@ -93,11 +133,11 @@ public class AdditionalDetailsIndividual {
         this.currentPosition = currentPosition;
     }
 
-    public int getYearsInCurrentPosition() {
+    public String getYearsInCurrentPosition() {
         return yearsInCurrentPosition;
     }
 
-    public void setYearsInCurrentPosition(int yearsInCurrentPosition) {
+    public void setYearsInCurrentPosition(String yearsInCurrentPosition) {
         this.yearsInCurrentPosition = yearsInCurrentPosition;
     }
 
@@ -125,35 +165,35 @@ public class AdditionalDetailsIndividual {
         this.spouseOccupation = spouseOccupation;
     }
 
-    public int getEmploymentIncome() {
+    public String getEmploymentIncome() {
         return employmentIncome;
     }
 
-    public void setEmploymentIncome(int employmentIncome) {
+    public void setEmploymentIncome(String employmentIncome) {
         this.employmentIncome = employmentIncome;
     }
 
-    public int getSelfIncome() {
+    public String getSelfIncome() {
         return selfIncome;
     }
 
-    public void setSelfIncome(int selfIncome) {
+    public void setSelfIncome(String selfIncome) {
         this.selfIncome = selfIncome;
     }
 
-    public int getSpouseIncome() {
+    public String getSpouseIncome() {
         return spouseIncome;
     }
 
-    public void setSpouseIncome(int spouseIncome) {
+    public void setSpouseIncome(String spouseIncome) {
         this.spouseIncome = spouseIncome;
     }
 
-    public int getNetDisposableIncome() {
+    public String getNetDisposableIncome() {
         return netDisposableIncome;
     }
 
-    public void setNetDisposableIncome(int netDisposableIncome) {
+    public void setNetDisposableIncome(String netDisposableIncome) {
         this.netDisposableIncome = netDisposableIncome;
     }
 }
