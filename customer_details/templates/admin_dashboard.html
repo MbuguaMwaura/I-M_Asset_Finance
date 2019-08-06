@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{{ block.super }}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    {% for applicant in applicants %}
+    <a href="{% url 'single' applicant.id %}">{{applicant.name}}</a>
+    {% endfor %}
+    {% for user in users %}
+    {{user.username}}
+    {% endfor %}
+</div>
+{% endblock %}

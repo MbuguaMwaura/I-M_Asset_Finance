@@ -16,13 +16,12 @@
 <div class="col-md-8 margin">
     <div class="card shadow-lg" style="width: 100%;">
         <div class="card-body">
-            <form  action="{%url 'assetdetails'%}" method="post" enctype="multipart/form-data">
+            <form  action="{%url 'assetdetails' id%}" method="post" enctype="multipart/form-data">
               {%csrf_token%}
           
               {% bootstrap_form form%}
-          
-              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'dealer1' %}'"  />
-              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'otherdetail' %}'"  />
+      
+              <input class="btn btn-primary" type="submit" value="NEXT"/>
             </form>
              </div>
     </div>

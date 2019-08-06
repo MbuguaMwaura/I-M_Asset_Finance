@@ -16,15 +16,15 @@
 <div class="col-md-8 margin">
     <div class="card shadow-lg" style="width: 100%;">
         <div class="card-body">
-            <form  action="{%url 'applicantbankdetails'%}" method="post" enctype="multipart/form-data">
+            <form  action="{%url 'applicantbankdetails' id %}" method="post" enctype="multipart/form-data">
               {%csrf_token%}
           
               {% bootstrap_form form%}
           
               <!-- <button type="submit" name="system" value="sub" form="systemForm" class="btn btn-primary btn-lg btn-block"> PREVIOUS</button>
               <button type="submit" name="system" value="buoy" form="systemForm" class="btn btn-primary btn-lg btn-block"> NEXT</button> -->
-              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'applicant' %}'"  />
-              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'properties' %}'"  />
+              
+              <input class="btn btn-primary" type="submit" value="NEXT"/>
             </form>
              </div>
     </div>

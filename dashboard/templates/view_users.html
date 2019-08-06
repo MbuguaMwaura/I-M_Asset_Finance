@@ -1,0 +1,143 @@
+<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+                  <th>name</th>
+                  <th>identification</th>
+                  <th>pin</th>
+                  <th>p_o_box</th>
+                  <th>postal_code</th>
+                  <th>city</th>
+                  <th>physical_address</th>
+                  <th>mobile</th>
+                  <th>tel_home</th>
+                  <th>owner</th>
+                  <th>tenant</th>
+                  <th>p_o_box</th>
+                  <th>postal_code</th>
+                  <th>phone_no</th>
+                  <th>business</th>
+                  <th>year_business</th>
+                  <th>introduced_by</th>
+                  <th>purpose_of_asset_being_purchased</th>
+                  <th>user email</th>
+                  <th>date_added</th>
+            </tr>
+          </thead>
+          <tbody>
+                  {%for item in list_of_forms%}
+            <tr>
+                
+              <td>{{item.applicant.name}}</td>
+              <td>{{item.applicant.identification}}</td>
+              <td>{{item.applicant.pin}}</td>
+              <td>{{item.applicant.p_o_box}}</td>
+              <td>{{item.applicant.postal_code}}</td>
+              <td>{{item.applicant.city}}</td>
+              <td>{{item.applicant.physical_address}}</td>
+              <td>{{item.applicant.mobile}}</td>
+              <td>{{item.applicant.tel_home}}</td>
+              <td>{{item.applicant.owner}}</td>
+              <td>{{item.applicant.tenant}}</td>
+              <td>{{item.applicant.p_o_box}}</td>
+              <td>{{item.applicant.postal_code}}</td>
+              <td>{{item.applicant.phone_no}}</td>
+              <td>{{item.applicant.business}}</td>
+              <td>{{item.applicant.year_business}}</td>
+              <td>{{item.applicant.introduced_by}}</td>
+              <td>{{item.applicant.purpose_of_asset_being_purchased}}</td>
+              <td>{{item.applicant.user_id.email}}</td>
+              <td>{{item.applicant.date_added}}</td>
+
+
+
+
+
+            </tr>
+
+            <!--APPLICANT BANK DETAILS-->
+<tr>
+            <td>{{item.bank_details.bank_name}}</td>
+            <td>{{item.bank_details.branch}}</td>
+            <td>{{item.bank_details.account_number}}</td>
+            <td>{{item.bank_details.od_limit}}</td>
+            <td>{{item.bank_details.outstanding_loans}}</td>
+            <td>{{item.bank_details.date_added}}</td>
+            </tr>
+            
+            <!--PROPERTIES-->
+            <tr>
+              <td>{{item.properties.vehicle_registration}}</td>
+              <td>{{item.properties.model}}</td>
+              <td>{{item.properties.loan_balance}}</td>
+              <td>{{item.properties.financed_by}}</td>
+              <td>{{item.properties.the_property}}</td>
+              <td>{{item.properties.size}}</td>
+              <td>{{item.properties.town}}</td>
+              <td>{{item.properties.lr_number}}</td>
+              <td>{{item.properties.approximate_value}}</td>
+              <td>{{item.properties.date_added}}</td>
+              
+            </tr>
+
+            <!-- AdditonalInfoIndividual-->
+            <tr>
+              <td>{{item.individual.age }}</td>
+              <td>{{item.individual.occupation}}</td>
+              <td>{{item.individual.nationality}}</td>
+              <td>{{item.individual.name_employer}}</td>
+              <td>{{item.individual.address }}</td>
+              <td>{{item.individual.contact }}</td>
+              <td>{{item.individual.years}}</td>
+              <td>{{item.individual.marital_status}}</td>
+              <td>{{item.individual.spouse}}</td>
+              <td>{{item.individual.occupation}}</td>
+              <td>{{item.individual.income}}</td>
+              <td>{{item.individual.spouse_income}}</td>
+              <td>{{item.individual.living_expenses}}</td>
+              <td>{{item.individual.loan_payment}}</td>
+              <td>{{item.individual.income_business}}</td>
+              <td>{{item.individual.others}}</td>
+              <td>{{item.individual.disposable_income }}</td>
+              <td>{{item.individual.date_added }}</td>
+              
+            </tr>
+            <!--additonalInfoCompany-->
+
+            <tr>
+              <td>{{item.company.shareholders}}</td>
+              <td>{{item.company.annual_tunover}}</td>
+              <td>{{item.company.annual_profit }}</td>
+              <td>{{item.company.associate_companies}}</td>
+              <td>{{item.company.date_added}}</td>
+             
+            </tr>
+
+            <!-- Dealer-->
+            <tr>
+              <td>{{item.dealer.dealer_name}}</td>
+              <td>{{item.dealer.postal_address }}</td>
+              <td>{{item.dealer.telephone_number}}</td>
+              <td>{{item.dealer.invoice_number}}</td>
+              <td>{{item.dealer.sales_person}}</td>
+              <td>{{item.dealer.date_added }}</td>
+              
+            </tr>
+
+
+            <!--DealerSupplier-->
+            <tr>
+              <td>{{item.supplier.dealer_name}}</td>
+              <td>{{item.supplier.postal_address}}</td>
+              <td>{{item.supplier.telno}}</td>
+              <td>{{item.supplier.invoice_no_date}}</td>
+              <td>{{item.supplier.sales_person}}</td>
+              <td>{{item.supplier.date_added}}</td>
+              
+
+            </tr>
+            <!---->
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>

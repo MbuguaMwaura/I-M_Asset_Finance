@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class ApplicantAdmin(admin.ModelAdmin): 
-    list_display = ('user','name','identification','pin','p_o_box','postalcode','city','physical_address','mobile','tel_home','owner','tenant ','p_o_box','postalcode','phone_no','business','yr_business','introlduced_by','purpose_of_asset_being_purchased')
+    list_display = ('name','identification','pin','po_box','postal_code','city','physical_address','mobile','tel_home','owner','tenant','po_box','postal_code','phone_no','business','year_business','introduced_by','purpose_of_asset_being_purchased')
     
 
 
@@ -26,7 +26,7 @@ class applicantBankDetailsAdmin(admin.ModelAdmin):
     set_application_to_complete.short_description = 'Mark completed forms as complete'
 
 class PropertiesAdmin(admin.ModelAdmin):
-    list_display = ('applicant','vehicle_reistration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value') 
+    list_display = ('applicant','vehicle_registration','model','loan_balance','financed_by','the_property','size','town','lr_number','approximate_value') 
 
 
 
@@ -65,7 +65,7 @@ class dealerAdmin(admin.ModelAdmin):
         queryset.update(is_draft=false)
     set_application_to_complete.short_description = 'Mark completed forms as complete'
 class DealerSupplierAdmin(admin.ModelAdmin):
-    list_display = ('applicant' ,'dealername','postaladdress','telno','invoiceno_date','salesperson')
+    list_display = ('applicant' ,'dealer_name','postal_address','telno','invoice_no_date','sales_person')
 
     
 
@@ -99,12 +99,12 @@ class OtherCreditAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
-# admin.site.register(Applicant,ApplicantAdmin)
+admin.site.register(Applicant,ApplicantAdmin)
 admin.site.register(ApplicantBankDetails,applicantBankDetailsAdmin)
 admin.site.register(Properties,PropertiesAdmin)
 admin.site.register(AdditonalInfoIndividual,additonalInfoIndividualAdmin)
 admin.site.register(additonalInfoCompany,additonalInfoCompanyAdmin)
-admin.site.register(dealer, dealerAdmin)
+admin.site.register(Dealer, dealerAdmin)
 admin.site.register(DealerSupplier, DealerSupplierAdmin)
 admin.site.register(AssetDetails,AssetDetailsAdmin)
 admin.site.register(OtherCredit,OtherCreditAdmin)

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{{ block.super }}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    
+  {{application.name}}
+  {{application.identification}}
+  {{application.pin}}
+  {{application.p_o_box}}
+  {{application.postalcode}}
+  {{application.city}}
+  {{application.physical_address}}
+  {{application.mobile}}
+  {{application.tel_home}}
+  {{application.owner}}
+  {{application.tenant}}
+  {{application.p_o_box}}
+  {{application.postalcode}}
+  {{application.phone_no}}
+  {{application.business}}
+  {{application.yr_business}}
+  {{application.introduced_by}}
+  {{application.purpose_of_asset_being_purchased }}
+  {{details.bank_name}}
+  {{details.branch}}
+  {{details.account_number}}
+  {{details.od_limit}}
+  {{details.outstanding_loans}}
+  {{properties.vehicle_reistration}}
+  {{properties.model}}
+  {{properties.loan_balance}}
+  {{properties.financed_by }}
+  {{properties.the_property}}
+  {{properties.size}}
+  {{properties.town}}
+  {{properties.lr_number}}
+  {{properties.approximate_value}}
+  {{addInfo.age}}
+  {{addInfo.occupation}}
+  {{addInfo.nationality}}
+  {{addInfo.name_employer}}
+  {{addInfo.address}}
+  {{addInfo.contact}}
+  {{addInfo.years}}
+  {{addInfo.marital_status}}
+  {{addInfo.spouse}}
+  {{addInfo.occupation}}
+  {{addInfo.income}}
+  {{addInfo.spouse_income}}
+  {{addInfo.living_expenses}}
+  {{addInfo.loan_payment}}
+  {{addInfo.income_business}}
+  {{addInfo.others}}
+  {{addInfo.disposable_income}}
+  {{addCompany.shareholders}}
+  {{addCompany.annual_tunover}}
+  {{addCompany.annual_profit}}
+  {{addCompany.associate_companies}}
+  {{dealer.dealer_name}}
+  {{dealer.postal_address}}
+  {{dealer.telephone_number}}
+  {{dealer.invoice_number}}
+  {{dealer.sales_person}}
+  {{supplier.dealer_name}}
+  {{supplier.postaladdress}}
+  {{supplier.telno}}
+  {{supplier.invoiceno_date}}
+  {{supplier.salesperson}}
+  {{asset.make}}
+  {{asset.new_used}}
+  {{asset.invoice_price}}
+  {{asset.rating}}
+  {{asset.less}}
+  {{asset.year}}
+  {{asset.cost}}
+  {{asset.valuation}}
+  {{asset.add}}
+  {{asset.insurance}}
+  {{asset.interested}}
+  {{asset.total}}
+  {{asset.deposit}}
+  {{asset.balance}}
+  {{asset.loan}}
+  {{asset.pricing}}
+  {{asset.loan}}
+  {{asset.repayment}}
+  {{asset.repayment_amount}}
+  {{asset.mode_payment}}
+  {{asset.guarantor}}
+  {{asset.security}}
+  {{otherCredit.name}}
+  {{otherCredit.Facility_type}}
+  {{otherCredit.sactioned_limit}}
+  {{otherCredit.current_outstanding}}
+
+
+  
+</div>
+{% endblock %}

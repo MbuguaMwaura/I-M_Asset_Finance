@@ -24,6 +24,25 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Contact Us</a>
         </li>
+        {%if user.is_superuser%}
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'dashboard' %}">Admin View</a>
+          </li>
+
+        {%endif%}
+        
+        {%if user.is_authenticated%}
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/logout/">Logout</a>
+        </li>
+        {%else %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/accounts/login/">Login</a>
+        </li>
+        {%endif%}
+
+        
        
       </ul>
     </div>

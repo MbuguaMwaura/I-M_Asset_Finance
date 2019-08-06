@@ -1,4 +1,4 @@
-{% extends 'registration/regbase.html' %}
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
@@ -21,7 +21,7 @@
 
         <div class="col-md-6 formz">
             <div class="content-section">
-                <form method="POST">
+                <form method="POST" action="/accounts/login/">
                     {% csrf_token %}
                     <fieldset class="form-group form">
                         <legend class="border-bottom mb-4"><p class="smalltxt"><b>Sign in to continue</b></p></legend>
@@ -32,7 +32,7 @@
                     </div>
                 </form>
                 <div class="border-top pt-3 below">
-                    <small class="text-muted">Not a member yet? <a class="ml-2" href="/accounts/register">Register here</a></small>
+                    <small class="text-muted">Not a member yet? <a class="ml-2" href="{% url 'signup'%}">Register here</a></small>
                 </div>
             </div>
         </div>
