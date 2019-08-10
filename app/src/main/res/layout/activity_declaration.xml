@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.DeclarationActivity">
 
 
@@ -20,27 +21,73 @@
         android:layout_height="wrap_content"
         android:text="I/We confirm that the information given in this form is true to the best of my/our knowledge and belief"
         />
-    <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Authorized Signature"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date"
-        android:inputType="date"
-        />
-    <Button
-        android:id="@+id/sign"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/signatureText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:layout_marginTop="10dp"
+        android:text="Signature "
+        />
+
+
+    <ImageView
+        android:id="@+id/selectedSignature"
+        android:layout_width="200dp"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/selectSignature"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a Signature"
         android:textColor="@color/white"
-        android:text="add"/>
+        android:background="@color/imorange"
+        />
+    <Button
+        android:id="@+id/signature"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create a Signature"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:background="@color/imorange"
+
+        />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Date"-->
+        <!--android:inputType="date"-->
+        <!--/>-->
+    <Button
+        android:id="@+id/uploadSignature"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload   Signature"
+        android:textColor="@color/white"
+        android:background="@color/imorange"
+        />
+
 </LinearLayout>
 
     <TextView
@@ -65,5 +112,6 @@
         android:background="@color/blue"
         android:textColor="@color/white"
         />
+
 
 </RelativeLayout>

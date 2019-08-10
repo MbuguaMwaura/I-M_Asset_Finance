@@ -128,9 +128,10 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-            Intent intent = new Intent(this, AttachmentsActivity.class);
+//            Intent intent = new Intent(this, AttachmentsActivity.class);
+//            startActivity(intent);
+            Intent intent = new Intent(this, PDFTestActivity.class);
             startActivity(intent);
-
 
         }
     }

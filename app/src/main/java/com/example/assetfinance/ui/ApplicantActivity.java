@@ -201,7 +201,8 @@ public class ApplicantActivity extends AppCompatActivity implements View.OnClick
                             (inputPurpose).equals("")
 
             ){
-                Toast.makeText(this,"Please fill in al details", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
             }
             Applicant applicant = new Applicant(inputName,inputIDCERT,inputPin,inputPoBox,inputPostalCode,inputLocation,inputNumber,inputOfficeNumber,inputLandlord,inputPoBoxLandLord,inputPostalCode,inputNumberLandLord,inputBusiness,inputYear,inputIntroBy,inputPurpose,inputOwnerTenant);
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("applicant_details");

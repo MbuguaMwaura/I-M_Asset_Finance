@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.business.BusinessPreviewActivity"></activity>
+        <activity android:name=".ui.PDFTestActivity"></activity>
+        <activity android:name=".ui.business.BusinessPreviewActivity" />
         <activity android:name=".ui.business.BusinessDeclarationActivity" />
         <activity android:name=".ui.business.BusinessAttachmentActivity" />
         <activity android:name=".ui.business.BusinessCreditActivity" />

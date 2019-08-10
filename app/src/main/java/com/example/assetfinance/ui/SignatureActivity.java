@@ -46,7 +46,7 @@ public class SignatureActivity extends AppCompatActivity {
 
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/DigitSign/";
-    String pic_name = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+    String pic_name ="Signature"+ new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
     String StoredPath = DIRECTORY + pic_name + ".png";
 
     @Override
