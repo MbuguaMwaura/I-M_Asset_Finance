@@ -29,29 +29,30 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
     @BindView(R.id.modelCC) EditText modelCC;
     @BindView(R.id.yearOfManufacture) EditText yearOfManucature;
     @BindView(R.id.valuation) EditText valuation;
-    @BindView(R.id.checkNew) CheckBox checkNew;
-    @BindView(R.id.checkUsed)
-    CheckBox checkUsed;
-    @BindView(R.id.checkIMInsurance) CheckBox checkIMInsurance;
-    @BindView(R.id.checkInterested) CheckBox checkInterested;
     @BindView(R.id.invoicePrice) EditText invoicePrice;
     @BindView(R.id.discounts) EditText discount;
     @BindView(R.id.netCost)
     TextView netCost;
     @BindView(R.id.accessory) EditText accessory;
     @BindView(R.id.accessoryValue) EditText accesssoryValue;
-
     @BindView(R.id.totalCost) TextView totalCost;
     @BindView(R.id.deposit) EditText deposit;
     @BindView(R.id.balanceOfCost) TextView balanceOfCost;
-    @BindView(R.id.proceedSeven)
-    Button proceedSevenBtn;
+    @BindView(R.id.vehicleState) TextView vehicleState;
+    @BindView(R.id.insurance) TextView insurance;
+
+
+    @BindView(R.id.netCostBtn) ImageButton netCostBtn;
     @BindView(R.id.costTotal) ImageButton costTotalBtn;
     @BindView(R.id.costBalance) ImageButton costBalanceBtn;
-    @BindView(R.id.netCostBtn) ImageButton netCostBtn;
-    @BindView(R.id.vehicleState) TextView vehicleState;
+    @BindView(R.id.proceedSeven)
+    Button proceedSevenBtn;
 
-
+    @BindView(R.id.checkNew) CheckBox checkNew;
+    @BindView(R.id.checkUsed)
+    CheckBox checkUsed;
+    @BindView(R.id.checkIMInsurance) CheckBox checkIMInsurance;
+    @BindView(R.id.checkInterested) CheckBox checkInterested;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 

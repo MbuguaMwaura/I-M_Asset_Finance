@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardVehicle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/linear10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:padding="16dp"
+            >
+
+            <TextView
+                android:id="@+id/editPageTwo"
+                android:drawableRight="@drawable/ic_edit_black_24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="OTHER CREDIT FACILITIES AT I&amp;M"
+                android:textSize="20sp"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/linear9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:padding="16dp"
+                >
+
+
+
+                <TextView
+                    android:id="@+id/savedname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:singleLine="true"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/savedfacilityType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Facility Type"
+                    android:singleLine="true"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/savedlimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Sanctioned Limit"
+                    android:singleLine="true"
+
+                    />
+
+
+
+
+                <TextView
+                    android:id="@+id/savedoutstanding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Current Outstanding"
+                    android:inputType="number"
+                    />
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

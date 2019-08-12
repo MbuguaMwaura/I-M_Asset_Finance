@@ -444,8 +444,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.CardView
+            <android.support.v7.widget.RecyclerView
                 android:layout_below="@id/recyclerViewVehicle"
+                android:id="@+id/recyclerViewProperty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/recyclerViewProperty"
                 android:id="@+id/card4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -511,6 +517,14 @@
                             android:layout_height="wrap_content"
                             android:hint="Name Of Employer"
                             />
+
+                        <TextView
+                            android:id="@+id/nationality"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nationality"
+                            />
+
 
                         <TextView
                             android:id="@+id/address"
@@ -624,11 +638,21 @@
                                 />
 
                         <TextView
+                            android:id="@+id/other"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Other eg farming"
+                            />
+
+                        <TextView
                             android:id="@+id/disposableIncome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Total Net Disposable Income"
                             />
+
+
 
 
 
@@ -644,6 +668,355 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/card4"
+                android:id="@+id/card5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:padding="16dp"
+                    >
+                    <TextView
+
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DEALER / VENDOR"
+                        android:textSize="20sp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/dealerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Dealer Name"
+                        android:singleLine="true"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/postalAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Postal Address"
+                        android:singleLine="true"
+
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telephone Number"
+                        android:inputType="number"
+                        />
+
+
+
+
+                    <TextView
+                        android:id="@+id/invoiceNoDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Invoice NO. / Date"
+                        android:singleLine="true"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/salesPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Sales Person"
+                        android:singleLine="true"
+                        />
+
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/card5"
+                android:id="@+id/card6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+                    android:id="@+id/linear9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="ASSET DETAILS"
+                        android:textSize="20sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/make"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Make"
+                        android:singleLine="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/modelCC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Model/Cc Rating"
+                        android:singleLine="true"
+
+                        />
+                    <TextView
+                        android:id="@+id/yearOfManufacture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Year of Manufacture"
+                        android:inputType="number"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/valuation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Valuation Amount (where applicable)"
+                        android:inputType="number"
+
+                        android:layout_marginBottom="20dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/vehicleState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Vehicle state: "
+
+                        />
+                    
+
+                    <TextView
+                        android:id="@+id/insurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Insurance: "
+
+                        />
+
+                    
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/invoicePrice"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="Invoice Price"
+                            />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/discounts"
+                            android:layout_width="150dp"
+                            android:inputType="number"
+                            android:layout_height="wrap_content"
+                            android:hint="Discounts"
+                            />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/netCost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Net Cost"
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingBottom="5dp" />
+
+
+
+                    <TextView
+                        android:id="@+id/accessory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:hint="Accessories / Other"
+                        />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_below="@id/accessoryValue"
+                            android:id="@+id/accessoryValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="Value"
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/totalCost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Total Cost"
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingBottom="5dp" />
+
+
+
+                    <TextView
+                        android:id="@+id/deposit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Deposit"
+                        />
+
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/balanceOfCost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Balance of Cost"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorDivider"
+                        android:paddingBottom="5dp" />
+
+
+                </LinearLayout>
+                
+                
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_below="@id/card6"
+                android:id="@+id/recyclerViewCredit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 

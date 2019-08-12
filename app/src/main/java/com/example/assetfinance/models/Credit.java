@@ -13,6 +13,9 @@ public class Credit {
         this.currentOutstanding = currentOutstanding;
     }
 
+    public Credit() {
+    }
+
     public String getName() {
         return name;
     }

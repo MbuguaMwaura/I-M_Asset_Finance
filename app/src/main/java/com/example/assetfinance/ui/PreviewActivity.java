@@ -1,8 +1,6 @@
 package com.example.assetfinance.ui;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
-import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -21,50 +18,30 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
 import com.example.assetfinance.adapters.FirebaseBankViewHolder;
-import com.example.assetfinance.adapters.FirebaseListAdapter;
+import com.example.assetfinance.adapters.FirebaseCreditViewHolder;
+import com.example.assetfinance.adapters.FirebasePropertyViewHolder;
 import com.example.assetfinance.adapters.FirebaseVehicleViewHolder;
 import com.example.assetfinance.models.BankDetails;
+import com.example.assetfinance.models.Credit;
+import com.example.assetfinance.models.Property;
 import com.example.assetfinance.models.Vehicle;
-import com.example.assetfinance.services.DjangoService;
-import com.example.assetfinance.util.OnStartDragListener;
-import com.example.assetfinance.util.SimpleItemTouchHelperCallback;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.pdf.PdfWriter;
-
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -72,9 +49,6 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class PreviewActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.editPageOne)
@@ -83,6 +57,8 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     RecyclerView mRecyclerView;
     @BindView(R.id.recyclerViewVehicle)
     RecyclerView recyclerViewVehicle;
+    @BindView(R.id.recyclerViewProperty) RecyclerView recyclerViewProperty;
+    @BindView(R.id.recyclerViewCredit) RecyclerView recyclerViewCredit;
 //    @BindView(R.id.editPageTwo)
 //    TextView editPageTwo;
 //    @BindView(R.id.done)
@@ -109,6 +85,53 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.introBy) TextView introBy;
     @BindView(R.id.purpose) TextView purpose;
 
+    @BindView(R.id.age)
+    TextView age;
+    @BindView(R.id.occupation) TextView occupation;
+    @BindView(R.id.employerName) TextView employerName;
+    @BindView(R.id.address) TextView address;
+    @BindView(R.id.telephoneNumber) TextView telephoneNumber;
+    @BindView(R.id.position) TextView position;
+    @BindView(R.id.yearsInCurrentPosition) TextView yearsInCurrentPosition;
+    @BindView(R.id.status) TextView status;
+    @BindView(R.id.spouse) TextView spouse;
+    @BindView(R.id.spouseOccupation) TextView spouseOccupation;
+    @BindView(R.id.employmentIncome) TextView employmentIncome;
+    @BindView(R.id.selfIncome) TextView selfIncome;
+    @BindView(R.id.spouseIncome) TextView spouseIncome;
+    @BindView(R.id.livingExpenses) TextView livingExpenses;
+    @BindView(R.id.loanRepayments) TextView loanRepayments;
+    @BindView(R.id.otherIncomeBusiness) TextView otherIncomeBusiness;
+    @BindView(R.id.disposableIncome)
+    TextView disposableIncome;
+    @BindView(R.id.other) TextView other;
+    @BindView(R.id.nationality) TextView nationality;
+
+    @BindView(R.id.dealerName)
+    TextView dealerName;
+    @BindView(R.id.postalAddress) TextView postalAddress;
+    @BindView(R.id.number) TextView number;
+    @BindView(R.id.invoiceNoDate) TextView invoiceNoDate;
+    @BindView(R.id.salesPerson) TextView salesPerson;
+
+    @BindView(R.id.make)
+    TextView make;
+    @BindView(R.id.modelCC) TextView modelCC;
+    @BindView(R.id.yearOfManufacture) TextView yearOfManucature;
+    @BindView(R.id.valuation) TextView valuation;
+    @BindView(R.id.invoicePrice) TextView invoicePrice;
+    @BindView(R.id.discounts) TextView discount;
+    @BindView(R.id.netCost)
+    TextView netCost;
+    @BindView(R.id.accessory) TextView accessory;
+    @BindView(R.id.accessoryValue) TextView accesssoryValue;
+    @BindView(R.id.totalCost) TextView totalCost;
+    @BindView(R.id.deposit) TextView deposit;
+    @BindView(R.id.balanceOfCost) TextView balanceOfCost;
+    @BindView(R.id.vehicleState) TextView vehicleState;
+    @BindView(R.id.insurance) TextView insurance;
+
+
 //    @BindView(R.id.bankName)
 //    TextView bankName;
 //    @BindView(R.id.branch) TextView branch;
@@ -120,12 +143,18 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     private int STORAGE_PERMISSION_CODE = 1;
 
 
-    private FirebaseListAdapter mFirebaseAdapter;
+
     private ItemTouchHelper mItemTouchHelper;
     private DatabaseReference reference;
     private DatabaseReference referenceVehicle;
+    private DatabaseReference referenceProperty;
+    private DatabaseReference referenceCredit;
     private FirebaseRecyclerAdapter<BankDetails, FirebaseBankViewHolder> firebaseRecyclerAdapter;
     private FirebaseRecyclerAdapter<Vehicle, FirebaseVehicleViewHolder> firebaseRecyclerAdapterVehicle;
+    private FirebaseRecyclerAdapter<Property, FirebasePropertyViewHolder> firebaseRecyclerAdapterProperty;
+    private FirebaseRecyclerAdapter<Credit, FirebaseCreditViewHolder> firebaseRecyclerAdapterCredit;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +185,53 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         String inputIntroBy = mSharedPreferences.getString(Constants.ONE_INTRO_BY, null);
         String inputPurpose = mSharedPreferences.getString(Constants.ONE_PURPOSE, null);
 
+        String inputAge = mSharedPreferences.getString(Constants.FOUR_AGE, null);
+        String inputNationality = mSharedPreferences.getString(Constants.FOUR_NATIONALITY,null);
+        String inputOccupation = mSharedPreferences.getString(Constants.FOUR_OCCUPATION, null);
+        String inputEmployer = mSharedPreferences.getString(Constants.FOUR_EMPLOYER, null);
+        String inputAddress = mSharedPreferences.getString(Constants.FOUR_ADDRESS, null);
+        String inputTelNo = mSharedPreferences.getString(Constants.FOUR_TEL_NO, null);
+        String inputPosition = mSharedPreferences.getString(Constants.FOUR_POSITION, null);
+        String inputYears = mSharedPreferences.getString(Constants.FOUR_YEARS_IN_POSITION, null);
+        String inputStatus = mSharedPreferences.getString(Constants.FOUR_STATUS, null);
+        String inputSpouse = mSharedPreferences.getString(Constants.FOUR_NAME_SPOUSE, null);
+        String inputSpouseOccupation = mSharedPreferences.getString(Constants.FOUR_SPOUSE_OCCUPATION,null);
+        String inputIncome = mSharedPreferences.getString(Constants.FOUR_INCOME, null);
+        String inputSelfIncome = mSharedPreferences.getString(Constants.FOUR_SELF_INCOME, null);
+        String inputSpouseIncome = mSharedPreferences.getString(Constants.FOUR_SPOUSE_INCOME, null);
+        String inputLivingExpenses = mSharedPreferences.getString(Constants.FOUR_LIVING_EXPENSES, null);
+        String inputCurrentLoans = mSharedPreferences.getString(Constants.FOUR_CURRENT_LOAN_REPAYMENTS, null);
+        String inputOtherIncome = mSharedPreferences.getString(Constants.FOUR_OTHER_INCOME, null);
+        String inputNetDisposable = mSharedPreferences.getString(Constants.FOUR_NET_DISPOSABLE_INCOME, null);
+        String inputOther = mSharedPreferences.getString("other", null);
+
+        String inputDealerName = mSharedPreferences.getString(Constants.SIX_DEALER_NAME, null);
+        String inputPostalAddress = mSharedPreferences.getString(Constants.SIX_POSTAL_ADDRESS_DEALER, null);
+        String inputTelNoTwo = mSharedPreferences.getString(Constants.SIX_TEL_NO_DEALER, null);
+        String inputInvoiceDate = mSharedPreferences.getString(Constants.SIX_INVOICE_DATE, null);
+        String inputSalesPerson = mSharedPreferences.getString(Constants.SIX_SALES_PERSON, null);
+
+        String inputMake = mSharedPreferences.getString(Constants.SEVEN_MAKE, null);
+        String inputModelCC = mSharedPreferences.getString(Constants.SEVEN_MODEL_CC, null);
+        String inputYearOfManufacture = mSharedPreferences.getString(Constants.SEVEN_YEAR_MANUFACTURE, null);
+        String inputValuation = mSharedPreferences.getString(Constants.SEVEN_VALUATION, null);
+        String inputInvoicePrice = mSharedPreferences.getString(Constants.SEVEN_INVOICE_PRICE, null);
+        String inputDiscounts = mSharedPreferences.getString(Constants.SEVEN_DISCOUNT, null);
+        String inputNetCost = mSharedPreferences.getString(Constants.SEVEN_NET_COST, null);
+        String inputAccessoryName = mSharedPreferences.getString(Constants.SEVEN_ACCESSORY_OTHER, null);
+        String inputAccessoryValue = mSharedPreferences.getString(Constants.SEVEN_VALUE, null);
+        String inputTotalCost = mSharedPreferences.getString(Constants.SEVEN_TOTAL_COST, null);
+        String inputDeposit = mSharedPreferences.getString(Constants.SEVEN_DEPOSIT, null);
+        String inputBalanceOfCost = mSharedPreferences.getString(Constants.SEVEN_BALANCE_OF_COST, null);
+        String inputVehicleState = mSharedPreferences.getString(Constants.SEVEN_VEHICLE_STATE,null);
+        String inputInsurance = mSharedPreferences.getString(Constants.SEVEN_INSURANCE_OPTION,null);
+
+
+
+
+
+
+
 
         name.setText(inputName);
         idNumber.setText(inputIDCERT);
@@ -176,8 +252,56 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         purpose.setText(inputPurpose);
 
 
+        age.setText(inputAge);
+        occupation.setText(inputOccupation);
+        employerName.setText(inputEmployer);
+        nationality.setText(inputNationality);
+        address.setText(inputAddress);
+        telephoneNumber.setText(inputTelNo);
+        position.setText(inputPosition);
+        yearsInCurrentPosition.setText(inputYears);
+        status.setText(inputStatus);
+        spouse.setText(inputSpouse);
+        spouseOccupation.setText(inputSpouseOccupation);
+        employmentIncome.setText(inputIncome);
+        selfIncome.setText(inputSelfIncome);
+        spouseIncome.setText(inputSpouseIncome);
+        livingExpenses.setText(inputLivingExpenses);
+        loanRepayments.setText(inputCurrentLoans);
+        otherIncomeBusiness.setText(inputOtherIncome);
+        other.setText(inputOther);
+        disposableIncome.setText(inputNetDisposable);
+
+
+        dealerName.setText(inputDealerName);
+        postalAddress.setText(inputPostalAddress);
+        number.setText(inputTelNoTwo);
+        invoiceNoDate.setText(inputInvoiceDate);
+        salesPerson.setText(inputSalesPerson);
+
+
+
+        make.setText(inputMake);
+        modelCC.setText(inputModelCC);
+        yearOfManucature.setText(inputYearOfManufacture);
+        valuation.setText(inputValuation);
+        invoicePrice.setText(inputInvoicePrice);
+        discount.setText(inputDiscounts);
+        netCost.setText(inputNetCost);
+        accessory.setText(inputAccessoryName);
+        accesssoryValue.setText(inputAccessoryValue);
+        totalCost.setText(inputTotalCost);
+        deposit.setText(inputDeposit);
+        balanceOfCost.setText(inputBalanceOfCost);
+        vehicleState.setText(inputVehicleState);
+        insurance.setText(inputInsurance);
+
+
+
         reference = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("bank_details");
         referenceVehicle =  FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("vehicle_details");
+        referenceProperty = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("property_details");
+        referenceCredit = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("credit_details");
 
         setUpFirebaseAdapter();
 
@@ -228,22 +352,64 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         recyclerViewVehicle.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerViewVehicle.setAdapter(firebaseRecyclerAdapterVehicle);
 
+        FirebaseRecyclerOptions<Property> optionsthree = new FirebaseRecyclerOptions.Builder<Property>()
+                .setQuery(referenceProperty,Property.class)
+                .build();
+        firebaseRecyclerAdapterProperty = new FirebaseRecyclerAdapter<Property, FirebasePropertyViewHolder>(optionsthree) {
+            @Override
+            protected void onBindViewHolder(@NonNull FirebasePropertyViewHolder holder, int position, @NonNull Property model) {
+                holder.bindProperty(model);
+            }
+
+            @NonNull
+            @Override
+            public FirebasePropertyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.property_item, viewGroup,false);
+                return new FirebasePropertyViewHolder(view);
+            }
+        };
+        recyclerViewProperty.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerViewProperty.setAdapter(firebaseRecyclerAdapterProperty);
+
+        FirebaseRecyclerOptions<Credit> optionsFour = new FirebaseRecyclerOptions.Builder<Credit>()
+                .setQuery(referenceCredit,Credit.class)
+                .build();
+        firebaseRecyclerAdapterCredit = new FirebaseRecyclerAdapter<Credit, FirebaseCreditViewHolder>(optionsFour) {
+            @Override
+            protected void onBindViewHolder(@NonNull FirebaseCreditViewHolder holder, int position, @NonNull Credit model) {
+                holder.bindCredit(model);
+            }
+
+            @NonNull
+            @Override
+            public FirebaseCreditViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.credit_item, viewGroup,false);
+                return new FirebaseCreditViewHolder(view);
+            }
+        };
+        recyclerViewCredit.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerViewCredit.setAdapter(firebaseRecyclerAdapterCredit);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        firebaseRecyclerAdapterProperty.startListening();
         firebaseRecyclerAdapter.startListening();
         firebaseRecyclerAdapterVehicle.startListening();
+        firebaseRecyclerAdapterCredit.startListening();
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(firebaseRecyclerAdapterVehicle != null && firebaseRecyclerAdapter !=null)  {
-
+        if(firebaseRecyclerAdapterVehicle != null && firebaseRecyclerAdapter !=null && firebaseRecyclerAdapterProperty !=null && firebaseRecyclerAdapterCredit !=null)  {
+            firebaseRecyclerAdapter.stopListening();
             firebaseRecyclerAdapterVehicle.stopListening();
+            firebaseRecyclerAdapterProperty.stopListening();
         }
     }
 

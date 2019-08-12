@@ -81,11 +81,11 @@
                 />
 
           <TextView
+              android:id="@+id/insurance"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="Insurance: "
               android:textSize="20sp"
-
               android:layout_marginLeft="5dp"
               />
 
