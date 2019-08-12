@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -46,6 +47,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,6 +132,15 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.balanceOfCost) TextView balanceOfCost;
     @BindView(R.id.vehicleState) TextView vehicleState;
     @BindView(R.id.insurance) TextView insurance;
+
+    @BindView(R.id.individualId) TextView individualId;
+    @BindView(R.id.individualBankStatements) TextView bankStatements;
+    @BindView(R.id.individualBusinessPin) TextView businessPin;
+    @BindView(R.id.individualCertificateReg) TextView businessCertificate;
+    @BindView(R.id.individualContractCopies) TextView contracts;
+    @BindView(R.id.individualPayslip) TextView payslip;
+    @BindView(R.id.individualInvoice) TextView invoice;
+    @BindView(R.id.individualPin) TextView pin;
 
 
 //    @BindView(R.id.bankName)
@@ -226,8 +237,27 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         String inputVehicleState = mSharedPreferences.getString(Constants.SEVEN_VEHICLE_STATE,null);
         String inputInsurance = mSharedPreferences.getString(Constants.SEVEN_INSURANCE_OPTION,null);
 
+        String inputIndividualId = mSharedPreferences.getString(Constants.NINE_ID,"");
+        String inputInvoice = mSharedPreferences.getString(Constants.NINE_INVOICE,"");
+        String inputPinCert = mSharedPreferences.getString(Constants.NINE_PIN,"");
+        String inputPaySlip = mSharedPreferences.getString(Constants.NINE_PAYSLIP,"");
+        String inputBankStatements = mSharedPreferences.getString(Constants.NINE_BANK_STATEMENTS,"");
+        String inputBusinessPin = mSharedPreferences.getString(Constants.NINE_BUSINESS_PIN,"");
+        String inputCertificateREgistration = mSharedPreferences.getString(Constants.NINE_BUSINESS_REG,"");
+        String inputCopiesContract = mSharedPreferences.getString(Constants.NINE_CONTRACT_COPIES,"");
 
 
+
+
+        individualId.setText(inputIndividualId);
+        individualId.setOnClickListener(this);
+        invoice.setText(inputInvoice);
+        pin.setText(inputPinCert);
+        payslip.setText(inputPaySlip);
+        bankStatements.setText(inputBankStatements);
+        businessPin.setText(inputBusinessPin);
+        businessCertificate.setText(inputCertificateREgistration);
+        contracts.setText(inputCopiesContract);
 
 
 

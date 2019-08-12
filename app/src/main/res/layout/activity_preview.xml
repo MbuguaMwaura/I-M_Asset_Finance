@@ -1018,6 +1018,109 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <android.support.v7.widget.CardView
+                android:layout_below="@id/recyclerViewCredit"
+                android:id="@+id/card8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:padding="16dp"
+                    >
+                    <TextView
+
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DOCUMENTS"
+                        android:textSize="20sp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/individualId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ID"
+                        android:singleLine="true"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/individualInvoice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Proforma Invoice"
+                        android:singleLine="true"
+
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/individualPin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PIN certificate"
+                        android:inputType="number"
+                        />
+
+
+
+
+                    <TextView
+                        android:id="@+id/individualPayslip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Latest Payslip (if salaried)"
+                        android:singleLine="true"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/individualBankStatements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Lastest 6 months bank statements"
+                        android:singleLine="true"
+                        />
+                    <TextView
+                        android:id="@+id/individualBusinessPin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Business PIN"
+                        android:singleLine="true"
+                        />
+                    <TextView
+                        android:id="@+id/individualCertificateReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Certificate of Business Registration"
+                        android:singleLine="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/individualContractCopies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Copies of contract"
+                        android:singleLine="true"
+                        />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
         </RelativeLayout>
 
 

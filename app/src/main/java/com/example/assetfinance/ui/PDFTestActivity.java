@@ -238,8 +238,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("id").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_ID,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -290,8 +289,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("invoice").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_INVOICE,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -341,8 +339,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("pin").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_PIN,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -392,8 +389,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("payslip").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_PAYSLIP,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -443,8 +439,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("bank_statements").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_BANK_STATEMENTS,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -494,8 +489,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("business_pin").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_BUSINESS_PIN,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -545,8 +539,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("certificate_reg").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_BUSINESS_REG,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -596,8 +589,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
                             databaseReference.child(inputID).child("documents").child("contract").setValue(task.getResult().toString());
-                            String document = task.getResult().toString();
-                            addToSharedPreferences(Constants.NINE_CONTRACT_COPIES,document);
+
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -691,6 +683,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfUri = data.getData();
 
             String name = getFileName(pdfUri);
+
+            addToSharedPreferences(Constants.NINE_ID,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notification.setText("Selected file is: " + name);
@@ -700,6 +694,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfInvoiceUri = data.getData();
 
             String name = getFileName(pdfInvoiceUri);
+
+            addToSharedPreferences(Constants.NINE_INVOICE,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationInvoice.setText("Selected file is: " + name);
@@ -708,6 +704,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfPINUri = data.getData();
 
             String name = getFileName(pdfPINUri);
+
+            addToSharedPreferences(Constants.NINE_PIN,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationPIN.setText("Selected file is: " + name);
@@ -716,6 +714,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfPayslip = data.getData();
 
             String name = getFileName(pdfPayslip);
+
+            addToSharedPreferences(Constants.NINE_PAYSLIP,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationPayslip.setText("Selected file is: " + name);
@@ -724,6 +724,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfStatements = data.getData();
 
             String name = getFileName(pdfStatements);
+
+            addToSharedPreferences(Constants.NINE_BANK_STATEMENTS,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationStatements.setText("Selected file is: " + name);
@@ -731,7 +733,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         else if(requestCode == 91 && resultCode==RESULT_OK && data!=null){
             pdfBusinessPin = data.getData();
 
-            String name = getFileName(pdfStatements);
+            String name = getFileName(pdfBusinessPin);
+            addToSharedPreferences(Constants.NINE_BUSINESS_PIN,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationBusinessPIN.setText("Selected file is: " + name);
@@ -739,6 +742,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfBusinessReg = data.getData();
 
             String name = getFileName(pdfBusinessReg);
+            addToSharedPreferences(Constants.NINE_BUSINESS_REG,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationBusinessReg.setText("Selected file is: " + name);
@@ -747,6 +751,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             pdfContract = data.getData();
 
             String name = getFileName(pdfContract);
+            addToSharedPreferences(Constants.NINE_CONTRACT_COPIES,name);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
 
             notificationContract.setText("Selected file is: " + name);
