@@ -85,10 +85,10 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
     Uri pdfContract;
     private StorageReference mStorageReference;
     ArrayList<IndividualDocument> documents = new ArrayList<>();
-    private SharedPreferences mSharedPreferences;
+
     ProgressDialog progressDialog;
     private SharedPreferences.Editor mEditor;
-
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

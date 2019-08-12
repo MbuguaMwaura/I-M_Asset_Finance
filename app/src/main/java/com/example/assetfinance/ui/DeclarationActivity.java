@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,6 +15,7 @@ import android.graphics.RectF;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
@@ -33,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -86,6 +89,8 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
     FirebaseStorage storage;
     FirebaseDatabase database;
     private StorageReference mStorageReference;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +101,9 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
 
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
-//        // Setting ToolBar as ActionBar
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
 
         // Button to open signature panel
         btn_get_sign = (Button) findViewById(R.id.signature);
@@ -189,8 +194,16 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == proceedTenBtn){
-            Intent intent = new Intent(this, PreviewActivity.class);
-            startActivity(intent);
+            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            addToSharedPreferences("date", date);
+            String signature = mSharedPreferences.getString("signature","");
+            if ((signature.equals(""))) {
+                Toast.makeText(this,"Please upload a signature", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+                Intent intent = new Intent(this, PreviewActivity.class);
+                startActivity(intent);
+            }
         }
         if (v == uploadSignature){
 
@@ -350,8 +363,9 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()){
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
-                            databaseReference.child("upload").push().setValue(task.getResult().toString());
+                            databaseReference.child(inputID).child("signature").setValue(task.getResult().toString());
                             Toast.makeText(DeclarationActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -382,6 +396,8 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             signatureUri = data.getData();
+            String signature = signatureUri.toString();
+            addToSharedPreferences("signature",signature);
             String name = getFileName(signatureUri);
 //            String lastSegment = pathSegments.get(pathSegments.size() - 1);
             try {
@@ -420,6 +436,10 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
             result = uri.getLastPathSegment();
         }
         return result;
+    }
+
+    private void addToSharedPreferences(String constant, String document) {
+        mEditor.putString(constant,document).apply();
     }
 
 }

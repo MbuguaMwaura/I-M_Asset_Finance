@@ -1,10 +1,12 @@
 package com.example.assetfinance.ui;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,6 +14,7 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -142,6 +146,10 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.individualInvoice) TextView invoice;
     @BindView(R.id.individualPin) TextView pin;
 
+    @BindView(R.id.signature)
+    ImageView signature;
+    @BindView(R.id.date) TextView date;
+
 
 //    @BindView(R.id.bankName)
 //    TextView bankName;
@@ -153,7 +161,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     private SharedPreferences mSharedPreferences;
     private int STORAGE_PERMISSION_CODE = 1;
 
-
+    private ProgressDialog progressDialog;
 
     private ItemTouchHelper mItemTouchHelper;
     private DatabaseReference reference;
@@ -246,7 +254,22 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         String inputCertificateREgistration = mSharedPreferences.getString(Constants.NINE_BUSINESS_REG,"");
         String inputCopiesContract = mSharedPreferences.getString(Constants.NINE_CONTRACT_COPIES,"");
 
+        String signUri = mSharedPreferences.getString("signature","");
+        String dateSigned = mSharedPreferences.getString("date","");
 
+        try {
+            Bitmap img= MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(signUri));
+            if(img!= null) {
+                signature.setImageBitmap(img);
+
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        date.setText(dateSigned);
 
 
         individualId.setText(inputIndividualId);
@@ -334,7 +357,6 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         referenceCredit = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("credit_details");
 
         setUpFirebaseAdapter();
-
 
 //
         editPageOne.setOnClickListener(this);
