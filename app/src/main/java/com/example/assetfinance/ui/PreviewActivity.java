@@ -151,12 +151,6 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.date) TextView date;
 
 
-//    @BindView(R.id.bankName)
-//    TextView bankName;
-//    @BindView(R.id.branch) TextView branch;
-//    @BindView(R.id.accountNumber) TextView accountNumber;
-//    @BindView(R.id.odLimit) TextView odLimit;
-//    @BindView(R.id.outStandingLoans) TextView outStandingLoans;
 
     private SharedPreferences mSharedPreferences;
     private int STORAGE_PERMISSION_CODE = 1;
@@ -273,7 +267,6 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
 
 
         individualId.setText(inputIndividualId);
-        individualId.setOnClickListener(this);
         invoice.setText(inputInvoice);
         pin.setText(inputPinCert);
         payslip.setText(inputPaySlip);

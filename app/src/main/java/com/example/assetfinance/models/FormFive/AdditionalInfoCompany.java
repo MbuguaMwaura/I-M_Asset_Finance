@@ -1,27 +1,34 @@
 package com.example.assetfinance.models.FormFive;
 
 public class AdditionalInfoCompany {
-    int annualTurnover;
-    int annualNetProfit;
+    String shareholders;
+    String annualTurnover;
+    String annualNetProfit;
+    String companies;
 
-    public AdditionalInfoCompany(int annualTurnover, int annualNetProfit) {
+    public AdditionalInfoCompany(String shareholders,String annualTurnover, String annualNetProfit, String companies) {
+        this.shareholders = shareholders;
         this.annualTurnover = annualTurnover;
         this.annualNetProfit = annualNetProfit;
+        this.companies = companies;
     }
 
-    public int getAnnualTurnover() {
+    public AdditionalInfoCompany() {
+    }
+
+    public String getAnnualTurnover() {
         return annualTurnover;
     }
 
-    public void setAnnualTurnover(int annualTurnover) {
+    public void setAnnualTurnover(String annualTurnover) {
         this.annualTurnover = annualTurnover;
     }
 
-    public int getAnnualNetProfit() {
+    public String getAnnualNetProfit() {
         return annualNetProfit;
     }
 
-    public void setAnnualNetProfit(int annualNetProfit) {
+    public void setAnnualNetProfit(String annualNetProfit) {
         this.annualNetProfit = annualNetProfit;
     }
 }

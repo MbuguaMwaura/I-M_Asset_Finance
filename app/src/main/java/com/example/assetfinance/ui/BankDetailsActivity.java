@@ -77,6 +77,7 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
             String pushID = pushRef.getKey();
             bankDetails.setPushId(pushID);
             pushRef.setValue(bankDetails);
+            Toast.makeText(this,"Adding bank details",Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -131,9 +131,11 @@ public class Constants {
     public static final String SEVEN_BUSINESS_TOTAL_COST = "business_total_cost";
     public static final String SEVEN_BUSINESS_DEPOSIT = "business_deposit";
     public static final String SEVEN_BUSINESS_BALANCE_OF_COST = "business_balance_of_cost";
+    public static final String SEVEN_VEHICLE_BUSINESS_STATE = "business_state";
+    public static final String SEVEN_INSURANCE_BUSINESS_OPTION = "business_option";
 
     //    form eight business constants
-    public static final String EIGHT_BUSINESS_NAME = "business_name";
+    public static final String EIGHT_BUSINESS_NAME = "business_name_two";
     public static final String EIGHT_BUSINESS_FACILITY_TYPE = "business_facility_type";
     public static final String EIGHT_BUSINESS_SANCTIONED_LIMIT = "business_sanctioned_limit";
     public static final String EIGHT_BUSINESS_CURRENT_OUTSTANDING = "business_current_outstanding";
@@ -147,6 +149,17 @@ public class Constants {
     public static final String NINE_BUSINESS_PIN = "business_pin";
     public static final String NINE_BUSINESS_REG = "certificate_business_reg";
     public static final String NINE_CONTRACT_COPIES = "copies_of_contract";
+
+    // form nine business constants
+    public static final String NINE_BUSINESS_ID = "business_individual_id";
+    public static final String NINE_BUSINESS_INVOICE= "business_invoice";
+    public static final String NINE_BUSINESS_CERTIFICATE = "business_pin_certificate";
+    public static final String NINE_BUSINESS_PAYSLIP = "business_payslip";
+    public static final String NINE_BUSINESS_BANK_STATEMENTS="business_bank_statements";
+    public static final String NINE_BUSINESS_BUSINESS_PIN = "business_business_pin";
+    public static final String NINE_BUSINESS_BUSINESS_REG = "business_certificate_business_reg";
+    public static final String NINE_BUSINESS_CONTRACT_COPIES = "business_copies_of_contract";
+
 
 }
 

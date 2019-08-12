@@ -11,10 +11,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.FormSeven.AssetDetails;
 import com.example.assetfinance.ui.CreditActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,27 +30,28 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
     @BindView(R.id.modelCC) EditText modelCC;
     @BindView(R.id.yearOfManufacture) EditText yearOfManucature;
     @BindView(R.id.valuation) EditText valuation;
-    @BindView(R.id.checkNew)
-    CheckBox checkNew;
-    @BindView(R.id.checkUsed)
-    CheckBox checkUsed;
-    @BindView(R.id.checkIMInsurance) CheckBox checkIMInsurance;
-    @BindView(R.id.checkInterested) CheckBox checkInterested;
     @BindView(R.id.invoicePrice) EditText invoicePrice;
     @BindView(R.id.discounts) EditText discount;
     @BindView(R.id.netCost)
     TextView netCost;
     @BindView(R.id.accessory) EditText accessory;
     @BindView(R.id.accessoryValue) EditText accesssoryValue;
-    @BindView(R.id.addAccessory)
-    ImageButton addAccessoryBtn;
     @BindView(R.id.totalCost) TextView totalCost;
     @BindView(R.id.deposit) EditText deposit;
     @BindView(R.id.balanceOfCost) TextView balanceOfCost;
+    @BindView(R.id.vehicleState) TextView vehicleState;
+    @BindView(R.id.insurance) TextView insurance;
+    @BindView(R.id.netCostBtn) ImageButton netCostBtn;
+    @BindView(R.id.costTotal) ImageButton costTotalBtn;
+    @BindView(R.id.costBalance) ImageButton costBalanceBtn;
     @BindView(R.id.proceedSeven)
     Button proceedSevenBtn;
 
-
+    @BindView(R.id.checkNew) CheckBox checkNew;
+    @BindView(R.id.checkUsed)
+    CheckBox checkUsed;
+    @BindView(R.id.checkIMInsurance) CheckBox checkIMInsurance;
+    @BindView(R.id.checkInterested) CheckBox checkInterested;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -55,7 +60,7 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_asset_details);
-        setTitle("7. ASSET DETAILS");
+        setTitle("6. ASSET DETAILS");
         ButterKnife.bind(this);
 
 
@@ -74,7 +79,8 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
         String inputTotalCost = mSharedPreferences.getString(Constants.SEVEN_BUSINESS_TOTAL_COST, null);
         String inputDeposit = mSharedPreferences.getString(Constants.SEVEN_BUSINESS_DEPOSIT, null);
         String inputBalanceOfCost = mSharedPreferences.getString(Constants.SEVEN_BUSINESS_BALANCE_OF_COST, null);
-
+        String inputVehicleState = mSharedPreferences.getString(Constants.SEVEN_VEHICLE_BUSINESS_STATE,null);
+        String inputInsurance = mSharedPreferences.getString(Constants.SEVEN_INSURANCE_BUSINESS_OPTION,null);
 
         if ((inputMake) != null){
             make.setText(inputMake);
@@ -112,18 +118,91 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
         if ((inputBalanceOfCost)!= null){
             balanceOfCost.setText(inputBalanceOfCost);
         }
+        if (inputVehicleState != null) {
+            if ((inputVehicleState).equals("New Vehicle") ){
+                checkNew.setChecked(true);
+            }else {
+                checkNew.setChecked(false);
+            }
+        }
+        if (inputVehicleState != null && (inputVehicleState).equals("Used Vehicle")) {
+            checkUsed.setChecked(true);
+        }else{
+            checkUsed.setChecked(false);
+        }
+        if (inputInsurance != null && (inputInsurance).equals("Using I&M Insurance Agency")) {
+            checkIMInsurance.setChecked(true);
+        }else {
+            checkIMInsurance.setChecked(false);
+        }
+        if (inputInsurance != null && (inputInsurance).equals("Interest in Insurance Finance (IPF)")) {
+            checkInterested.setChecked(true);
+        }else {
+            checkInterested.setChecked(false);
+        }
 
 
         proceedSevenBtn.setOnClickListener(this);
-        addAccessoryBtn.setOnClickListener(this);
+        netCostBtn.setOnClickListener(this);
+        costBalanceBtn.setOnClickListener(this);
+        costTotalBtn.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
-        if (v == addAccessoryBtn){
+        if (v == netCostBtn){
+            int total = 0;
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+
+            total = invoicePriceInt - discountInt;
+            String totalVal = String.valueOf(total);
+
+            netCost.setText("Net Cost: "+totalVal);
 
         }
+        if (v == costTotalBtn){
+            int total = 0;
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+            String computeValue = accesssoryValue.getText().toString();
+            int valueInt = Integer.parseInt(computeValue);
+
+
+            total = invoicePriceInt-discountInt + valueInt;
+            String totalVal = String.valueOf(total);
+
+            totalCost.setText("Total Cost: "+totalVal);
+
+
+
+        }
+        if (v == costBalanceBtn){
+            int total = 0;
+            String computeDeposit = deposit.getText().toString();
+            int depositInt = Integer.parseInt(computeDeposit);
+            String computeInvoicePrice = invoicePrice.getText().toString();
+            int invoicePriceInt = Integer.parseInt(computeInvoicePrice);
+            String computeDiscount = discount.getText().toString();
+            int discountInt = Integer.parseInt(computeDiscount);
+            String computeValue = accesssoryValue.getText().toString();
+            int valueInt = Integer.parseInt(computeValue);
+
+            total = invoicePriceInt-discountInt + valueInt - depositInt;
+            String totalVal = String.valueOf(total);
+            balanceOfCost.setText("Balance of Cost: "+totalVal);
+
+
+        }
+
         if (v == proceedSevenBtn){
+            String inputVehicleState = "";
+            String inputInsurance = "";
             String inputMake = make.getText().toString();
             String inputModelCC = modelCC.getText().toString();
             String inputYearOfManufacture = yearOfManucature.getText().toString();
@@ -136,6 +215,17 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
             String inputTotalCost = totalCost.getText().toString();
             String inputDeposit = deposit.getText().toString();
             String inputBalanceOfCost = balanceOfCost.getText().toString();
+            if (checkNew.isChecked()){ inputVehicleState = "New Vehicle";}
+            if (checkUsed.isChecked()){ inputVehicleState = "Used Vehicle";}
+            if (checkIMInsurance.isChecked()){inputInsurance = "Using I&M Insurance Agency";}
+            if (checkInterested.isChecked()){inputInsurance = "Interest in Insurance Finance (IPF)";}
+
+            AssetDetails assetDetail = new AssetDetails(inputMake,inputModelCC,inputYearOfManufacture,inputValuation,inputVehicleState,
+                    inputInsurance,inputInvoicePrice,inputDiscounts, inputNetCost,inputDeposit,inputBalanceOfCost,inputAccessoryName,
+                    inputAccessoryValue,inputTotalCost);
+            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("asset_details");
+            reference.setValue(assetDetail);
 
             if (
                     !(inputMake).equals("") &&
@@ -149,7 +239,9 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
                             !(inputAccessoryValue).equals("") &&
                             !(inputTotalCost).equals("") &&
                             !(inputDeposit).equals("") &&
-                            !(inputBalanceOfCost).equals("")
+                            !(inputBalanceOfCost).equals("") &&
+                            !(inputVehicleState).equals("")&&
+                            !(inputInsurance).equals("")
 
             ){
                 addToSharedPreferences(inputMake,
@@ -163,8 +255,31 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
                         inputAccessoryValue,
                         inputTotalCost,
                         inputDeposit,
-                        inputBalanceOfCost);
+                        inputBalanceOfCost,
+                        inputVehicleState,
+                        inputInsurance);
             }
+            if (
+                    (inputMake).equals("") ||
+                            (inputModelCC).equals("") ||
+                            (inputYearOfManufacture).equals("") ||
+                            (inputValuation).equals("") ||
+                            (inputInvoicePrice).equals("") ||
+                            (inputDiscounts).equals("") ||
+                            (inputNetCost).equals("") ||
+                            (inputAccessoryName).equals("") ||
+                            (inputAccessoryValue).equals("") ||
+                            (inputTotalCost).equals("") ||
+                            (inputDeposit).equals("") ||
+                            (inputBalanceOfCost).equals("")
+
+            ){
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+
+
 
 
             Intent intent = new Intent(this, BusinessCreditActivity.class);
@@ -183,7 +298,9 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
                                          String inputAccessoryValue,
                                          String inputTotalCost,
                                          String inputDeposit,
-                                         String inputBalanceOfCost) {
+                                         String inputBalanceOfCost,
+                                         String inputVehicleState,
+                                         String inputInsurance) {
         mEditor.putString(Constants.SEVEN_BUSINESS_MAKE,inputMake).apply();
         mEditor.putString(Constants.SEVEN_BUSINESS_MODEL_CC, inputModelCC).apply();
         mEditor.putString(Constants.SEVEN_BUSINESS_YEAR_MANUFACTURE, inputYearOfManufacture).apply();
@@ -196,6 +313,8 @@ public class BusinessAssetDetails extends AppCompatActivity implements View.OnCl
         mEditor.putString(Constants.SEVEN_BUSINESS_TOTAL_COST, inputTotalCost).apply();
         mEditor.putString(Constants.SEVEN_BUSINESS_DEPOSIT, inputDeposit).apply();
         mEditor.putString(Constants.SEVEN_BUSINESS_BALANCE_OF_COST, inputBalanceOfCost).apply();
+        mEditor.putString(Constants.SEVEN_VEHICLE_BUSINESS_STATE, inputVehicleState).apply();
+        mEditor.putString(Constants.SEVEN_INSURANCE_BUSINESS_OPTION, inputInsurance).apply();
 
     }
 }

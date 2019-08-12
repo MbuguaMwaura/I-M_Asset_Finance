@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Dealer Name"
+            android:singleLine="true"
             />
 
 
@@ -32,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Postal Address"
+            android:inputType="number"
 
             />
 
@@ -53,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Invoice NO. / Date"
+            android:singleLine="true"
             />
 
 
@@ -61,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Sales Person"
+            android:singleLine="true"
             />
 
 

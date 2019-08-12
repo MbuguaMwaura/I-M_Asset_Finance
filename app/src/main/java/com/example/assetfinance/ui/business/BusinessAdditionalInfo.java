@@ -9,10 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.FormFive.AdditionalInfoCompany;
+import com.example.assetfinance.models.FormFour.AdditionalDetailsIndividual;
 import com.example.assetfinance.ui.SupplierActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,12 +26,10 @@ public class BusinessAdditionalInfo extends AppCompatActivity implements View.On
 
     @BindView(R.id.shareholder)
     EditText shareholder;
-    @BindView(R.id.addShareholder)
-    ImageButton addShareHolderBtn;
+
     @BindView(R.id.annualTurnover) EditText annualTurnOver;
     @BindView(R.id.annualNetProfit) EditText annualNetProfit;
     @BindView(R.id.associateCompany) EditText associateCompany;
-    @BindView(R.id.addCompany) ImageButton addCompany;
     @BindView(R.id.proceedFive)
     Button proceedFiveBtn;
 
@@ -64,19 +67,13 @@ public class BusinessAdditionalInfo extends AppCompatActivity implements View.On
         if ((inputAssociateCompanies)!= null){
             associateCompany.setText(inputAssociateCompanies);
         }
-        addCompany.setOnClickListener(this);
-        addShareHolderBtn.setOnClickListener(this);
+
         proceedFiveBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == addCompany){
 
-        }
-        if (v == addShareHolderBtn){
-
-        }
         if (v == proceedFiveBtn){
             String inputShareholder = shareholder.getText().toString();
             String inputTurnover = annualTurnOver.getText().toString();
@@ -94,8 +91,22 @@ public class BusinessAdditionalInfo extends AppCompatActivity implements View.On
                 addToSharedPreferences(inputShareholder, inputTurnover, inputNetProfit, inputAssociateCompanies);
             }
 
+            if (
+                    (inputShareholder).equals("") ||
+                            (inputTurnover).equals("") ||
+                            (inputNetProfit).equals("") ||
+                            (inputAssociateCompanies).equals("")
+
+            ){
+                Toast.makeText(this,"Please fill in all the fields",Toast.LENGTH_LONG).show();
+                return;
+            }
             Intent intent = new Intent(this, BusinessDealerActivity.class);
             startActivity(intent);
+            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("additional_info_details");
+            AdditionalInfoCompany additionalInfoCompany = new AdditionalInfoCompany(inputShareholder,inputTurnover,inputNetProfit,inputAssociateCompanies);
+            reference.setValue(additionalInfoCompany);
         }
     }
     private void addToSharedPreferences(String inputShareholder,

@@ -1,10 +1,18 @@
 package com.example.assetfinance.ui.business;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,150 +20,761 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.IndividualDocument;
 import com.example.assetfinance.ui.DeclarationActivity;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.shockwave.pdfium.PdfDocument;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BusinessAttachmentActivity extends AppCompatActivity implements View.OnClickListener, OnPageChangeListener, OnLoadCompleteListener,
-        OnPageErrorListener {
-    @BindView(R.id.proceedNine)
-    Button proceedNineBtn;
-    private String pdfFileName;
-    private PDFView pdfView;
-    public ProgressDialog pDialog;
-    public static final int FILE_PICKER_REQUEST_CODE_BUSINESS = 2;
-    private String pdfPath;
+public class BusinessAttachmentActivity extends AppCompatActivity implements View.OnClickListener{
+    @BindView(R.id.selectFileBtn)
+    Button selectFileBtn;
+    @BindView(R.id.upload) Button uploadBtn;
+    @BindView(R.id.notification)
+    TextView notification;
+    @BindView(R.id.selectFileInvoiceBtn) Button selectFileInvoiceBtn;
+    @BindView(R.id.notificationInvoice) TextView notificationInvoice;
+    @BindView(R.id.selectFilePINBtn) Button selectPINBtn;
+    @BindView(R.id.uploadPINBtn) Button uploadPINBtn;
+    @BindView(R.id.notificationPIN) TextView notificationPIN;
+    @BindView(R.id.selectFilePayslipBtn) Button selectFilePayslipBtn;
+    @BindView(R.id.uploadPayslipBtn) Button uploadPayslipBtn;
+    @BindView(R.id.notificationPayslip) TextView notificationPayslip;
+    @BindView(R.id.selectFileStatementsBtn) Button selectStatements;
+    @BindView(R.id.uploadStatementsBtn) Button uploadStatementBtn;
+    @BindView(R.id.notificationStatements) TextView notificationStatements;
+    @BindView(R.id.selectFileBusinessPINBtn) Button selectBusinessPINBtn;
+    @BindView(R.id.uploadBusinessPINBtn) Button uploadBusinessPINBtn;
+    @BindView(R.id.notificationBusinessPIN) TextView notificationBusinessPIN;
+    @BindView(R.id.notificationBusinessReg) TextView notificationBusinessReg;
+    @BindView(R.id.selectFileBusinessRegBtn) Button selectBusinessReg;
+    @BindView(R.id.uploadBusinessRegBtn) Button uploadBusinessRegBtn;
+    @BindView(R.id.notificationContract) TextView notificationContract;
+    @BindView(R.id.selectFileContractBtn) Button selectContractBtn;
+    @BindView(R.id.uploadContractBtn) Button uploadContractBtn;
 
-    private int pageNumber = 0;
+    @BindView(R.id.uploadInvoiceBtn) Button uploadInvoiceBtn;
+
+
+    @BindView(R.id.proceedEightTest) Button proceed;
+
+    FirebaseStorage storage;
+    FirebaseDatabase database;
+    Uri pdfUri;
+    Uri pdfInvoiceUri;
+    Uri pdfPINUri;
+    Uri pdfPayslip;
+    Uri pdfStatements;
+    Uri pdfBusinessPin;
+    Uri pdfBusinessReg;
+    Uri pdfContract;
+    private StorageReference mStorageReference;
+    ArrayList<IndividualDocument> documents = new ArrayList<>();
+
+    ProgressDialog progressDialog;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_attachment);
         ButterKnife.bind(this);
-        setTitle("8. APPLICATION ATTACHMENTS");
-        pdfView = (PDFView) findViewById(R.id.pdfView);
-        initDialog();
-        proceedNineBtn.setOnClickListener(this);
+        setTitle("8. Upload Documents");
+
+        storage = FirebaseStorage.getInstance();
+        database = FirebaseDatabase.getInstance();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        selectFileBtn.setOnClickListener(this);
+        uploadBtn.setOnClickListener(this);
+        proceed.setOnClickListener(this);
+        selectFileInvoiceBtn.setOnClickListener(this);
+        uploadInvoiceBtn.setOnClickListener(this);
+        selectPINBtn.setOnClickListener(this);
+        uploadPINBtn.setOnClickListener(this);
+        selectFilePayslipBtn.setOnClickListener(this);
+        uploadPayslipBtn.setOnClickListener(this);
+        selectStatements.setOnClickListener(this);
+        uploadStatementBtn.setOnClickListener(this);
+        selectBusinessPINBtn.setOnClickListener(this);
+        uploadBusinessPINBtn.setOnClickListener(this);
+        selectBusinessReg.setOnClickListener(this);
+        uploadBusinessRegBtn.setOnClickListener(this);
+        selectContractBtn.setOnClickListener(this);
+        uploadContractBtn.setOnClickListener(this);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.pickFile:
-                launchPicker();
-                return true;
-            case R.id.upload:
-//                uploadFile();
-                return true;
+    public void onClick(View v) {
+        if (v == selectFileBtn){
+            if (ContextCompat.checkSelfPermission(BusinessAttachmentActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                selectPdf();
+            }else {
+                ActivityCompat.requestPermissions(BusinessAttachmentActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
+            }
+        }
+        if (v == uploadBtn){
+            if (pdfUri != null){
+                uploadFile(pdfUri);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (v == selectFileInvoiceBtn){
+            selectPdfInvoice();
+        }
+        if (v == uploadInvoiceBtn){
+            if (pdfInvoiceUri != null){
+                uploadFileInvoice(pdfInvoiceUri);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (v == selectPINBtn){
+            selectPdfPIN();
         }
 
-        return(super.onOptionsItemSelected(item));
-    }
-
-//    private void uploadFile() {
-//        if (pdfPath == null) {
-//            Toast.makeText(this, "please select an image ", Toast.LENGTH_LONG).show();
-//            return;
-//        } else {
-//            showpDialog();
-//
-//            // Map is used to multipart the file using okhttp3.RequestBody
-//            Map<String, RequestBody> map = new HashMap<>();
-//            File file = new File(pdfPath);
-//            // Parsing any Media type file
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("application/pdf"), file);
-//            map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
-//            ApiConfig getResponse = AppConfig.getRetrofit().create(ApiConfig.class);
-//            Call<ServerResponse> call = getResponse.upload("token", map);
-//            call.enqueue(new Callback<ServerResponse>() {
-//                @Override
-//                public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-//                    if (response.isSuccessful()){
-//                        if (response.body() != null){
-//                            hidepDialog();
-//                            ServerResponse serverResponse = response.body();
-//                            Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                    }else {
-//                        hidepDialog();
-//                        Toast.makeText(getApplicationContext(), "problem image", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ServerResponse> call, Throwable t) {
-//                    hidepDialog();
-//                    Log.v("Response gotten is", t.getMessage());
-//                    Toast.makeText(getApplicationContext(), "problem uploading image " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//            });
-//        }
-//    }
-
-    private void launchPicker() {
-        new MaterialFilePicker()
-                .withActivity(this)
-                .withRequestCode(FILE_PICKER_REQUEST_CODE_BUSINESS)
-                .withHiddenFiles(true)
-                .withFilter(Pattern.compile(".*\\.pdf   $"))
-                .withTitle("Select PDF file")
-                .start();
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == FILE_PICKER_REQUEST_CODE_BUSINESS && resultCode == RESULT_OK) {
-            String path = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            File file = new File(path);
-            displayFromFile(file);
-            if (path != null) {
-                Log.d("Path: ", path);
-                pdfPath = path;
-                Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
+        if (v == uploadPINBtn){
+            if (pdfPINUri != null){
+                uploadFilePIN(pdfPINUri);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
             }
         }
 
+        if (v == selectFilePayslipBtn){
+            selectPdfPayslip();
+        }
+        if (v == uploadPayslipBtn){
+            if (pdfPayslip != null){
+                uploadFilePayslip(pdfPayslip);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (v== selectStatements){
+            selectPdfStatements();
+        }
+        if (v == uploadStatementBtn){
+            if (pdfStatements != null){
+                uploadFileBankStatements(pdfStatements);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v == selectBusinessPINBtn){
+            selectPdfBusinessPIN();
+        }
+        if (v == uploadBusinessPINBtn){
+            if (pdfBusinessPin != null){
+                uploadFileBusinessPin(pdfBusinessPin);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v == selectBusinessReg){
+            selectPdfBusinessReg();
+        }
+        if (v == uploadBusinessRegBtn){
+            if (pdfBusinessReg != null){
+                uploadFileCertificateReg(pdfBusinessReg);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v == selectContractBtn){
+            selectPdfContract();
+        }
+        if (v == uploadContractBtn){
+            if (pdfContract != null){
+                uploadFileContract(pdfContract);
+            }else {
+                Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        if (v == proceed){
+            Intent intent = new Intent(this,BusinessDeclarationActivity.class);
+            startActivity(intent);
+        }
     }
 
-    private void displayFromFile(File file) {
-        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
-        pdfFileName = getFileName(uri);
+    private void uploadFile(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
 
-        pdfView.fromFile(file)
-                .defaultPage(pageNumber)
-                .onPageChange(this)
-                .enableAnnotationRendering(true)
-                .onLoad(this)
-                .scrollHandle(new DefaultScrollHandle(this))
-                .spacing(10) // in dp
-                .onPageError(this)
-                .load();
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("id").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
     }
 
+    private void uploadFileInvoice(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("invoice").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFilePIN(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("pin").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFilePayslip(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("payslip").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileBankStatements(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("bank_statements").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileBusinessPin(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("business_pin").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileCertificateReg(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("certificate_reg").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileContract(Uri pdfUri) {
+        progressDialog = new ProgressDialog(BusinessAttachmentActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("contract").setValue(task.getResult().toString());
+
+                            Toast.makeText(BusinessAttachmentActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(BusinessAttachmentActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+
+    private void selectPdf() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,86);
+    }
+
+    private void selectPdfInvoice() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,87);
+    }
+    private void selectPdfPIN() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,88);
+    }
+    private void selectPdfPayslip() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,89);
+    }
+    private void selectPdfStatements() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,90);
+    }
+    private void selectPdfBusinessPIN() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,91);
+    }
+    private void selectPdfBusinessReg() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,92);
+    }
+    private void selectPdfContract() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,93);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 9 && grantResults[0] ==  PackageManager.PERMISSION_GRANTED){
+            selectPdf();
+        }else {
+            Toast.makeText(this,"Please provide persmission", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 86 && resultCode==RESULT_OK && data!=null){
+            pdfUri = data.getData();
+
+            String name = getFileName(pdfUri);
+
+            addToSharedPreferences(Constants.NINE_BUSINESS_ID,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notification.setText("Selected file is: " + name);
+        }
+
+        else if(requestCode == 87 && resultCode==RESULT_OK && data!=null){
+            pdfInvoiceUri = data.getData();
+
+            String name = getFileName(pdfInvoiceUri);
+
+            addToSharedPreferences(Constants.NINE_BUSINESS_INVOICE,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationInvoice.setText("Selected file is: " + name);
+        }
+        else if(requestCode == 88 && resultCode==RESULT_OK && data!=null){
+            pdfPINUri = data.getData();
+
+            String name = getFileName(pdfPINUri);
+
+            addToSharedPreferences(Constants.NINE_BUSINESS_CERTIFICATE,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationPIN.setText("Selected file is: " + name);
+        }
+        else if(requestCode == 89 && resultCode==RESULT_OK && data!=null){
+            pdfPayslip = data.getData();
+
+            String name = getFileName(pdfPayslip);
+
+            addToSharedPreferences(Constants.NINE_BUSINESS_PAYSLIP,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationPayslip.setText("Selected file is: " + name);
+        }
+        else if(requestCode == 90 && resultCode==RESULT_OK && data!=null){
+            pdfStatements = data.getData();
+
+            String name = getFileName(pdfStatements);
+
+            addToSharedPreferences(Constants.NINE_BUSINESS_BANK_STATEMENTS,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationStatements.setText("Selected file is: " + name);
+        }
+        else if(requestCode == 91 && resultCode==RESULT_OK && data!=null){
+            pdfBusinessPin = data.getData();
+
+            String name = getFileName(pdfBusinessPin);
+            addToSharedPreferences(Constants.NINE_BUSINESS_BUSINESS_PIN,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationBusinessPIN.setText("Selected file is: " + name);
+        } else if(requestCode == 92 && resultCode==RESULT_OK && data!=null){
+            pdfBusinessReg = data.getData();
+
+            String name = getFileName(pdfBusinessReg);
+            addToSharedPreferences(Constants.NINE_BUSINESS_BUSINESS_REG,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationBusinessReg.setText("Selected file is: " + name);
+        }
+        else if(requestCode == 93 && resultCode==RESULT_OK && data!=null){
+            pdfContract = data.getData();
+
+            String name = getFileName(pdfContract);
+            addToSharedPreferences(Constants.NINE_BUSINESS_CONTRACT_COPIES,name);
+//            String lastSegment = pathSegments.get(pathSegments.size() - 1);
+
+            notificationContract.setText("Selected file is: " + name);
+        }
+
+        else {
+            Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
     private String getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
@@ -176,34 +795,7 @@ public class BusinessAttachmentActivity extends AppCompatActivity implements Vie
         return result;
     }
 
-    @Override
-    public void loadComplete(int nbPages) {
-        PdfDocument.Meta meta = pdfView.getDocumentMeta();
-
-
-    }
-
-
-
-    private void initDialog() {
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == proceedNineBtn){
-            Intent intent =  new Intent(this, BusinessDeclarationActivity.class);
-            startActivity(intent);
-        }
-    }
-
-
-    @Override
-    public void onPageChanged(int page, int pageCount) {
-        pageNumber = page;
-        setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
-    }
-
-    @Override
-    public void onPageError(int page, Throwable t) {
+    private void addToSharedPreferences(String constant, String document) {
+        mEditor.putString(constant,document).apply();
     }
 }

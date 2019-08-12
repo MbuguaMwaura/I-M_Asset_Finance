@@ -84,6 +84,7 @@ public class ExistingAssetsActivity extends AppCompatActivity implements View.On
             String pushID = pushRef.getKey();
             vehicle.setPushId(pushID);
             pushRef.setValue(vehicle);
+            Toast.makeText(this,"Adding Vehicle details",Toast.LENGTH_SHORT).show();
 
 
         }

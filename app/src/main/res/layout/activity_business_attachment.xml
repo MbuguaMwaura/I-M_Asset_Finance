@@ -4,47 +4,600 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AttachmentsActivity">
+    tools:context=".ui.business.BusinessAttachmentActivity">
 
-    <LinearLayout
-        android:id="@+id/linear10"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    </LinearLayout>
+            >
 
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/cardFirst"
 
-    </com.github.barteksc.pdfviewer.PDFView>
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
 
-    <TextView
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:id="@+id/pageNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAGE: 9/10"
-        android:textColor="@color/imbluedark"
-        android:paddingTop="30dp"
-        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Company PIN certificate"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
 
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/proceedNine"
-        android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="proceed"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        />
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardFirst"
+                android:id="@+id/cardInvoice"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Proforma invoice from Dealer/Vendor"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationInvoice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileInvoiceBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadInvoiceBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardInvoice"
+                android:id="@+id/cardPIN"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Certificate of Incorporation"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationPIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFilePINBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadPINBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardPIN"
+                android:id="@+id/cardPayslip"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Memorandum and articles of Association"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationPayslip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFilePayslipBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadPayslipBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardPayslip"
+                android:id="@+id/cardStatements"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Latest 6 months bank statements (12 months if business is seasonal in nature)"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationStatements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileStatementsBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadStatementsBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardStatements"
+                android:id="@+id/cardBusinessPIN"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Latest 3 year audited accounts, annual returns and cashflow projections"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationBusinessPIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileBusinessPINBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadBusinessPINBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardBusinessPIN"
+                android:id="@+id/cardBusinessReg"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Company / Business Profile"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationBusinessReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileBusinessRegBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadBusinessRegBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/cardBusinessReg"
+                android:id="@+id/cardContract"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Copies of contract where asset sought is to meet contractual requirements "
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/notificationContract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="no file selected"
+                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:padding="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        >
+                        <Button
+                            android:id="@+id/selectFileContractBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select file"
+                            android:background="@color/imorange"
+                            android:textColor="@color/white"
+
+                            />
+
+                        <Button
+                            android:id="@+id/uploadContractBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="80dp"
+                            android:textColor="@color/white"
+                            android:background="@color/imorange"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_margin="16dp"
+                android:id="@+id/pageNumber"
+                android:layout_below="@+id/cardContract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="PAGE: 8/10"
+                android:textColor="@color/imbluedark"
+                android:paddingTop="30dp"
+                />
+
+            <Button
+                android:id="@+id/proceedEightTest"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="proceed"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

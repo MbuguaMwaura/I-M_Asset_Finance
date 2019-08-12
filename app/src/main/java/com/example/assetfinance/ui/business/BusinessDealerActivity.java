@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.Supplier;
 import com.example.assetfinance.ui.AssetDetail;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +89,19 @@ public class BusinessDealerActivity extends AppCompatActivity implements View.On
                 addToSharedPreferences(inputDealerName, inputPostalAddress, inputTelNo, inputSalesPerson, inputInvoiceDate);
             }
 
+            if ( (inputDealerName).equals("") ||
+                    (inputPostalAddress).equals("") ||
+                    (inputTelNo).equals("") ||
+                    (inputSalesPerson).equals("") ||
+                    (inputInvoiceDate).equals("")){
+                Toast.makeText(this,"Please fill in all the fields", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("supplier_details");
+            Supplier supplier = new Supplier(inputDealerName,inputPostalAddress,inputTelNo,inputInvoiceDate,inputSalesPerson);
+            reference.setValue(supplier);
             Intent intent = new Intent(this, BusinessAssetDetails.class);
             startActivity(intent);
         }

@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Bank Name"
+            android:singleLine="true"
             />
 
         <EditText
@@ -27,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Branch"
+            android:singleLine="true"
             />
 
 
@@ -35,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Account Number"
+            android:singleLine="true"
             />
 
         <EditText
@@ -42,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="OD Limit"
+            android:inputType="number"
             />
 
         <EditText
@@ -49,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Outstanding Loans"
+            android:inputType="number"
             />
 
         <Button

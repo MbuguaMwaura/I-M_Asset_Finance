@@ -24,19 +24,11 @@
                 android:id="@+id/shareholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:hint="Names Of Shareholders"
+
                 />
 
-            <ImageButton
-                android:id="@+id/addShareholder"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_white_24dp"
-                android:background="@color/imbluelight"
-                android:layout_centerInParent="true"
-                />
+
 
         </RelativeLayout>
 
@@ -74,15 +66,7 @@
                 android:hint="Associate Companies (where applicable)"
                 />
 
-            <ImageButton
-                android:id="@+id/addCompany"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_white_24dp"
-                android:background="@color/imbluelight"
-                android:layout_centerInParent="true"
-                />
+
 
         </RelativeLayout>
 

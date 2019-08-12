@@ -38,6 +38,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:hint="Pin NO"
+
                 />
 
             <LinearLayout
@@ -50,6 +51,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:hint="PO Box"
+                    android:inputType="number"
                     />
                 <EditText
                     android:layout_marginLeft="40dp"
@@ -67,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Physical Location (Location/Road)"
+                android:singleLine="true"
                 />
 
             <LinearLayout
@@ -97,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Owner/Tenant"
+                android:singleLine="true"
                 />
 
             <EditText
@@ -104,12 +108,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="If Tenant:(Name Of Landlord)"
+                android:singleLine="true"
                 />
             <EditText
                 android:id="@+id/poBox2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:hint="PO Box"
+                android:inputType="number"
                 />
 
             <LinearLayout
@@ -139,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nature Of Business"
+                android:singleLine="true"
                 />
 
             <EditText
@@ -147,6 +154,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="Year Business Established"
+                android:singleLine="true"
                 />
 
             <EditText
@@ -154,8 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Introduced By"
-                android:inputType="date"
-                android:maxLength="4"
+                android:singleLine="true"
                 />
 
 
@@ -164,6 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Purpose Of Asset Being Purchased"
+                android:singleLine="true"
                 />
 
         </LinearLayout>

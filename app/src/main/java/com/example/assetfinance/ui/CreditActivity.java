@@ -116,15 +116,6 @@ public class CreditActivity extends AppCompatActivity implements View.OnClickLis
             ){
                 addToSharedPreferences(inputName, inputFacilitytype,inputSanctionedLimit,inputOutstanding);
             }
-            if (
-                    (inputName).equals("") ||
-                            (inputFacilitytype).equals("") ||
-                            (inputSanctionedLimit).equals("") ||
-                            (inputOutstanding).equals("")
-            ){
-                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
-                return;
-            }
 
 
 

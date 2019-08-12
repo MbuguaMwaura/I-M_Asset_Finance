@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.Applicant;
 import com.example.assetfinance.ui.BankDetailsActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -178,10 +181,33 @@ public class BusinessApplicantActivity extends AppCompatActivity implements View
                         inputBusinessLocation, inputBusinessNumber, inputBusinessOfficeNumber, inputBusinessOwnerTenant, inputBusinessLandlord,
                         inputBusinessPoBoxLandLord, inputBusinessPostalCodeLandord, inputBusinessNumberLandLord, inputBusinessBusiness,
                         inputBusinessYear, inputBusinessIntroBy, inputBusinessPurpose);
-            } else {
-
             }
+            if (
+                    (inputBusinessName).equals("") ||
+                            (inputBusinessIDCERT).equals("") ||
+                            (inputBusinessPin).equals("") ||
+                            (inputBusinessPoBox).equals("") ||
+                            (inputBusinessPostalCode).equals("") ||
+                            (inputBusinessLocation).equals("") ||
+                            (inputBusinessNumber).equals("") ||
+                            (inputBusinessOfficeNumber).equals("") ||
+                            (inputBusinessOwnerTenant).equals("") ||
+                            (inputBusinessLandlord).equals("") ||
+                            (inputBusinessPoBoxLandLord).equals("") ||
+                            (inputBusinessPostalCodeLandord).equals("") ||
+                            (inputBusinessNumberLandLord).equals("") ||
+                            (inputBusinessBusiness).equals("") ||
+                            (inputBusinessYear).equals("") ||
+                            (inputBusinessIntroBy).equals("") ||
+                            (inputBusinessPurpose).equals("")
 
+            ){
+                Toast.makeText(this,"Please fill in all details", Toast.LENGTH_LONG).show();
+                return;
+            }
+            Applicant applicant = new Applicant(inputBusinessName,inputBusinessIDCERT,inputBusinessPin,inputBusinessPoBox,inputBusinessPostalCode,inputBusinessLocation,inputBusinessNumber,inputBusinessOfficeNumber,inputBusinessLandlord,inputBusinessPoBoxLandLord,inputBusinessPostalCode,inputBusinessNumberLandLord,inputBusinessBusiness,inputBusinessYear,inputBusinessIntroBy,inputBusinessPurpose,inputBusinessOwnerTenant);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputBusinessIDCERT).child("applicant_details");
+            reference.setValue(applicant);
 
             Intent intent = new Intent(this, BusinessBankActivity.class);
             startActivity(intent);
