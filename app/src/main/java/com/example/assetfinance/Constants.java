@@ -138,6 +138,15 @@ public class Constants {
     public static final String EIGHT_BUSINESS_SANCTIONED_LIMIT = "business_sanctioned_limit";
     public static final String EIGHT_BUSINESS_CURRENT_OUTSTANDING = "business_current_outstanding";
 
+    // form nine constants
+    public static final String NINE_ID = "individual_id";
+    public static final String NINE_INVOICE= "invoice";
+    public static final String NINE_PIN = "pin_certificate";
+    public static final String NINE_PAYSLIP = "payslip";
+    public static final String NINE_BANK_STATEMENTS="bank_statements";
+    public static final String NINE_BUSINESS_PIN = "business_pin";
+    public static final String NINE_BUSINESS_REG = "certificate_business_reg";
+    public static final String NINE_CONTRACT_COPIES = "copies_of_contract";
 
 }
 

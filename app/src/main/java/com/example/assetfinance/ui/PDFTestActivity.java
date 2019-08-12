@@ -3,9 +3,11 @@ package com.example.assetfinance.ui;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +21,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.models.IndividualDocument;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +35,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -79,8 +84,10 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
     Uri pdfBusinessReg;
     Uri pdfContract;
     private StorageReference mStorageReference;
-
+    ArrayList<IndividualDocument> documents = new ArrayList<>();
+    private SharedPreferences mSharedPreferences;
     ProgressDialog progressDialog;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +98,8 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
 
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         selectFileBtn.setOnClickListener(this);
         uploadBtn.setOnClickListener(this);
@@ -132,7 +141,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadInvoiceBtn){
             if (pdfInvoiceUri != null){
-                uploadFile(pdfInvoiceUri);
+                uploadFileInvoice(pdfInvoiceUri);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
             }
@@ -143,7 +152,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
 
         if (v == uploadPINBtn){
             if (pdfPINUri != null){
-                uploadFile(pdfPINUri);
+                uploadFilePIN(pdfPINUri);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
             }
@@ -154,7 +163,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadPayslipBtn){
             if (pdfPayslip != null){
-                uploadFile(pdfPayslip);
+                uploadFilePayslip(pdfPayslip);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_LONG).show();
             }
@@ -164,7 +173,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadStatementBtn){
             if (pdfStatements != null){
-                uploadFile(pdfStatements);
+                uploadFileBankStatements(pdfStatements);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
             }
@@ -174,7 +183,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadBusinessPINBtn){
             if (pdfBusinessPin != null){
-                uploadFile(pdfBusinessPin);
+                uploadFileBusinessPin(pdfBusinessPin);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
             }
@@ -184,7 +193,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadBusinessRegBtn){
             if (pdfBusinessReg != null){
-                uploadFile(pdfBusinessReg);
+                uploadFileCertificateReg(pdfBusinessReg);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
             }
@@ -194,7 +203,7 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (v == uploadContractBtn){
             if (pdfContract != null){
-                uploadFile(pdfContract);
+                uploadFileContract(pdfContract);
             }else {
                 Toast.makeText(this,"Please select a file", Toast.LENGTH_SHORT).show();
             }
@@ -225,8 +234,370 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
                             DatabaseReference databaseReference = database.getReference();
-                            databaseReference.child("upload").push().setValue(task.getResult().toString());
+                            databaseReference.child(inputID).child("documents").child("id").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_ID,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+
+    private void uploadFileInvoice(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("invoice").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_INVOICE,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFilePIN(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("pin").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_PIN,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFilePayslip(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("payslip").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_PAYSLIP,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileBankStatements(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("bank_statements").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_BANK_STATEMENTS,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileBusinessPin(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("business_pin").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_BUSINESS_PIN,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileCertificateReg(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("certificate_reg").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_BUSINESS_REG,document);
+                            Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(PDFTestActivity.this,"File not successfully uploaded", Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int currentProgress = (int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(currentProgress);
+            }
+        });
+
+
+    }
+    private void uploadFileContract(Uri pdfUri) {
+        progressDialog = new ProgressDialog(PDFTestActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File...");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+        final String fileName = System.currentTimeMillis() + "";
+        final StorageReference reference = storage.getReference();
+        UploadTask uploadTask = reference.child("uploads").child(fileName).putFile(pdfUri);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.child("uploads").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+                            DatabaseReference databaseReference = database.getReference();
+                            databaseReference.child(inputID).child("documents").child("contract").setValue(task.getResult().toString());
+                            String document = task.getResult().toString();
+                            addToSharedPreferences(Constants.NINE_CONTRACT_COPIES,document);
                             Toast.makeText(PDFTestActivity.this,"File successfully uploaded", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }else{
@@ -405,6 +776,10 @@ public class PDFTestActivity extends AppCompatActivity implements View.OnClickLi
             result = uri.getLastPathSegment();
         }
         return result;
+    }
+
+    private void addToSharedPreferences(String constant, String document) {
+        mEditor.putString(constant,document).apply();
     }
 
 }
