@@ -79,9 +79,12 @@ public class ExistingAssetsActivity extends AppCompatActivity implements View.On
             }
 
             String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("vehicle_details");
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference(inputID).child("vehicle_details");
             DatabaseReference pushRef = reference.push();
+            String pushID = pushRef.getKey();
+            vehicle.setPushId(pushID);
             pushRef.setValue(vehicle);
+
 
         }
         if (v == addPropertyBtn){

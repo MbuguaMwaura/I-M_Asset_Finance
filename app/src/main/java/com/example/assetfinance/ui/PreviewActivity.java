@@ -20,8 +20,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +35,21 @@ import android.widget.Toast;
 
 import com.example.assetfinance.Constants;
 import com.example.assetfinance.R;
+import com.example.assetfinance.adapters.FirebaseBankViewHolder;
+import com.example.assetfinance.adapters.FirebaseListAdapter;
+import com.example.assetfinance.adapters.FirebaseVehicleViewHolder;
+import com.example.assetfinance.models.BankDetails;
+import com.example.assetfinance.models.Vehicle;
 import com.example.assetfinance.services.DjangoService;
+import com.example.assetfinance.util.OnStartDragListener;
+import com.example.assetfinance.util.SimpleItemTouchHelperCallback;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -59,6 +79,10 @@ import okhttp3.Response;
 public class PreviewActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.editPageOne)
     TextView editPageOne;
+    @BindView(R.id.recyclerViewBank)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerViewVehicle)
+    RecyclerView recyclerViewVehicle;
 //    @BindView(R.id.editPageTwo)
 //    TextView editPageTwo;
 //    @BindView(R.id.done)
@@ -85,23 +109,34 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.introBy) TextView introBy;
     @BindView(R.id.purpose) TextView purpose;
 
-    @BindView(R.id.bankName)
-    TextView bankName;
-    @BindView(R.id.branch) TextView branch;
-    @BindView(R.id.accountNumber) TextView accountNumber;
-    @BindView(R.id.odLimit) TextView odLimit;
-    @BindView(R.id.outStandingLoans) TextView outStandingLoans;
+//    @BindView(R.id.bankName)
+//    TextView bankName;
+//    @BindView(R.id.branch) TextView branch;
+//    @BindView(R.id.accountNumber) TextView accountNumber;
+//    @BindView(R.id.odLimit) TextView odLimit;
+//    @BindView(R.id.outStandingLoans) TextView outStandingLoans;
 
     private SharedPreferences mSharedPreferences;
     private int STORAGE_PERMISSION_CODE = 1;
+
+
+    private FirebaseListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
+    private DatabaseReference reference;
+    private DatabaseReference referenceVehicle;
+    private FirebaseRecyclerAdapter<BankDetails, FirebaseBankViewHolder> firebaseRecyclerAdapter;
+    private FirebaseRecyclerAdapter<Vehicle, FirebaseVehicleViewHolder> firebaseRecyclerAdapterVehicle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business_preview);
+        setContentView(R.layout.activity_preview);
         ButterKnife.bind(this);
         setTitle("PREVIEW");
 
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+
 
         String inputName = mSharedPreferences.getString(Constants.ONE_NAME, null);
         String inputIDCERT = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
@@ -120,7 +155,6 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         String inputYear = mSharedPreferences.getString(Constants.ONE_YEAR_BUSINESS, null);
         String inputIntroBy = mSharedPreferences.getString(Constants.ONE_INTRO_BY, null);
         String inputPurpose = mSharedPreferences.getString(Constants.ONE_PURPOSE, null);
-
 
 
         name.setText(inputName);
@@ -142,6 +176,10 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         purpose.setText(inputPurpose);
 
 
+        reference = FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("bank_details");
+        referenceVehicle =  FirebaseDatabase.getInstance().getReference().child(inputIDCERT).child("vehicle_details");
+
+        setUpFirebaseAdapter();
 
 
 //
@@ -149,6 +187,64 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
 //        editPageTwo.setOnClickListener(this);
 //        finish.setOnClickListener(this);
 //        generate.setOnClickListener(this);
+    }
+    private void setUpFirebaseAdapter() {
+        FirebaseRecyclerOptions<BankDetails> options = new FirebaseRecyclerOptions.Builder<BankDetails>()
+                .setQuery(reference, BankDetails.class)
+                .build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<BankDetails, FirebaseBankViewHolder>(options) {
+
+            @NonNull
+            @Override
+            public FirebaseBankViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.bank_item, viewGroup, false);
+                return new FirebaseBankViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull FirebaseBankViewHolder holder, int position, @NonNull BankDetails model) {
+                holder.bindBank(model);
+            }
+        };
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
+        FirebaseRecyclerOptions<Vehicle> optionstwo = new FirebaseRecyclerOptions.Builder<Vehicle>()
+                .setQuery(referenceVehicle, Vehicle.class)
+                .build();
+        firebaseRecyclerAdapterVehicle = new FirebaseRecyclerAdapter<Vehicle, FirebaseVehicleViewHolder>(optionstwo) {
+            @NonNull
+            @Override
+            public FirebaseVehicleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.vehicle_item, viewGroup, false);
+                return new FirebaseVehicleViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull FirebaseVehicleViewHolder holder, int position, @NonNull Vehicle model) {
+                holder.bindVehicle(model);
+            }
+        };
+        recyclerViewVehicle.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerViewVehicle.setAdapter(firebaseRecyclerAdapterVehicle);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseRecyclerAdapter.startListening();
+        firebaseRecyclerAdapterVehicle.startListening();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(firebaseRecyclerAdapterVehicle != null && firebaseRecyclerAdapter !=null)  {
+
+            firebaseRecyclerAdapterVehicle.stopListening();
+        }
     }
 
     @Override
@@ -216,6 +312,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         Canvas canvas = page.getCanvas();
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
+//        canvas.drawBitmap();
         canvas.drawText(nameOne, 80, 50, paint);
         canvas.drawText(nameTwo, 80, 70, paint);
         canvas.drawText(personEmail, 80, 90, paint);
@@ -287,4 +384,10 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+
+
+
+
+
+
 }

@@ -388,7 +388,9 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
                 Bitmap img= MediaStore.Images.Media.getBitmap(getContentResolver(), signatureUri);
                 if(img!= null) {
                     selectedSignature.setImageBitmap(img);
+                   
                 }
+
 
             } catch (IOException e) {
                 e.printStackTrace();

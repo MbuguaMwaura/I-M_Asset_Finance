@@ -30,6 +30,8 @@ public class Constants {
     public static final String ONE_INTRO_BY = "intro_by";
     public static final String ONE_PURPOSE = "purpose";
 
+
+
 //    form four constants
     public static final String FOUR_AGE = "age";
     public static final String FOUR_OCCUPATION = "occupation";
@@ -76,7 +78,8 @@ public class Constants {
     public static final String SEVEN_TOTAL_COST = "total_cost";
     public static final String SEVEN_DEPOSIT = "deposit";
     public static final String SEVEN_BALANCE_OF_COST = "balance_of_cost";
-
+    public static final String SEVEN_VEHICLE_STATE = "state";
+    public static final String SEVEN_INSURANCE_OPTION = "option";
 //    form eight constants
     public static final String EIGHT_NAME = "name_eight";
     public static final String EIGHT_FACILITY_TYPE = "facility_type";

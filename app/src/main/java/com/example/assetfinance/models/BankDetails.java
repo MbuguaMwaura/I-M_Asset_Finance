@@ -1,22 +1,46 @@
 package com.example.assetfinance.models;
 
+
+import org.parceler.Parcel;
+
+@Parcel
 public class BankDetails {
     String bankName;
     String branch;
     String accountNumber;
     String odLimit;
     String outStandingLoans;
+    private String pushId;
+    String index;
 
+    public BankDetails() {
+    }
     public BankDetails(String bankName, String branch, String accountNumber, String odLimit, String outStandingLoans) {
         this.bankName = bankName;
         this.branch = branch;
         this.accountNumber = accountNumber;
         this.odLimit = odLimit;
         this.outStandingLoans = outStandingLoans;
+        this.index = "not_specified";
     }
 
-    public BankDetails() {
+
+    public String getIndex() {
+        return index;
     }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
 
     public String getBankName() {
         return bankName;

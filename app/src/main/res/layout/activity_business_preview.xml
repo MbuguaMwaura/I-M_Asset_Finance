@@ -207,96 +207,103 @@
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_below="@id/card1"-->
+                <!--android:id="@+id/card2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_margin="20dp"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear9"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:padding="16dp"-->
+                    <!--&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/editPageTwo"-->
+                        <!--android:drawableRight="@drawable/ic_edit_black_24dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="APPLICANT BANK DETAILS"-->
+                        <!--android:textSize="20sp"-->
+                        <!--/>-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:id="@+id/linear3"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="vertical"-->
+
+                        <!--&gt;-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/bankName"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Bank Name"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/branch"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Branch"-->
+                            <!--/>-->
+
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/accountNumber"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Account Number"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/odLimit"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="OD Limit"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/outStandingLoans"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Outstanding Loans"-->
+                            <!--/>-->
+
+
+
+
+                    <!--</LinearLayout>-->
+
+
+
+
+
+
+                <!--</LinearLayout>-->
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <android.support.v7.widget.RecyclerView
                 android:layout_below="@id/card1"
-                android:id="@+id/card2"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                >
+                android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:id="@+id/linear9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_centerInParent="true"
-                    android:padding="16dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/editPageTwo"
-                        android:drawableRight="@drawable/ic_edit_black_24dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="APPLICANT BANK DETAILS"
-                        android:textSize="20sp"
-                        />
-
-
-                    <LinearLayout
-                        android:layout_centerInParent="true"
-                        android:id="@+id/linear3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        >
-
-                        <TextView
-                            android:id="@+id/bankName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Bank Name"
-                            />
-
-                        <TextView
-                            android:id="@+id/branch"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Branch"
-                            />
-
-
-                        <TextView
-                            android:id="@+id/accountNumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Account Number"
-                            />
-
-                        <TextView
-                            android:id="@+id/odLimit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="OD Limit"
-                            />
-
-                        <TextView
-                            android:id="@+id/outStandingLoans"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Outstanding Loans"
-                            />
-
-
-
-
-                    </LinearLayout>
-
-
-
-
-
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:layout_below="@id/card2"
+                android:layout_below="@id/recyclerView"
                 android:id="@+id/card3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -64,6 +64,7 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
         ButterKnife.bind(this);
 
 
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
@@ -79,6 +80,8 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
         String inputTotalCost = mSharedPreferences.getString(Constants.SEVEN_TOTAL_COST, null);
         String inputDeposit = mSharedPreferences.getString(Constants.SEVEN_DEPOSIT, null);
         String inputBalanceOfCost = mSharedPreferences.getString(Constants.SEVEN_BALANCE_OF_COST, null);
+        String inputVehicleState = mSharedPreferences.getString(Constants.SEVEN_VEHICLE_STATE,null);
+        String inputInsurance = mSharedPreferences.getString(Constants.SEVEN_INSURANCE_OPTION,null);
 
 
         if ((inputMake) != null){
@@ -116,6 +119,23 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
         }
         if ((inputBalanceOfCost)!= null){
             balanceOfCost.setText(inputBalanceOfCost);
+        }
+
+        if (inputVehicleState != null) {
+            if ((inputVehicleState).equals("New Vehicle") ){
+                checkNew.setChecked(true);
+            }else {
+                checkNew.setChecked(false);
+            }
+        }
+        if (inputVehicleState != null && (inputVehicleState).equals("Used Vehicle")) {
+            checkUsed.setChecked(true);
+        }
+        if (inputInsurance != null && (inputInsurance).equals("Using I&M Insurance Agency")) {
+            checkIMInsurance.setChecked(true);
+        }
+        if (inputInsurance != null && (inputInsurance).equals("Interest in Insurance Finance (IPF)")) {
+            checkInterested.setChecked(true);
         }
 
 
@@ -215,7 +235,9 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
                             !(inputAccessoryValue).equals("") &&
                             !(inputTotalCost).equals("") &&
                             !(inputDeposit).equals("") &&
-                            !(inputBalanceOfCost).equals("")
+                            !(inputBalanceOfCost).equals("") &&
+                            !(inputVehicleState).equals("")&&
+                            !(inputInsurance).equals("")
 
             ){
                 addToSharedPreferences(inputMake,
@@ -229,7 +251,9 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
                         inputAccessoryValue,
                         inputTotalCost,
                         inputDeposit,
-                        inputBalanceOfCost);
+                        inputBalanceOfCost,
+                        inputVehicleState,
+                        inputInsurance);
             }
 
             if (
@@ -268,7 +292,9 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
                                          String inputAccessoryValue,
                                          String inputTotalCost,
                                          String inputDeposit,
-                                         String inputBalanceOfCost) {
+                                         String inputBalanceOfCost,
+                                         String inputVehicleState,
+                                         String inputInsurance) {
         mEditor.putString(Constants.SEVEN_MAKE,inputMake).apply();
         mEditor.putString(Constants.SEVEN_MODEL_CC, inputModelCC).apply();
         mEditor.putString(Constants.SEVEN_YEAR_MANUFACTURE, inputYearOfManufacture).apply();
@@ -281,6 +307,9 @@ public class AssetDetail extends AppCompatActivity implements View.OnClickListen
         mEditor.putString(Constants.SEVEN_TOTAL_COST, inputTotalCost).apply();
         mEditor.putString(Constants.SEVEN_DEPOSIT, inputDeposit).apply();
         mEditor.putString(Constants.SEVEN_BALANCE_OF_COST, inputBalanceOfCost).apply();
+        mEditor.putString(Constants.SEVEN_VEHICLE_STATE, inputVehicleState).apply();
+        mEditor.putString(Constants.SEVEN_INSURANCE_OPTION, inputInsurance).apply();
+
 
 
     }

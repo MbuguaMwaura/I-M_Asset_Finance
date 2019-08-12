@@ -46,7 +46,6 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == proceedTwo){
-
             Intent intent = new Intent(this, ExistingAssetsActivity.class);
             startActivity(intent);
         }
@@ -75,6 +74,8 @@ public class BankDetailsActivity extends AppCompatActivity implements View.OnCli
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("bank_details");
             BankDetails bankDetails = new BankDetails(inputbankName,Branch,inputaccountNumber,inputodLimit,inputoutStandingLoans);
             DatabaseReference pushRef = reference.push();
+            String pushID = pushRef.getKey();
+            bankDetails.setPushId(pushID);
             pushRef.setValue(bankDetails);
         }
     }

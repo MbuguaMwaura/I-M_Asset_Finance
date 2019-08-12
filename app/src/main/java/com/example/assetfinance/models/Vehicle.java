@@ -6,6 +6,8 @@ public class Vehicle {
     String model;
     String balanceLoan;
     String financedBy;
+    String index;
+    private String pushId;
 
     public Vehicle(String regNo, String make, String model, String balanceLoan, String financedBy) {
         this.regNo = regNo;
@@ -13,9 +15,27 @@ public class Vehicle {
         this.model = model;
         this.balanceLoan = balanceLoan;
         this.financedBy = financedBy;
+        this.index = "not-specified";
     }
 
+
     public Vehicle() {
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 
     public String getRegNo() {
