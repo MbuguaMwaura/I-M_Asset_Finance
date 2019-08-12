@@ -1,73 +1,115 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>I&M Asset Finance</title>
-</head>
-<body>
-        <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
 
-        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="sketch.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>I&M Asset Finance</title>
+</head>
+
+<body>
+
+
+  <nav class="nav-extended">
+    <div class="container">
+    <div class="nav-wrapper">
+      <img class="brand-logo" src="/images/logo.png" alt="Logo">
+      
+      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul> -->
+    </div>
+    <div class="nav-content">
+      <span class="nav-title">Admin Dashboard</span>
+   
+    </div>
+  </div>
+  </nav>
+
+  <div class="container">
+  <h5>ASSET FINANCE APPLICANTS</h5>
+  
+  <div class="row">
+    <div class="col m3">
+    <div id="list">
+
+    </div>
+  </div>
+  <div class="col m9">
+      <input id="inputField" type="number">
+      <button class="btn" onclick="applicant()">Submit</button> 
+
+      
+
         
-        <script>
-          // Your web app's Firebase configuration
-          var firebaseConfig = {
-            apiKey: "AIzaSyC89jREm-d0nQW_bh2kwOdVJ1vgSHFx2kg",
-            authDomain: "i-m-asset-finance.firebaseapp.com",
-            databaseURL: "https://i-m-asset-finance.firebaseio.com",
-            projectId: "i-m-asset-finance",
-            storageBucket: "i-m-asset-finance.appspot.com",
-            messagingSenderId: "1025108421687",
-            appId: "1:1025108421687:web:e97eeb1efa876011"
-          };
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
+<div class="row">
+  <h5>Form One - Applicant Details</h5>
+  <div id="applicant">
+  <p id="name"></p>
+  <p id="idnumber"></p>
+  <p id="pin_no"></p>
+  <p id="pobox"></p>
+  <p class="right" id="postalcode"></p>
+  <p id="location"></p>
+  <p id="number"></p> 
+  <p class="right" id="officenumber"> </p>
+  <p id="ownerTenant"></p>
+  <p id="tenant"> </p>
+  <p id="poboxLandlord"> </p> 
+  <p class="right" id="postalcodeLandlord"> </p>
+  <p id="numberLandlord"></p>
+  <p id="natureBusiness"> </p>
+  <p id="yearBusiness"> </p>
+  <p id="introducedBy"> </p>
+  <p id="purpose"></p>
+</div>
+</div>
+<div class="row">
+<div id="resultTwo">
+  
+  <h5>Form Two - Bank Details</h5>
 
-          function writeData(){
-            firebase.database().ref("User").set({
-              name: document.getElementById("nameField").value,
-              age: document.getElementById("ageField").value
-            });
-            getData();
-          }
+</div>
+</div>
 
-          var ref = firebase.database().ref('helf').child('applicant_details');
-          ref.on('value',gotData,errData);
+<div class="row">
+  <div id="resultThree">
+  <h5>Form Three - Existing Vehicles</h5>
+</div>
+</div>
+<div class="row">
+<div  id="resultThreeB">
+    <h5>Form Three - Existing Property</h5>
+  </div>
+</div>
+     
 
-          function gotData(data){
-            console.log(data.val());
-            // var names = document.querySelector('#data');
-            // console.log(names);
-            var object = data.val();
-            // console.log(object.age);
-            document.getElementById("data").innerHTML = object.name;
-            document.getElementById("dataAge").innerHTML = object.StringroducedBy;
-          }
-          function errData(err){
-            console.log('Error!');
-            console.log(err);
-          }
+     
 
-          function getData(){
-            firebase.database().ref('User').once('value', function(snapshot){
-             snapshot.forEach(function(childSnapshot){
-               var childKey = childSnapshot.key;
-               var childData = childSnapshot.val(); 
-              
-               document.getElementById("data").innerHTML += childData +"<br>";  
-             });  
-            });
-          }
-        </script>
-<h1>Test</h1>
-<input type="text" id="nameField">
-<input type="text" id="ageField">
-<button onclick="writeData()"> Data</button>
-        <p id="data">Name:</p>
-        <p id="dataAge">Age: </p>
+
+    </div>
     
+  </div>
+  <div class="row">
+    
+  </div>
+ 
+</div>
+  
 </body>
+
 </html>

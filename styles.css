@@ -1,0 +1,18 @@
+nav{
+    background-color: #01437C;
+}
+#list{
+    height: 50vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+    scroll-behavior: smooth;
+}
+.result{
+    border: 2px solid #01437C;
+    padding: 10px;
+    margin-top: 10px;
+}
+span{
+    margin-left: 100px;
+}
