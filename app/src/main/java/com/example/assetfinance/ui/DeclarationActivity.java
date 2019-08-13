@@ -196,6 +196,10 @@ public class DeclarationActivity extends AppCompatActivity implements View.OnCli
         if (v == proceedTenBtn){
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             addToSharedPreferences("date", date);
+
+            String inputID = mSharedPreferences.getString(Constants.ONE_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("date");
+            reference.setValue(date);
             String signature = mSharedPreferences.getString("signature","");
             if ((signature.equals(""))) {
                 Toast.makeText(this,"Please upload a signature", Toast.LENGTH_SHORT).show();

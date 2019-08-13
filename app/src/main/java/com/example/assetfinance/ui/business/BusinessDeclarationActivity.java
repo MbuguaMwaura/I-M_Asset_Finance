@@ -198,6 +198,11 @@ public class BusinessDeclarationActivity extends AppCompatActivity implements Vi
         if (v == proceedTenBtn){
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             addToSharedPreferences("datebusiness", date);
+            String inputID = mSharedPreferences.getString(Constants.ONE_BUSINESS_ID_CERT, null);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(inputID).child("date");
+            reference.setValue(date);
+
+
             String signature = mSharedPreferences.getString("signaturebusiness","");
             if ((signature.equals(""))) {
                 Toast.makeText(this,"Please upload a signature", Toast.LENGTH_SHORT).show();
