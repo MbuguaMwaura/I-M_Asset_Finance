@@ -1,0 +1,48 @@
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block style %}
+        {% bootstrap_css%}
+        <link href="/static/css/navbar.css" rel="stylesheet">
+        {% endblock %}
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+
+    <title>{% block head_title %}Asset Finance{% endblock %} </title>
+
+    {% include 'head_css.html' %}
+
+
+    <style>
+
+    </style>
+    
+  </head>
+
+  <body>
+    {% include 'navbar.html' %}
+    {% block jumbotron%}
+          
+            {% endblock %}
+    
+            
+    
+            {% block content %}
+            {% endblock %}
+
+    
+    {% include 'javascript.html' %}
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50 margin" style="  background-color: rgb(2, 67, 123) !important;">
+            <div class="container text-center">
+              <small>Copyright &copy; Your Website</small>
+            </div>
+          </footer>
+  </body>
+  
+</html>

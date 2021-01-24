@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+ {% load staticfiles %}
+ {% load static %}
+ 
+
+{%block content%}
+<div class="top">
+    <br>
+    <h2 class="text-white move">7. ASSET DETAILS</h2><br>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+<div class="col-md-8 margin">
+    <div class="card shadow-lg" style="width: 100%;">
+        <div class="card-body">
+            <form  action="{%url 'dealer1'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+          
+              {% bootstrap_form form%}
+          
+              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'dealer' %}'"  />
+              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'assetdetails' %}'"  />
+            </form>
+             </div>
+    </div>
+  
+
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{{ block.super }}
+{% load static %}
+{% load bootstrap4 %}
+
+<!-- <h1>Welcome </h1>
+<h3>Thanks for logging in {{user.username}}</h3> -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="/static/css/navbar.css" rel="stylesheet">
+{% block content %}
+<div class="top">
+    <br>
+    <h1 class="text-white move">Asset Finance</h1><br>
+</div>
+
+<div class="card" style="width: 100%;">
+    <img class="card-img-top" src="/static/Asset-Finance-2.png" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-text text-center">I&M Bank Asset Finance is for individuals or companies who want to buy
+            vehicles or machinery for personal or commercial use.</h5>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4">
+            <img class="img-fluid" src="https://familybank.co.ke/wp-content/uploads/2013/11/Car-insurance-480x320.jpg">
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Asset Finance product at l&M Bank Ltd covers all forms of business and personal assets, which are:
+
+                    <ul>
+                        <li>Moveable in nature.</li>
+                        <li>Identifiable through a serial/registration number. This largely covers motor vehicles,
+                            machinery and equipment.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4 margin">
+            <div class="card">
+                <div class="card-header">
+                      <h5>  Terms   </h5>
+                </div>
+                <div class="card-body">
+                   
+                    <p class="card-text">Finance of up to 80% on cost over loan duration of 48
+                         months is availed for assets under
+                          the above categories subject to credit evaluation.
+                            <br> <br>
+                            Concessions for lower deposit and extended loan 
+                            tenure available under structured joint dealer/staff car loan schemes.
+                        </p>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 margin">
+                <div class="card">
+                    <div class="card-header">
+                          <h5>  Key Benefits      </h5>
+                    </div>
+                    <div class="card-body">
+                       
+                        <p class="card-text">
+                            <ul>
+                                <li>Quick and simple application process.</li>
+                                <li>Financed assets are self-securing.</li>
+                                <li>Option of direct import finance through selected dealers.</li>
+                                <li>Insurance Premium Financing {IPF) available.</li>
+                                <li>Effective working relationships with vehicle. dealers/vendors country wide.</li>
+
+                            </ul>
+
+                        </p>
+                  
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 margin">
+                    <div class="card">
+                        <div class="card-header">
+                              <h5>  Partners  </h5>
+                        </div>
+                        <div class="card-body">
+                           
+                            <p class="card-text"> <ul>
+                                    <li>World Navi</li>
+                                    <li>DT Dobie</li>
+                                    <li>MHH International </li>
+                                   
+                                </ul>
+                           </p>
+                           
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="row">
+            <div class="col-md-6 margin">
+                <div class="card">
+                    <div class="card-header">
+                          <h5>INDIVIDUALS/SOLE PROPRIETORSHIPS   </h5>
+                    </div>
+                    <div class="card-body">
+                       
+                        <p class="card-text">
+                                <ol>
+                                        <li>	Duly completed Asset Finance Application Form.</li>
+                                        <li>Proforma Invoice from the DealerNendor.</li>
+                                        <li>	ID Copy.</li>
+                                        <li>PIN Certificate</li>
+                                        <li>	Latest payslip (if salaried).</li>
+                                        <li>Latest 6 month bank statement ( 12 months is business is seasonal in nature)    .</li>
+                                        <li>Business PIN Certificate {Where applicable)</li>
+                                            <li>Certificate of Business Registration</li>
+                                            <li>Copies of contract where asset sought is to meet contractual requirements</li>
+                                    </ol>
+                                  </p>
+                                  <input class="btn btn-primary button" type="button" value="APPLY" onclick="location.href='{% url 'applicant' %}'"  />
+                                </div>
+                </div>
+            </div>
+            <div class="col-md-6 margin">
+                    <div class="card">
+                        <div class="card-header">
+                              <h5> SM E’S/CORPORATES   </h5>
+                        </div>
+                        <div class="card-body">
+                           
+                            <p class="card-text">
+                                <ol>
+                                        <li>	Duly completed Asset Finance Application Form.</li>
+                                        <li>Proforma Invoice from the DealerNendor.</li>
+                                        <li>	Company PIN Certificate.</li>
+                                        
+                                        <li>	Certificate of incorporation).</li>
+                                        <li>Memorandum & Articles of Association  .</li>
+                                        <li>Latest 6 month bank statement (* 12 months is business is seasonal in nature)   </li>
+                                            <li>Copies of contract where asset sought is to meet contractual requirements</li>
+                                            <li>Latest 3 year audited accounts, annual returns and cashflow projections</li>
+                                            <li>Company/Business Profile</li>
+                                </ol>
+    
+                            </p>
+                            <input class="btn btn-primary button" type="button" value="APPLY" onclick="location.href='{% url 'applicant' %}'"  />
+
+                        </div>
+                    </div>
+                </div>
+               
+        </div>
+</div>
+
+
+
+
+
+
+
+<!-- <a href="/logout">Logout</a>
+<a class='btn btn-primary' href="/accounts/login">Login</a> -->
+
+{% endblock %}

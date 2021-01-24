@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+ {% load staticfiles %}
+ {% load static %}
+ 
+
+{%block content%}
+<div class="top">
+    <br>
+    <h2 class="text-white move">2. APPLICANT'S BANK DETAILS</h2><br>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+<div class="col-md-8 margin">
+    <div class="card shadow-lg" style="width: 100%;">
+        <div class="card-body">
+            <form  action="{%url 'applicantbankdetails'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+          
+              {% bootstrap_form form%}
+          
+              <!-- <button type="submit" name="system" value="sub" form="systemForm" class="btn btn-primary btn-lg btn-block"> PREVIOUS</button>
+              <button type="submit" name="system" value="buoy" form="systemForm" class="btn btn-primary btn-lg btn-block"> NEXT</button> -->
+              <input class="btn btn-primary" type="button" value="PREVIOUS" onclick="location.href='{% url 'applicant' %}'"  />
+              <input class="btn btn-primary" type="button" value="NEXT" onclick="location.href='{% url 'properties' %}'"  />
+            </form>
+             </div>
+    </div>
+  
+    <!-- <input type="submit" class="btn btn-success btn-lg" value="PREVIOUS">
+    <input type="submit" class="btn btn-success btn-lg" value="SUBMIT">
+    <input type="submit" class="btn btn-success btn-lg" value="NEXT"> -->
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+
+
